@@ -19,6 +19,7 @@ include 'include/config.php';
 		{
 			header("Location:inscription.php?error=".$value);
 			exit;
+			
 		}
 	}
 	// include
