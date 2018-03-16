@@ -19,7 +19,7 @@ include 'include/config.php';
 		{
 			header("Location:inscription.php?error=".$value);
 			exit;
-			
+
 		}
 	}
 	// include
@@ -101,6 +101,38 @@ include 'include/config.php';
 	$titre = "Bienvenue sur viaxe";
 
 	mail($_POST['email'], $titre, $message);
+	if ($i==0)
+	{
+ echo'<h1>Inscription terminée</h1>';
+			 echo'<p>Bienvenue '.stripslashes(htmlspecialchars($_POST['pseudo']));
+
+
+ //Et on définit les variables de sessions
+			 $_SESSION['pseudo'] = $pseudo;
+			 $_SESSION['id'] = $db->lastInsertId(); ;
+			 $_SESSION['level'] = 2;
+			 $query->CloseCursor();
+	 }
+	 else
+	 {
+			 echo'<h1>Inscription interrompue</h1>';
+			 echo'<p>Une ou plusieurs erreurs se sont produites pendant l incription</p>';
+			 echo'<p>'.$i.' erreur(s)</p>';
+			 echo'<p>'.$pseudo_erreur1.'</p>';
+			 echo'<p>'.$pseudo_erreur2.'</p>';
+			 echo'<p>'.$mdp_erreur.'</p>';
+			 echo'<p>'.$email_erreur1.'</p>';
+			 echo'<p>'.$email_erreur2.'</p>';
+			 echo'<p>'.$msn_erreur.'</p>';
+			 echo'<p>'.$signature_erreur.'</p>';
+			 echo'<p>'.$avatar_erreur.'</p>';
+			 echo'<p>'.$avatar_erreur1.'</p>';
+			 echo'<p>'.$avatar_erreur2.'</p>';
+			 echo'<p>'.$avatar_erreur3.'</p>';
+
+			 echo'<p>Cliquez <a href="./register.php">ici</a> pour recommencer</p>';
+	 }
+}
 	header("Location:index.php");
 	exit;
 ?>
