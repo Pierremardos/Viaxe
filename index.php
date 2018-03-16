@@ -44,7 +44,6 @@
 			</form>
 		</div>
 		<div class="search container">
-
 		</div>
 	</main>
 	</body>
