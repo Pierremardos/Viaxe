@@ -13,7 +13,7 @@
     <br><br><br>
 <?php
 // include
-include 'include/config.php';
+include 'include/config.php';    
 include 'include/function.php';
 
 //test si la personne n'est pas conecter
