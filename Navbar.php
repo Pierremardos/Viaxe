@@ -13,12 +13,6 @@
 			<div class="container">
 				<ul class="navbar-nav">
 					<li class="nav-item">
-						<a class="nav-link" href="#">Parcours</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Nos guides</a>
-					</li>
-					<li class="nav-item">
 						<a class="nav-link" href="#">Nous contacter</a>
 					</li>
 					<li class="nav-item">
