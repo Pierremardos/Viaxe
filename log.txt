@@ -1,2 +1,6 @@
 
+<<<<<<< HEAD
 jensucuuuuceeee
+=======
+moieuoifyfae$jkd
+>>>>>>> d4220ad1e240067d7c249a0d652b78c4c9e0000f
