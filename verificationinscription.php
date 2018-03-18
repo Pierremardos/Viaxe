@@ -123,16 +123,8 @@ include 'include/config.php';
 			 echo'<p>'.$mdp_erreur.'</p>';
 			 echo'<p>'.$email_erreur1.'</p>';
 			 echo'<p>'.$email_erreur2.'</p>';
-			 echo'<p>'.$msn_erreur.'</p>';
-			 echo'<p>'.$signature_erreur.'</p>';
-			 echo'<p>'.$avatar_erreur.'</p>';
-			 echo'<p>'.$avatar_erreur1.'</p>';
-			 echo'<p>'.$avatar_erreur2.'</p>';
-			 echo'<p>'.$avatar_erreur3.'</p>';
-
-			 echo'<p>Cliquez <a href="./register.php">ici</a> pour recommencer</p>';
 	 }
-}
-	header("Location:index.php");
+
+	//header("Location:index.php");
 	exit;
 ?>
