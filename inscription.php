@@ -20,7 +20,7 @@
 				<input type="password" name="confirm" placeholder="Confirmer"><br>
   			<input type="date" name="birthday" placeholder="Date de naissance"><br><br>
   			<input type="radio" name="gender" value="1" checked> Homme
-  			<input type="radio" name="gender" value="0"> Femme<br><br>
+  			<input type="radio" name="gender" value="2"> Femme<br><br>
         <select name="role">
 					<option selected>Rôle</option>
           <option value="utilisateur">Utilisateur</option>
@@ -29,9 +29,9 @@
   			<select name="country">
 					<option selected>Pays</option>
   				<option value="fr">France</option>
-  				<option value="en">England</option>
-  				<option value="sp">Spain</option>
-  				<option value="ge">Germany</option>
+  				<option value="en">Angleterre</option>
+  				<option value="sp">Espagne</option>
+  				<option value="ge">Allemagne</option>
   			</select><br>
   			<input type="submit" value="Inscription">
       </div>
