@@ -2,7 +2,8 @@
 <html>
 <head>
 	<title>Navbar Viaxe</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
@@ -12,16 +13,10 @@
 			<div class="container">
 				<ul class="navbar-nav">
 					<li class="nav-item">
-						<a class="nav-link" href="#">Parcours</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Nos guides</a>
-					</li>
-					<li class="nav-item">
 						<a class="nav-link" href="#">Nous contacter</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="connection.php">Connection</a>
+						<a class="nav-link" href="connection.php">Connexion</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="inscription.php">Inscription</a>
