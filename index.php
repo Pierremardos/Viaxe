@@ -11,91 +11,159 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
- <script src="include/index.js"></script>
+ 	<script src="include/index.js"></script>
 </head>
 <body>
 	<header>
-		<?php include('Navbar.php')
+		<?php
+		include('Navbar.php')
 		?>
 	</header>
 	<main>
 		<div class="search container">
 			<form action="searchparcours" method="post">
-					Je recherche : <input type="radio" name="type" value="parcours" checked> Parcours
-					<input type="radio" name="type" value="people"> Utilisateur
-					<br>
-					<br>
-					<p>
+				Je recherche : <input type="radio" name="type" value="parcours" checked> Parcours
+				<input type="radio" name="type" value="people"> Utilisateur
+				<br>
+				<br>
+				<input type="search" name="search" placeholder="Search...">
+				<br>
+				<br>
+				<p>
   				Prix:
 					<br>
   				<input type="text" id="amount1" readonly style="border:0; color:#00B2B1; font-weight:bold;">
-					</p>
-					<div id="slider-range"></div>
-					<br>
-					<p>
+				</p>
+				<div id="slider-range"></div>
+				<br>
+				<p>
 					Nombre de places :
   				<input type="text" id="amount" readonly style="border:0; color:#00B2B1; font-weight:bold;">
-					</p>
-
-					<div id="slider-range-min"></div>
-					<br>
-					<br>
-					Date :
-					<input type="date" name="date">
-					Categorie :
-						<select name="categorie">
-							<option value="culturel" selected>Culturel</option>
-							<option value="food">Culinaire</option>
-							<option value="fun">Ludique</option>
-						</select>
-						Langue 1 :
-						<select name="langage">
-							<option value="undefined">Indefini</option>
-							<option value="fr">Francais</option>
-						</select>
-						Langue 2 :
-						<select name="langage2">
-							<option value="undefined">Indefini</option>
-							<option value="fr">Francais</option>
-						</select>
-						<br>
-						<br>
-						<input type="search" name="search" placeholder="Search...">
-						<input type="submit" value="Recherche">
-				</div>
+				</p>
+				<div id="slider-range-min"></div>
+				<br>
+				Date :
+				<input type="date" name="date">
+				Categorie :
+				<select name="categorie">
+					<option value="culturel" selected>Culturel</option>
+					<option value="food">Culinaire</option>
+					<option value="fun">Ludique</option>
+				</select>
+				Langue 1 :
+				<select name="langage">
+					<option value="undefined">Indefini</option>
+					<option value="fr">Francais</option>
+				</select>
+				Langue 2 :
+				<select name="langage2">
+					<option value="undefined">Indefini</option>
+					<option value="fr">Francais</option>
+				</select>
+				<br>
+				<br>
+				<input type="submit" value="Recherche" readonly style="margin-left: 1030px;">
 			</form>
 		</div>
 		<br>
-  <div class="row container">
-   <div class="col-md-4">
-     <div class="thumbnail">
-
-         <img src="img/1.jpeg" alt="Lights" style="width:100%">
-         <div class="caption">
-           <p>Lorem ipsum...</p>
-         </div>
-       </a>
-     </div>
-   </div>
-   <div class="col-md-4">
-     <div class="thumbnail">
-         <img src="img/2.jpeg" alt="Nature" style="width:100%">
-         <div class="caption">
-           <p>Lorem ipsum...</p>
-         </div>
-       </a>
-     </div>
-   </div>
-   <div class="col-md-4">
-     <div class="thumbnail">
-         <img src="img/3.jpeg" alt="Fjords" style="width:100%">
-         <div class="caption">
-           <p>Lorem ipsum...</p>
-         </div>
-       </a>
-      </div>
-    </div>
-    </div>
+		<h1>Les parcours de la journée</h1>
+		<div class="search container">
+  		<div class="row container">
+   			<div class="col-md-4">
+     			<div class="thumbnail">
+         		<a href="#"><img src="images/GalerieEvo.jpg" alt="GalerieEvolution" style="width:100%">
+         			<div class="caption">
+           			<p>Lorem ipsum...</p>
+         			</div>
+       			</a>
+     			</div>
+   			</div>
+   			<div class="col-md-4">
+     			<div class="thumbnail">
+         		<a href="#"><img src="images/PyramidesCaire.jpg" alt="Pyramides" style="width:100%">
+         			<div class="caption">
+           			<p>Lorem ipsum...</p>
+         			</div>
+       			</a>
+     			</div>
+   			</div>
+   			<div class="col-md-4">
+     			<div class="thumbnail">
+         		<a href="#"><img src="images/Sydney.jpg" alt="Sydney" style="width:100%">
+         			<div class="caption">
+           			<p>Lorem ipsum...</p>
+         			</div>
+       			</a>
+      		</div>
+    		</div>
+    	</div>
+		</div>
+		<br>
+		<h1>Côté Cuisine</h1>
+		<div class="search container">
+			<div class="row container">
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<a href="#"> <img src="images/chinois.jpg" alt="Restaurant Paris" style="width:100%">
+							<div class="caption">
+								<p>Lorem ipsum...</p>
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<a href="#"><img src="images/orchestre.jpg" alt="Restaurant Orchestre" style="width:100%">
+							<div class="caption">
+								<p>Lorem ipsum...</p>
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<a href="#"><img src="images/jack.jpg" alt="Blue Lagoon" style="width:100%">
+							<div class="caption">
+								<p>Lorem ipsum...</p>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<h1>Nos coups de coeur</h1>
+		<div class="search container">
+			<div class="row container">
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<a href="#"><img src="images/Guimet.jpg" alt="Coup de coeur 1" style="width:100%">
+							<div class="caption">
+								<p>Lorem ipsum...</p>
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<a href="#"><img src="images/TourEiffel.jpg" alt="Coup de coeur 2" style="width:100%">
+							<div class="caption">
+								<p>Lorem ipsum...</p>
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<a href="#"><img src="images/Buddha.jpg" alt="Laos Buddah Park" style="width:100%">
+							<div class="caption">
+								<p>Lorem ipsum...</p>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
 	</main>
-	</body>
-	</html>
+</body>
+</html>
