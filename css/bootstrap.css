@@ -81,7 +81,7 @@ hr {
 
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
-  margin-bottom: 0.5rem;
+  margin-bottom: 5rem;
 }
 
 p {
@@ -3851,7 +3851,7 @@ tbody.collapse.show {
 
 .nav-link {
   display: block;
-  padding: 5rem 5rem;
+  padding: 0.5rem 1rem;
 }
 
 .nav-link:hover, .nav-link:focus {
