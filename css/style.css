@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+navbar{
+  height: 10px;
+}
+
+>>>>>>> 7f159b3f679623a7edb733b0d59fcfc278dcb1de
 .navbarright{
   float: right;
 }
@@ -24,8 +31,4 @@ label {
 display:block;
 width:150px;
 float:right;
-}
-
-h1{
-  color:white;
 }
