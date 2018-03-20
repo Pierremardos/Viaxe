@@ -94,18 +94,17 @@ include 'include/config.php';
 												"country"=>htmlspecialchars($_POST['country']),
 												"role"=>htmlspecialchars($_POST['role'])));
 
-
+/*
 		//Message
 	$message = "Je te souhaite la bienvenu sur Viaxe, visite bien";
 	//Titre
 	$titre = "Bienvenue sur viaxe";
 
-	mail($_POST['email'], $titre, $message);
+	mail($_POST['email'], $titre, $message);*/
 	if ($i==0)
 	{
  echo'<h1>Inscription terminée</h1>';
 			 echo'<p>Bienvenue '.stripslashes(htmlspecialchars($_POST['pseudo']));
-
 
  //Et on définit les variables de sessions
 			 $_SESSION['pseudo'] = $pseudo;
@@ -118,11 +117,21 @@ include 'include/config.php';
 			 echo'<h1>Inscription interrompue</h1>';
 			 echo'<p>Une ou plusieurs erreurs se sont produites pendant l incription</p>';
 			 echo'<p>'.$i.' erreur(s)</p>';
-			 echo'<p>'.$pseudo_erreur1.'</p>';
-			 echo'<p>'.$pseudo_erreur2.'</p>';
-			 echo'<p>'.$mdp_erreur.'</p>';
-			 echo'<p>'.$email_erreur1.'</p>';
-			 echo'<p>'.$email_erreur2.'</p>';
+			 if (isset($pseudo_erreur1)){
+			 		echo'<p>'.$pseudo_erreur1.'</p>';
+		 		}
+			 if (isset($pseudo_erreur2)){
+			 		echo'<p>'.$pseudo_erreur2.'</p>';
+		 		}
+			 if (isset($mdp_erreur)){
+			 		echo'<p>'.$mdp_erreur.'</p>';
+		 		}
+			 if (isset($email_erreur1)){
+			 		echo'<p>'.$email_erreur1.'</p>';
+		 		}
+			 if (isset($email_erreur2)){
+			 		echo'<p>'.$email_erreur2.'</p>';
+		 		}
 	 }
 
 	//header("Location:index.php");
