@@ -1,6 +1,9 @@
 <?php
  	require_once "functions.php";
+<<<<<<< HEAD
   include "Navbar.php";
+=======
+>>>>>>> 5440adbe0edbc33bb22fcd1c27c1e82f0a04630e
 	?>
 
 <!DOCTYPE html>

@@ -66,7 +66,7 @@
 			</form>
 		</div>
 		<br>
-		<h1>Les parcours de la journée</h1>
+		<h1 class="titreSection">Les parcours de la journée</h1>
 		<div class="search container">
   		<div class="row container">
    			<div class="col-md-4">
@@ -99,7 +99,7 @@
     	</div>
 		</div>
 		<br>
-		<h1>Côté Cuisine</h1>
+		<h1 class="titreSection">Côté Cuisine</h1>
 		<div class="search container">
 			<div class="row container">
 				<div class="col-md-4">
@@ -132,7 +132,7 @@
 			</div>
 		</div>
 		<br>
-		<h1>Nos coups de coeur</h1>
+		<h1 class="titreSection">Nos coups de coeur</h1>
 		<div class="search container">
 			<div class="row container">
 				<div class="col-md-4">
