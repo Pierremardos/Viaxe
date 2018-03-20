@@ -46,7 +46,7 @@ function deleteUser($Id){
   $query->execute(["Id"=>$Id]);
 
 }
-<?php
+
 
 function erreur($err='')
 {
@@ -59,4 +59,3 @@ function chiffer ($password){
   $salage='SuP4rS4aL4g3';
   return hash('md5',$salage.$password);
 }
- ?>
