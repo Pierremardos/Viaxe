@@ -13,8 +13,8 @@
     <br><br><br>
 <?php
 // include
-include 'include/config.php';    
-include 'include/function.php';
+include 'include/config.php';
+include 'include/functions.php';
 
 //test si la personne n'est pas conecter
 if ($id!=0) erreur(ERR_IS_CO);

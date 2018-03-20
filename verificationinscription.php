@@ -24,7 +24,7 @@ include 'include/config.php';
 	}
 	// include
 	include 'include/config.php';
-	include 'include/function.php';
+	include 'include/functions.php';
 	// Ecriture du log
 	$log=fopen("log.txt", "r+");
 	fseek($log, 0, SEEK_END);

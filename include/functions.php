@@ -46,7 +46,7 @@ function deleteUser($Id){
   $query->execute(["Id"=>$Id]);
 
 }
-<?php
+
 
 function erreur($err='')
 {
