@@ -1,6 +1,6 @@
 <?php
  	require_once "functions.php";
-  include "header.php";
+  include "Navbar.php";
 	?>
 
 <!DOCTYPE html>
@@ -8,6 +8,7 @@
 		<meta charset="utf-8">
 		<meta name="" content="">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 
 
