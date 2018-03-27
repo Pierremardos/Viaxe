@@ -33,3 +33,14 @@ float:right;
 .titreSection{
   text-align: center;
 }
+
+div{
+  background-color: #979DBC;
+}
+
+.explainTitle{
+  text-align: center;
+}
+.explain{
+  font-size:25px;
+}
