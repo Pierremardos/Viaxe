@@ -54,17 +54,23 @@
     $query->CloseCursor();
 
 
+    //recherche par pays
+    $query=$bdd->prepare('SELECT * FROM trip WHERE country =:city');
+    $query->bindValue(':city',$city, PDO::PARAM_STR);
+    $query->execute();
+    $Searsh=$query->fetch();
+    $query->CloseCursor()
+
      ?>
-    <div class="Resultat" class="container">
-      <br><br><br><br>
+    <div class="resultat">
+      <br><br><br><br
       <?php
-      echo "$Searsh[title] <br>";
-      echo "$Searsh[languages] <br>";
-      echo "$Searsh[city] <br>";
-      echo "$Searsh[country] <br>";
-      echo "$Searsh[price] <br>";
-      echo "$Searsh[places] <br>";
-      echo "$Searsh[content] <br>";
+      echo "Titre : $Searsh[title] <br>";
+      echo "Ville : $Searsh[city] <br>";
+      echo "Pays : $Searsh[country] <br>";
+      echo "Prix: $Searsh[price] <br>";
+      echo "Nombres de places : $Searsh[places] <br>";
+      echo "Résumé : $Searsh[content] <br>";
        ?>
 
     </div>

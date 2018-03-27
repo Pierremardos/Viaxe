@@ -35,7 +35,7 @@
 				<input type="radio" name="type" value="guide"> Guide
 				<br>
 				<br>
-				<input type="search" name="city" placeholder="Search...">
+				<input type="search" name="city" placeholder="Recherche par Ville ou par pays">
 				<br>
 				<br>
 				<p>
