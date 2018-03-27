@@ -30,12 +30,12 @@
 				</p>
 		</section>
 		<div class="search container">
-			<form action="searchparcours" method="post">
+			<form action="searchparcours.php" method="post">
 				Je recherche : <input type="radio" name="type" value="parcours" checked> Parcours
 				<input type="radio" name="type" value="guide"> Guide
 				<br>
 				<br>
-				<input type="search" name="search" placeholder="Search...">
+				<input type="search" name="city" placeholder="Recherche par Ville ou par pays">
 				<br>
 				<br>
 				<p>
