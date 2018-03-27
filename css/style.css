@@ -33,6 +33,19 @@ float:right;
 .titreSection{
   text-align: center;
 }
+<<<<<<< HEAD
 .resultat{
   border: solid black;
+=======
+
+div{
+  background-color: #979DBC;
+}
+
+.explainTitle{
+  text-align: center;
+}
+.explain{
+  font-size:25px;
+>>>>>>> f305c80570a3a4993ed8bc75047a772bf5bdbe57
 }

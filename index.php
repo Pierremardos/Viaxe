@@ -21,8 +21,10 @@
 	</header>
 	<main>
 		<section>
-			<h1>Qu'est ce que Viaxe ?<h1>
-				<p>
+			<br>
+			<br>
+			<h1 class="explainTitle" >Qu'est ce que Viaxe ?<h1>
+				<p class="explain">
 					 Viaxe est un site de recherche de parcours avec des thèmes plus ou moins variés. Les guides qui sont indépendants de nous,
 					 vont poster des parcours aux 4 coins de notre globe pour vous aider à le découvrir et le comprendre.
 					 Notre rôle est de vous présenter ces parcours afin que vous puissez trouver celui qui correspond le plus à vos attentes.
