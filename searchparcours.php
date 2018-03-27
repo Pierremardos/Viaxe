@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 403871e049d2c2d66a5d6751b88a69191e829ddb
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
   <head>
@@ -10,6 +14,78 @@
     </header>
     <?php
     include 'include/config.php';
+<<<<<<< HEAD
+=======
+
+    // recuperation des donnée du formulaire
+
+    if (isset($_POST['title'])){
+      $title = $_POST['title'];
+    }
+
+    if (isset($_POST['date'])){
+    $date = ($_POST['date']);
+    }
+
+    if (isset($_POST['duration'])){
+    $duration = ($_POST['duration']);
+    }
+
+    if (isset($_POST['country'])){
+    $country = $_POST['country'];
+    }
+
+    if (isset($_POST['city'])){
+    $city = ($_POST['city']);
+    }
+
+    if (isset($_POST['languages'])){
+    $languages = ($_POST['languages']);
+    }
+
+    if (isset($_POST['price'])){
+    $price = ($_POST['price']);
+    }
+
+    if (isset($_POST['category'])){
+    $category = ($_POST['category']);
+    }
+
+
+    //recherche par vile
+    $query=$bdd->prepare('SELECT * FROM trip WHERE city =:city');
+    $query->bindValue(':city',$city, PDO::PARAM_STR);
+    $query->execute();
+    $Searsh=$query->fetch();
+    $query->CloseCursor();
+
+
+    //recherche par pays
+    $query=$bdd->prepare('SELECT * FROM trip WHERE country =:city');
+    $query->bindValue(':city',$city, PDO::PARAM_STR);
+    $query->execute();
+    $Searsh=$query->fetch();
+    $query->CloseCursor()
+
+     ?>
+    <div class="resultat">
+      <br><br><br><br
+      <?php
+      echo "Titre : $Searsh[title] <br>";
+      echo "Ville : $Searsh[city] <br>";
+      echo "Pays : $Searsh[country] <br>";
+      echo "Prix: $Searsh[price] <br>";
+      echo "Nombres de places : $Searsh[places] <br>";
+      echo "Résumé : $Searsh[content] <br>";
+       ?>
+
+    </div>
+  </body>
+</html>
+=======
+<?php
+include 'include/config.php';
+>>>>>>> 403871e049d2c2d66a5d6751b88a69191e829ddb
 
     // recuperation des donnée du formulaire
 
@@ -59,6 +135,7 @@
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -78,3 +155,7 @@
     </div>
   </body>
 </html>
+=======
+ ?>
+>>>>>>> e766787df0f3d1314899ffca3a1def4aea698ef8
+>>>>>>> 403871e049d2c2d66a5d6751b88a69191e829ddb
