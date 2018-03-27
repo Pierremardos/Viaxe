@@ -40,9 +40,9 @@ $category = ($_POST['category']);
 $query=$bdd->prepare('SELECT * FROM trip WHERE city =:city');
 $query->bindValue(':city',$city, PDO::PARAM_STR);
 $query->execute();
-$citySearsh=$query->fetch();
+$Searsh=$query->fetch();
 $query->CloseCursor();
 echo "salut";
-echo $citySearsh[city, price];
+echo "$Searsh[country]";
 
  ?>
