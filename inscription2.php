@@ -13,7 +13,7 @@
 
     <main>
       <div class="inscription container">
-  		<form action="verificationinscription.php" method="post">
+  		<form action="verifInscriptionGuide.php" method="post">
   			<input type="text" name="pseudo" placeholder="Pseudo"><br>
   			<input type="text" name="email" placeholder="Email"><br>
         <input type="text" name="prenom" placeholder="prenom"><br>
