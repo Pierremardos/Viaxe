@@ -14,8 +14,8 @@
     </header>
     <?php
     include 'include/config.php';
-<<<<<<< HEAD
-=======
+
+
 
     // recuperation des donnée du formulaire
 
@@ -85,7 +85,6 @@
 =======
 <?php
 include 'include/config.php';
->>>>>>> 403871e049d2c2d66a5d6751b88a69191e829ddb
 
     // recuperation des donnée du formulaire
 
@@ -108,7 +107,7 @@ include 'include/config.php';
     $query->bindValue(':city',$city, PDO::PARAM_STR);
     $query->execute();
     $Searsh=$query->fetch();
-    $query->CloseCursor()
+    $query->CloseCursor();
     }
 
     if (isset($_POST['city'])){
@@ -135,7 +134,7 @@ include 'include/config.php';
 
 
 
-<<<<<<< HEAD
+
 
 
 
@@ -155,7 +154,3 @@ include 'include/config.php';
     </div>
   </body>
 </html>
-=======
- ?>
->>>>>>> e766787df0f3d1314899ffca3a1def4aea698ef8
->>>>>>> 403871e049d2c2d66a5d6751b88a69191e829ddb

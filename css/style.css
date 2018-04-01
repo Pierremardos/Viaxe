@@ -33,10 +33,14 @@ float:right;
 .titreSection{
   text-align: center;
 }
-<<<<<<< HEAD
+
 .resultat{
   border: solid black;
-=======
+}
+
+body{
+  background-color: #BFE5FC;
+}
 
 div{
   background-color: #979DBC;
@@ -44,8 +48,8 @@ div{
 
 .explainTitle{
   text-align: center;
+  color: red;
 }
 .explain{
   font-size:25px;
->>>>>>> f305c80570a3a4993ed8bc75047a772bf5bdbe57
 }
