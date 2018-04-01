@@ -21,7 +21,7 @@ if ($id!=0) erreur(ERR_IS_CO);
 
 if (!isset($_POST['pseudo']))
 {
-	<form method="post" action="connection.php">
+	echo <form method="post" action="connection.php">
 	<fieldset>
 	<legend>Connection</legend>
 	<p>
