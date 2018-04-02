@@ -1,18 +1,23 @@
 <?php
+session_start();
 include 'include/config.php';
+include 'include/functions.php';
 
 // on recup les donnée
 	$i = 0;
 	$pseudo=$_POST['pseudo'];
 	$email = $_POST['email'];
 	$country = $_POST['country'];
-	$pass = ($_POST['password']);
-	$confirm = ($_POST['confirm']);
+	$password = $_POST['password'];
+	$birthday = $_POST['birthday'];
+	$gender = $_POST['gender'];
+	$telephone = $_POST['telephone'];
+	$confirm = $_POST['confirm'];
 
 
 
 
-	$champs=array('pseudo','email','password','confirm','birthday','gender','country','role');
+	$champs=array('pseudo','email','password','confirm','birthday','gender','country');
 
 	foreach ($champs as $value) {
 		if(!isset($_POST[$value]) || empty($_POST[$value]))
@@ -22,9 +27,7 @@ include 'include/config.php';
 
 		}
 	}
-	// include
-	include 'include/config.php';
-	include 'include/functions.php';
+
 	// Ecriture du log
 	$log=fopen("log.txt", "r+");
 	fseek($log, 0, SEEK_END);
@@ -33,7 +36,7 @@ include 'include/config.php';
 
 	// test de compte
 	//Vérification du pseudo
-    $query=$bdd->prepare('SELECT COUNT(*) AS nbr FROM user WHERE pseudo =:pseudo');
+    $query=$bdd->prepare('SELECT COUNT(*) AS nbr FROM CUSTOMER WHERE pseudo =:pseudo');
     $query->bindValue(':pseudo',$pseudo, PDO::PARAM_STR);
     $query->execute();
     $pseudo_free=($query->fetchColumn()==0)?1:0;
@@ -51,7 +54,7 @@ include 'include/config.php';
     }
 
     //Vérification du mdp
-    if ($pass != $confirm || empty($confirm) || empty($pass))
+    if ($password != $confirm || empty($confirm) || empty($pass))
     {
         $mdp_erreur = "Votre mot de passe et votre confirmation diffèrent ! ";
         $i++;
@@ -62,7 +65,7 @@ include 'include/config.php';
 		//Test de l'email
 
 	//Il faut que l'adresse email n'ait jamais été utilisée
-	$query=$bdd->prepare('SELECT COUNT(*) AS nbr FROM user WHERE email =:mail');
+	$query=$bdd->prepare('SELECT COUNT(*) AS nbr FROM CUSTOMER WHERE mail =:mail');
 	$query->bindValue(':mail',$email, PDO::PARAM_STR);
 	$query->execute();
 	$mail_free=($query->fetchColumn()==0)?1:0;
@@ -84,15 +87,18 @@ include 'include/config.php';
 
 	//bdd
 
-	$req = $bdd->prepare("INSERT INTO USER (pseudo,email,password,birthday,gender,country,role) VALUES (:pseudo,:email,:password,:birthday,:gender,:country,:role)");
-	$req -> execute (array(
-												"pseudo"=>htmlspecialchars($_POST['pseudo']),
-												"email"=>htmlspecialchars($_POST['email']),
-												"password"=>chiffer($_POST['password']),
-												"birthday"=>htmlspecialchars($_POST['birthday']),
-												"gender"=>htmlspecialchars($_POST['gender']),
-												"country"=>htmlspecialchars($_POST['country']),
-												"role"=>htmlspecialchars($_POST['role'])));
+	$req = $bdd->prepare('INSERT INTO CUSTOMER (mail, pseudo, age, gender, password, phone)
+	 VALUES ( :mail, :pseudo, :birthday, :gender, :password, :phone)');
+
+
+	$req->execute(array(
+	  "mail"=>$email,
+	  "pseudo"=>$pseudo,
+	  "birthday"=>$birthday,
+	  "gender"=>$gender,
+	  "password"=>$password,
+	  "phone"=>$telephone
+	  ));
 
 /*
 		//Message
