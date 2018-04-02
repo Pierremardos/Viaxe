@@ -74,6 +74,19 @@ fputs($log,$_POST['password']."\n");
       $email_erreur1 = "Votre adresse email est déjà utilisée par un membre";
       $i++;
   }
+
+  $query=$bdd->prepare('SELECT COUNT(*) AS nbr FROM CUSTOMER WHERE mail =:mail');
+  $query->bindValue(':mail',$mail, PDO::PARAM_STR);
+  $query->execute();
+  $mailCustomer_free=($query->fetchColumn()==0)?1:0;
+  $query->CloseCursor();
+
+  if(!$mailCustomer_free)
+  {
+      $email_erreur1 = "Votre adresse email est déjà utilisée par un membre";
+      $i++;
+  }
+
   //On vérifie la forme maintenant
   if (!preg_match("#^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$#", $mail) || empty($mail))
   {
@@ -88,7 +101,7 @@ fputs($log,$_POST['password']."\n");
        echo'<p>Bienvenue '.stripslashes(htmlspecialchars($_POST['pseudo']));
 
  //Et on définit les variables de sessions
-       $_SESSION['pseudo'] = $pseudo;
+       $_SESSION['mail'] = $mail;
        $query->CloseCursor();
 
 $req = $bdd->prepare('INSERT INTO GUIDE (mail, pseudo, firstName, lastName, age, gender, password, phone, description, languages)

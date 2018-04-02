@@ -7,7 +7,7 @@ include 'include/functions.php';
 // on recup les donnée
 	$i = 0;
 	$pseudo=$_POST['pseudo'];
-	$email = $_POST['email'];
+	$mail = $_POST['email'];
 	$country = $_POST['country'];
 	$password = $_POST['password'];
 	$birthday = $_POST['birthday'];
@@ -43,6 +43,7 @@ include 'include/functions.php';
     $query->execute();
     $pseudo_free=($query->fetchColumn()==0)?1:0;
     $query->CloseCursor();
+
     if(!$pseudo_free)
     {
         $pseudo_erreur1 = "Votre pseudo est déjà utilisé par un membre";
@@ -66,7 +67,7 @@ include 'include/functions.php';
 
 	//Il faut que l'adresse email n'ait jamais été utilisée
 	$query=$bdd->prepare('SELECT COUNT(*) AS nbr FROM CUSTOMER WHERE mail =:mail');
-	$query->bindValue(':mail',$email, PDO::PARAM_STR);
+	$query->bindValue(':mail',$mail, PDO::PARAM_STR);
 	$query->execute();
 	$mail_free=($query->fetchColumn()==0)?1:0;
 	$query->CloseCursor();
@@ -76,8 +77,20 @@ include 'include/functions.php';
 			$email_erreur1 = "Votre adresse email est déjà utilisée par un membre";
 			$i++;
 	}
+
+	$query=$bdd->prepare('SELECT COUNT(*) AS nbr FROM GUIDE WHERE mail =:mail');
+	$query->bindValue(':mail',$mail, PDO::PARAM_STR);
+	$query->execute();
+	$mailGuide_free=($query->fetchColumn()==0)?1:0;
+	$query->CloseCursor();
+
+	if(!$mailGuide_free)
+	{
+			$email_erreur1 = "Votre adresse email est déjà utilisée par un membre";
+			$i++;
+	}
 	//On vérifie la forme maintenant
-	if (!preg_match("#^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$#", $email) || empty($email))
+	if (!preg_match("#^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$#", $mail) || empty($mail))
 	{
 			$email_erreur2 = "Votre adresse E-Mail n'a pas un format valide";
 			$i++;
@@ -96,7 +109,7 @@ include 'include/functions.php';
 			 echo'<p>Bienvenue '.stripslashes(htmlspecialchars($_POST['pseudo']));
 
  //Et on définit les variables de sessions
-			 $_SESSION['pseudo'] = $pseudo;
+			 $_SESSION['mail'] = $mail;
 			 $_SESSION['level'] = 1;
 			 $query->CloseCursor();
 
@@ -107,7 +120,7 @@ include 'include/functions.php';
 
 
 			 $req->execute(array(
-				 "mail"=>$email,
+				 "mail"=>$mail,
 				 "pseudo"=>$pseudo,
 				 "birthday"=>$birthday,
 				 "gender"=>$gender,
