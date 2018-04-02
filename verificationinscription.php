@@ -47,19 +47,17 @@ include 'include/functions.php';
         $i++;
     }
 
-    if (strlen($pseudo) < 3 || strlen($pseudo) > 15)
+    else if (strlen($pseudo) < 5 || strlen($pseudo) > 30)
     {
-        $pseudo_erreur2 = "Votre pseudo est soit trop grand, soit trop petit";
+        $pseudo_erreur2 = "Votre pseudo n'a pas une taille comprise entre 5 et 30 caractères";
         $i++;
     }
-
     //Vérification du mdp
-    if ($password != $confirm || empty($confirm) || empty($pass))
+    if ($password != $confirm || empty($confirm) || empty($password))
     {
         $mdp_erreur = "Votre mot de passe et votre confirmation diffèrent ! ";
         $i++;
     }
-
 
 
 		//Test de l'email
@@ -83,23 +81,6 @@ include 'include/functions.php';
 			$i++;
 	}
 
-
-
-	//bdd
-
-	$req = $bdd->prepare('INSERT INTO CUSTOMER (mail, pseudo, age, gender, password, phone)
-	 VALUES ( :mail, :pseudo, :birthday, :gender, :password, :phone)');
-
-
-	$req->execute(array(
-	  "mail"=>$email,
-	  "pseudo"=>$pseudo,
-	  "birthday"=>$birthday,
-	  "gender"=>$gender,
-	  "password"=>$password,
-	  "phone"=>$telephone
-	  ));
-
 /*
 		//Message
 	$message = "Je te souhaite la bienvenu sur Viaxe, visite bien";
@@ -114,9 +95,23 @@ include 'include/functions.php';
 
  //Et on définit les variables de sessions
 			 $_SESSION['pseudo'] = $pseudo;
-			 $_SESSION['id'] = $db->lastInsertId(); ;
-			 $_SESSION['level'] = 2;
+			 $_SESSION['level'] = 1;
 			 $query->CloseCursor();
+
+			 //bdd
+
+			 $req = $bdd->prepare('INSERT INTO CUSTOMER (mail, pseudo, age, gender, password, phone)
+				VALUES ( :mail, :pseudo, :birthday, :gender, :password, :phone)');
+
+
+			 $req->execute(array(
+				 "mail"=>$email,
+				 "pseudo"=>$pseudo,
+				 "birthday"=>$birthday,
+				 "gender"=>$gender,
+				 "password"=>$password,
+				 "phone"=>$telephone
+				 ));
 	 }
 	 else
 	 {
