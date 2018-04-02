@@ -20,8 +20,8 @@ session_start();
   <body>
      <br><br><br>
 	   <form method="post" action="verifConnexion.php">
-    Pseudo : <input type="text"name="pseudo"  placeholder="pseudo" /> <br>
-	  Mot de Passe :<input type="password" name="password" placeholder="password" />
+    Adresse Mail : <input type="text" name="mail"/> <br>
+	  Mot de Passe :<input type="password" name="password"/>
 	<input type="submit" value="Connexion" />
     </form>
 	</body>
