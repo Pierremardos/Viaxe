@@ -54,4 +54,23 @@ include 'include/functions.php';
 
  $query->closeCursor();
 
+ $query=$bdd->prepare('SELECT * FROM TRIP WHERE mailGuide = :mail');
+ $query->bindValue(':mail',$mail, PDO::PARAM_STR);
+ $query->execute();
+
+ while($donnees = $query->fetch())
+ {
+
  ?>
+
+ <h1>Mes parcours</h1>
+ <br>
+ <p>
+ Titre :  <?php echo $donnees['title']; ?>
+</p>
+
+<?php
+}
+
+$query->closeCursor();
+?>
