@@ -8,34 +8,35 @@ include('Navbar.php');
 
 <?php
     $message='';
-    if (empty($_POST['mail']) || empty($_POST['password']) )
+    $mail=$_POST['mail'];
+    $password=$_POST['password'];
+
+    if (empty($mail) || empty($password) )
     {
-        echo $message = "une erreur s est produite pendant votre identification.
+        $message = "Une erreur s est produite pendant votre identification.
 	Vous devez remplir tous les champs";
     }
     else //On check le mot de passe
     {
-        $query=$bdd->prepare('SELECT password, mail
+        $query=$bdd->prepare('SELECT password
         FROM GUIDE WHERE mail = :mail');
-        $query->bindValue(':mail',$_POST['mail'], PDO::PARAM_STR);
+        $query->bindValue(':mail',$mail, PDO::PARAM_STR);
         $query->execute();
         $data=$query->fetch();
 
-	if ($data['password'] == chiffer($_POST['password']))
+	if ($password == $data['password'])
 	{
-	    $_SESSION['mail'] = $data['mail'];
+	    $_SESSION['mail'] = $mail;
 	    $message = 'Bienvenue
 			vous êtes maintenant connecté!';
 	}
 	else // Acces pas OK !
 	{
-	    echo $message = 'Une erreur s est produite
+	    $message = 'Une erreur s est produite
 	    pendant votre identification, le mot de passe ou l adresse mail
             entré n est pas correct.';
 	}
     $query->CloseCursor();
     }
-
-      echo '<p>'.$message.'</p>';
-
+    echo'<p> <br> <br> <br>'.$message.'</p>';
 ?>
