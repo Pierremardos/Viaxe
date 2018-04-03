@@ -22,7 +22,7 @@
 						<a class="nav-link" href="#">Mes parcours en cours</a>
 					</li>
           <li class="nav-item">
-						<a class="nav-link" href="#">Mon Profil</a>
+						<a class="nav-link" href="myProfilGuide.php">Mon Profil</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="deconnexion.php">Déconnexion</a>

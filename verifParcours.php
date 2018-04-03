@@ -23,9 +23,10 @@
  $places = $_POST['place'];
  $finalPrice = $_POST['finalPrice'];
  $content = $_POST['content'];
+ $mail = $_SESSION['mail'];
 
- $req = $bdd->prepare('INSERT INTO TRIP (title, date, duration, country, city, languages, price, finalPrice,datePrice,category,places,content)
-  VALUES ( :title, NOW(), :duration, :country, :city, :language, :price, :finalPrice, NOW(), :category, :places, :content)');
+ $req = $bdd->prepare('INSERT INTO TRIP (title, date, duration, country, city, languages, price, finalPrice,datePrice,category,places,content,mailGuide)
+  VALUES ( :title, NOW(), :duration, :country, :city, :language, :price, :finalPrice, NOW(), :category, :places, :content, :mailGuide)');
 
 
  $req->execute(array(
@@ -38,7 +39,8 @@
    "finalPrice"=>$finalPrice,
    "category"=>$category,
    "places"=>$places,
-   "content"=>$content
+   "content"=>$content,
+   "mailGuide"=>$mail
    ));
 
  header("location: index.php");
