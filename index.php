@@ -1,3 +1,7 @@
+<?php
+session_start();
+ ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +20,12 @@
 <body>
 	<header>
 		<?php
-		include('Navbar.php')
+		if(isset($_SESSION['mail'])){
+			include('NavbarConnect.php');
+		}
+		else{
+			include('Navbar.php');
+		}
 		?>
 	</header>
 	<main>

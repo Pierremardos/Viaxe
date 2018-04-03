@@ -15,11 +15,11 @@
 					<li class="nav-item">
 						<a class="nav-link" href="#">Nous contacter</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="connexion.php">Connexion</a>
+          <li class="nav-item">
+						<a class="nav-link" href="#">Mon Profil</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="chooseRole.php">Inscription</a>
+						<a class="nav-link" href="#">Déconnexion</a>
 					</li>
 				</div>
 				</ul>
