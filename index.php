@@ -1,5 +1,7 @@
 <?php
 session_start();
+include 'include/config.php';
+include 'include/functions.php';
  ?>
 
 <!DOCTYPE html>
@@ -21,10 +23,23 @@ session_start();
 	<header>
 		<?php
 		if(isset($_SESSION['mail'])){
-			include('NavbarConnect.php');
+
+		  $query=$bdd->prepare('SELECT mail
+		  FROM GUIDE WHERE mail = :mail');
+		  $query->bindValue(':mail',$_SESSION['mail'], PDO::PARAM_STR);
+		  $query->execute();
+		  $data=$query->fetch();
+
+		   if ($_SESSION['mail'] == $data['mail'])
+		   {
+		       include('Navbar/NavbarGuide.php');
+		   }
+		   else{
+		     include('Navbar/NavbarCustomer.php');
+		   }
 		}
 		else{
-			include('Navbar.php');
+		  include('Navbar/Navbar.php');
 		}
 		?>
 	</header>

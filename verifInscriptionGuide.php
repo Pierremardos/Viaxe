@@ -1,6 +1,5 @@
 <?php
   session_start();
-  include('Navbar.php');
 ?>
 
 <?php
@@ -19,6 +18,28 @@ $gender = $_POST['gender'];
 $languages = $_POST['langue'];
 $phone = $_POST['telephone'];
 $description = $_POST['description'];
+
+
+if(isset($_SESSION['mail'])){
+
+  $query=$bdd->prepare('SELECT mail
+  FROM GUIDE WHERE mail = :mail');
+  $query->bindValue(':mail',$_SESSION['mail'], PDO::PARAM_STR);
+  $query->execute();
+  $data=$query->fetch();
+
+   if ($_SESSION['mail'] == $data['mail'])
+   {
+       include('Navbar/NavbarGuide.php');
+   }
+   else{
+     include('Navbar/NavbarCustomer.php');
+   }
+}
+else{
+  include('Navbar/Navbar.php');
+}
+
 
 $champs=array('pseudo','email', 'prenom', 'nom', 'password','confirm','birthday','gender','langue');
 

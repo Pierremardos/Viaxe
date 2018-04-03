@@ -1,3 +1,10 @@
+<?php
+// include
+include 'include/config.php';
+include 'include/functions.php';
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,12 +15,32 @@
 </head>
   <body>
   	<header>
-  		<?php include('Navbar.php')?>
+			<?php
+			if(isset($_SESSION['mail'])){
+
+			  $query=$bdd->prepare('SELECT mail
+			  FROM GUIDE WHERE mail = :mail');
+			  $query->bindValue(':mail',$_SESSION['mail'], PDO::PARAM_STR);
+			  $query->execute();
+			  $data=$query->fetch();
+
+			   if ($_SESSION['mail'] == $data['mail'])
+			   {
+			       include('Navbar/NavbarGuide.php');
+			   }
+			   else{
+			     include('Navbar/NavbarCustomer.php');
+			   }
+			}
+			else{
+			  include('Navbar/Navbar.php');
+			}
+			?>
   	</header>
 
     <main>
       <div class="inscription container">
-  		<form action="verificationinscription.php" method="post">
+  		<form action="verifInscriptionCustomer.php" method="post">
   			<input type="text" name="pseudo" placeholder="Pseudo"><br>
   			<input type="text" name="email" placeholder="Email"><br>
   			<input type="password" name="password" placeholder="Mot de passe"><br>
