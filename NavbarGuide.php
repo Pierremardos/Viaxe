@@ -16,10 +16,16 @@
 						<a class="nav-link" href="#">Nous contacter</a>
 					</li>
           <li class="nav-item">
+						<a class="nav-link" href="createParcours.php">Créer un parcours</a>
+					</li>
+          <li class="nav-item">
+						<a class="nav-link" href="#">Mes parcours en cours</a>
+					</li>
+          <li class="nav-item">
 						<a class="nav-link" href="#">Mon Profil</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Déconnexion</a>
+						<a class="nav-link" href="deconnexion.php">Déconnexion</a>
 					</li>
 				</div>
 				</ul>

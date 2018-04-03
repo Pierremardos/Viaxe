@@ -24,19 +24,33 @@ include('Navbar.php');
         $query->execute();
         $data=$query->fetch();
 
-	if ($password == $data['password'])
-	{
-	    $_SESSION['mail'] = $mail;
-	    $message = 'Bienvenue
-			vous êtes maintenant connecté!';
-	}
-	else // Acces pas OK !
-	{
-	    $message = 'Une erreur s est produite
-	    pendant votre identification, le mot de passe ou l adresse mail
-            entré n est pas correct.';
-	}
-    $query->CloseCursor();
+	       if ($password == $data['password'])
+	       {
+	           $_SESSION['mail'] = $mail;
+	           $message = 'Bienvenue
+			       vous êtes maintenant connecté!';
+	       }
+	       else // Acces pas OK !
+	       {
+           $query=$bdd->prepare('SELECT password
+           FROM CUSTOMER WHERE mail = :mail');
+           $query->bindValue(':mail',$mail, PDO::PARAM_STR);
+           $query->execute();
+           $data=$query->fetch();
+
+           if ($password == $data['password'])
+           {
+             $_SESSION['mail'] = $mail;
+             $message = 'Bienvenue vous êtes maintenant connecté!';
+           }
+
+           else // Acces pas OK !
+           {
+             $message = 'Une erreur s est produite pendant votre identification, le mot de passe ou l adresse mail
+              entré n est pas correct.';
+           }
+	       }
+         $query->CloseCursor();
     }
     echo'<p> <br> <br> <br>'.$message.'</p>';
 ?>
