@@ -4,10 +4,10 @@ $dossier = 'images/';
 		$taille_maxi = 100000;
 		$taille = filesize($_FILES['avatar']['tmp_name']);
 		$extensions = array('.png', '.gif', '.jpg', '.jpeg');
-		$extension = strrchr($_FILES['fichier']['name'], '.');
+		$extension = strrchr($_FILES['avatar']['name'], '.');
 
 		//Début des vérifications de sécurité...
-		if(in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
+		if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
 		{
 			$erreur = 'Vous devez uploader un fichier de type png, gif, jpg, jpeg...';
 		}

@@ -54,6 +54,7 @@ include 'include/functions.php';
 			Fichier : <input type='file' name='avatar'>
 			<input type='submit' value='Envoyer'>
 </form>
+<h1>Mes parcours</h1>
 
  <?php
  }
@@ -69,7 +70,6 @@ include 'include/functions.php';
 
  ?>
 
- <h1>Mes parcours</h1>
  <br>
  <p>
  Titre :  <?php echo $donnees['title']; ?>
