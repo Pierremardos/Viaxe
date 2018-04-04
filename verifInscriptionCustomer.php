@@ -143,7 +143,7 @@ include 'include/functions.php';
 				 "pseudo"=>$pseudo,
 				 "birthday"=>$birthday,
 				 "gender"=>$gender,
-				 "password"=>$password,
+				 "password"=>chiffer($password),
 				 "phone"=>$telephone
 				 ));
 	 }
