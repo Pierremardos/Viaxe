@@ -1,4 +1,3 @@
-
 navbar{
   height: 10px;
 }
@@ -33,4 +32,19 @@ float:right;
 
 .titreSection{
   text-align: center;
+}
+
+.resultat{
+  border: solid black;
+}
+
+div{
+  background-color: #979DBC;
+}
+
+.explainTitle{
+  text-align: center;
+}
+.explain{
+  font-size:25px;
 }

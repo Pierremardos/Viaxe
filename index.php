@@ -1,3 +1,9 @@
+<?php
+session_start();
+include 'include/config.php';
+include 'include/functions.php';
+ ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,17 +22,46 @@
 <body>
 	<header>
 		<?php
-		include('Navbar.php')
+		if(isset($_SESSION['mail'])){
+
+		  $query=$bdd->prepare('SELECT mail
+		  FROM GUIDE WHERE mail = :mail');
+		  $query->bindValue(':mail',$_SESSION['mail'], PDO::PARAM_STR);
+		  $query->execute();
+		  $data=$query->fetch();
+
+		   if ($_SESSION['mail'] == $data['mail'])
+		   {
+		       include('Navbar/NavbarGuide.php');
+		   }
+		   else{
+		     include('Navbar/NavbarCustomer.php');
+		   }
+		}
+		else{
+		  include('Navbar/Navbar.php');
+		}
 		?>
 	</header>
 	<main>
+		<section>
+			<br>
+			<br>
+			<h1 class="explainTitle" >Qu'est ce que Viaxe ?<h1>
+				<p class="explain">
+					 Viaxe est un site de recherche de parcours avec des thèmes plus ou moins variés. Les guides qui sont indépendants de nous,
+					 vont poster des parcours aux 4 coins de notre globe pour vous aider à le découvrir et le comprendre.
+					 Notre rôle est de vous présenter ces parcours afin que vous puissez trouver celui qui correspond le plus à vos attentes.
+					 Bienvenue et bonne recherche.
+				</p>
+		</section>
 		<div class="search container">
-			<form action="searchparcours" method="post">
+			<form action="searchparcours.php" method="post">
 				Je recherche : <input type="radio" name="type" value="parcours" checked> Parcours
 				<input type="radio" name="type" value="guide"> Guide
 				<br>
 				<br>
-				<input type="search" name="search" placeholder="Search...">
+				<input type="search" name="city" placeholder="Recherche par Ville ou par pays">
 				<br>
 				<br>
 				<p>

@@ -40,9 +40,11 @@ session_start();
 
     <main>
       <div class="inscription container">
-  		<form action="verifInscriptionCustomer.php" method="post">
+  		<form action="verifInscriptionGuide.php" method="post">
   			<input type="text" name="pseudo" placeholder="Pseudo"><br>
   			<input type="text" name="email" placeholder="Email"><br>
+        <input type="text" name="prenom" placeholder="prenom"><br>
+        <input type="text" name="nom" placeholder="nom"><br>
   			<input type="password" name="password" placeholder="Mot de passe"><br>
 				<input type="password" name="confirm" placeholder="Confirmer"><br>
   			<input type="date" name="birthday" placeholder="Date de naissance"><br><br>
@@ -55,8 +57,23 @@ session_start();
   				<option value="sp">Espagne</option>
   				<option value="ge">Allemagne</option>
   			</select><br>
-				Numéro de téléphone (Optionnel): <input type="text" name="telephone">
-  			<input type="submit" value="Inscription">
+        <select name="langue">
+					<option selected>Pays</option>
+  				<option value="fr">French</option>
+  				<option value="en">English</option>
+  				<option value="sp">Espagne</option>
+  				<option value="ge">Allemagne</option>
+  			</select><br>
+				Optionnel :
+				<br>
+				Numéro de téléphone : <input type="text" name="telephone">
+        <br>
+        Description : <input type="text" name="description">
+        <br>
+        Avez-vous un diplôme de guide de tourisme ( si oui, vérification nécessaire) :
+        <input type="radio" name="diploma" value="1">Oui
+        <input type="radio" name="diploma" value="2" checked>Non
+        <input type="submit" value="Inscription">
       </div>
   	</main>
   </body>
