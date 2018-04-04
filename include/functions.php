@@ -7,7 +7,7 @@ define("DB_PWD", "");
 
 function connectDb(){
   try{
-    $db = new PDO('mysql:host=localhost;dbname=viaxe' , 'root' , '');
+    $db = new PDO('mysql:host=localhost;dbname=viaxe' , 'root' , '',array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
   }catch(Exception $e){
     die("Erreur SQL : ".$e->getMessage());
   }
@@ -17,7 +17,7 @@ return $db;
 function backOffice(){
 
   $db = connectDb();
-  $query = $db->prepare("SELECT Id,mail,pseudo FROM client");
+  $query = $db->prepare("SELECT Id,mail,pseudo,isBanned FROM client WHERE isBanned = 0 ");
   $query->execute();
 
   $result = $query->fetchAll();
@@ -28,9 +28,10 @@ function backOffice(){
       <td>'.$member["Id"].'</td>
       <td>'.$member["mail"].'</td>
       <td>'.$member["pseudo"].'</td>
+      <td>'.$member["isBanned"].'</td>
       <td>
         <form method="GET" action="delete.php">
-          <input  name="id" type="hidden" value="'.$member["Id"].'"/>
+          <input  name="Id" type="hidden" value="'.$member["Id"].'"/>
           <input type="submit" value="supprimer"/>
         </form>
       </td>
@@ -42,8 +43,8 @@ function backOffice(){
 
 function deleteUser($Id){
   $db = connectDb();
-  $query = $db->prepare("DELETE FROM client WHERE Id = :id");
-  $query->execute(["Id"=>$Id]);
+  $query = $db->prepare("UPDATE client SET isBanned = 1 WHERE Id = :id");
+  $query->execute(["id"=>$Id]);
 
 }
 
