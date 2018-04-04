@@ -49,6 +49,13 @@ include 'include/functions.php';
   Tél : <?php echo $donnees['phone']; ?>
  </p>
 
+ <form method='POST' action='uploadPicture.php' enctype='multipart/form-data'>
+			<input type='hidden' name='MAX_FILE_SIZE' value='250000'>
+			Fichier : <input type='file' name='avatar'>
+			<input type='submit' value='Envoyer'>
+</form>
+<h1>Mes parcours</h1>
+
  <?php
  }
 
@@ -63,7 +70,6 @@ include 'include/functions.php';
 
  ?>
 
- <h1>Mes parcours</h1>
  <br>
  <p>
  Titre :  <?php echo $donnees['title']; ?>

@@ -136,7 +136,7 @@ $req->execute(array(
   "lastName"=>$lastName,
   "age"=>$age,
   "gender"=>$gender,
-  "password"=>$password,
+  "password"=>chiffer($password),
   "phone"=>$phone,
   "description"=>$description,
   "languages"=>$languages

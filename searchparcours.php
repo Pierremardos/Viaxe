@@ -46,6 +46,15 @@ include 'include/config.php';
 
     if (isset($_POST['date'])){
     $date = ($_POST['date']);
+
+    $query=$bdd->prepare('SELECT * FROM trip WHERE date =:date');
+    $query->bindValue(':date',$date, PDO::PARAM_STR);
+    $query->execute();
+    $Searsh=$query->fetch();
+    $query=$bdd->prepare('SELECT COUNT * FROM trip WHERE date =:date');
+    $query->execute();
+    $count=$query->fetch();
+    $query->CloseCursor();
     }
 
     if (isset($_POST['duration'])){
@@ -55,10 +64,13 @@ include 'include/config.php';
     if (isset($_POST['country'])){
     $country = $_POST['country'];
     //recherche par pays
-    $query=$bdd->prepare('SELECT * FROM trip WHERE country =:city');
+    $query=$bdd->prepare('SELECT * FROM trip WHERE country =:country');
     $query->bindValue(':city',$city, PDO::PARAM_STR);
     $query->execute();
     $Searsh=$query->fetch();
+    $query=$bdd->prepare('SELECT COUNT * FROM trip WHERE country =:country');
+    $query->execute();
+    $count=$query->fetch();
     $query->CloseCursor();
     }
 
@@ -69,11 +81,23 @@ include 'include/config.php';
     $query->bindValue(':city',$city, PDO::PARAM_STR);
     $query->execute();
     $Searsh=$query->fetch();
+    $query=$bdd->prepare('SELECT COUNT * FROM trip WHERE city =:city');
+    $query->execute();
+    $count=$query->fetch();
     $query->CloseCursor();
     }
 
     if (isset($_POST['languages'])){
     $languages = ($_POST['languages']);
+
+    $query=$bdd->prepare('SELECT * FROM trip WHERE languages =:languages');
+    $query->bindValue(':languages',$languages, PDO::PARAM_STR);
+    $query->execute();
+    $Searsh=$query->fetch();
+    $query=$bdd->prepare('SELECT COUNT * FROM trip WHERE languages =:languages');
+    $query->execute();
+    $count=$query->fetch();
+    $query->CloseCursor();
     }
 
     if (isset($_POST['price'])){
@@ -92,6 +116,10 @@ include 'include/config.php';
 
 
      ?>
+     <?php
+     $a=0;
+     while ($a <= $count) {
+       $a=$a+1;?>
     <div class="container resultat">
       <?php
       echo "Titre : $Searsh[title] <br>";
@@ -103,5 +131,6 @@ include 'include/config.php';
        ?>
 
     </div>
+  <?php } ?>
   </body>
 </html>
