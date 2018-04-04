@@ -45,7 +45,7 @@ else{
         $query->execute();
         $data=$query->fetch();
 
-	       if (chiffer($password) == $data['password'])
+	       if ($password == $data['password'])
 	       {
 	           $_SESSION['mail'] = $mail;
 	           $message = 'Bienvenue
