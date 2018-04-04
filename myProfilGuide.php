@@ -49,6 +49,12 @@ include 'include/functions.php';
   Tél : <?php echo $donnees['phone']; ?>
  </p>
 
+ <form method='POST' action='uploadPicture.php' enctype='multipart/form-data'>
+			<input type='hidden' name='MAX_FILE_SIZE' value='250000'>
+			Fichier : <input type='file' name='avatar'>
+			<input type='submit' value='Envoyer'>
+</form>
+
  <?php
  }
 
