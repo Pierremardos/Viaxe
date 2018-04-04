@@ -17,7 +17,7 @@ return $db;
 function backOffice(){
 
   $db = connectDb();
-  $query = $db->prepare("SELECT Id,mail,pseudo,isBanned FROM client WHERE isBanned = 0 ");
+  $query = $db->prepare("SELECT Id,mail,pseudo,isBanned FROM client");
   $query->execute();
 
   $result = $query->fetchAll();
@@ -28,16 +28,29 @@ function backOffice(){
       <td>'.$member["Id"].'</td>
       <td>'.$member["mail"].'</td>
       <td>'.$member["pseudo"].'</td>
-      <td>'.$member["isBanned"].'</td>
+      <td>'.$member["isBanned"].'</td>';
+    if($member["isBanned"] == 0){
+      echo'
       <td>
         <form method="GET" action="delete.php">
           <input  name="Id" type="hidden" value="'.$member["Id"].'"/>
-          <input type="submit" value="supprimer"/>
+          <input type="submit" value="Ban"/>
         </form>
       </td>
     </tr>
     ';
-
+    }
+    if($member["isBanned"] == 1){
+      echo'
+      <td>
+        <form method="GET" action="delete.php">
+          <input  name="Id" type="hidden" value="'.$member["Id"].'"/>
+          <input type="submit" value="Unban"/>
+        </form>
+      </td>
+    </tr>
+    ';
+    }
   }
 }
 

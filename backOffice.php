@@ -25,7 +25,7 @@
       <th>Mail</th>
       <th>Pseudo</th>
       <th>Banned</th>
-      <th>Supress</th>
+      <th>Banning Tool</th>
     </tr>
   </thead>
 
