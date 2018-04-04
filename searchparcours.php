@@ -92,8 +92,7 @@ include 'include/config.php';
 
 
      ?>
-    <div class="resultat">
-      <br><br><br><br
+    <div class="container resultat">
       <?php
       echo "Titre : $Searsh[title] <br>";
       echo "Ville : $Searsh[city] <br>";

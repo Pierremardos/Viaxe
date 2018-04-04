@@ -35,7 +35,10 @@ float:right;
 }
 
 .resultat{
+  margin-top: 100px;
+  margin-left: 10px;
   border: solid black;
+  width: 500px;
 }
 
 div{
