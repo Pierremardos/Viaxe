@@ -40,12 +40,18 @@ include 'include/functions.php';
    <br>
    <br>
    <br>
-   <form action="changeProfil.php" method="post">
+   <?php
+   $picture = "C:/wamp64/www/Viaxe/images/". $_SESSION['mail'];
+   ?>
+   <?php echo '<img src="'.$picture.'.jpeg" alt="" />'; ?>
+   <br>
+   <form action="changeProfilGuide.php" method="post" enctype='multipart/form-data'>
 	Mail :  <?php echo $donnees['mail']; ?>
   <br>
  	Pseudo :  <?php echo '<input type="text" name="newPseudo" value="'.$donnees['pseudo'].'"/>' ?>
  	<br>
-  Photo de profil : <input type='hidden' name='MAX_FILE_SIZE' value='250000'>
+  Photo de profil :
+  <input type='hidden' name='MAX_FILE_SIZE' value='250000'>
   <input type='file' name='avatar'>
   <br>
  	Nom : <?php echo $donnees['lastName']; ?>
@@ -71,9 +77,9 @@ include 'include/functions.php';
   <br>
   Description :  <?php echo '<input type="text" name="newContent" value="'.$donnees['description'].'"/>' ?>
   <br>
-  Nouveau mot de passe :  <?php echo '<input type="text" name="newPassword"/>' ?>
+  Nouveau mot de passe :  <?php echo '<input type="password" name="newPassword"/>' ?>
   <br>
-  Confirmer le nouveau mot de passe :  <?php echo '<input type="text" name="confirmNewPassword"/>' ?>
+  Confirmer le nouveau mot de passe :  <?php echo '<input type="password" name="confirmNewPassword"/>' ?>
   <br>
   <input type="submit" value="Valider">
   </form>

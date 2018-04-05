@@ -27,11 +27,12 @@ $dossier = 'images/';
      if(move_uploaded_file($_FILES['avatar']['tmp_name'], $dossier . $fichier)) //correct si la fonction renvoie TRUE
      {
        echo 'Upload effectué avec succès !';
+       rename($dossier . $fichier, $dossier . $_SESSION['mail'] . ".jpeg");
        //ajout_image($fichier,);
      }
      else //sinon, cas où la fonction renvoie FALSE
      {
-       echo 'Echec de l\'upload !';
+       echo 'Echec de l\'upload les dimensions sont sûrement trop élévés !';
        }
    }
    else
@@ -41,21 +42,29 @@ $dossier = 'images/';
 
    $pseudo = $_POST['newPseudo'];
    $phone = $_POST['newPhone'];
-   $picture = ;
    $content = $_POST['newContent'];
+   $picture = "C:/wamp64/www/Viaxe/images/".$_SESSION['mail'] . ".jpeg";
    $password = $_POST['newPassword'];
    $confirm = $_POST['confirmNewPassword'];
 
+   if($password == $confirm){
+
    $req = $bdd->prepare('UPDATE GUIDE SET pseudo=:pseudo, phone=:phone, description=:content,
-     password=:password WHERE mail=:mail');
+     password=:password, picture=:picture WHERE mail=:mail');
 
 
    $req->execute(array(
      "pseudo"=>$pseudo,
      "phone"=>$phone,
      "content"=>$content,
+     "picture"=>$picture,
      "password"=>$password,
      "mail"=>$_SESSION['mail']
      ));
 
      header('Location:index.php');
+
+   }
+   else{
+     header('Location:myProfilGuide.php?error=wrongPassword');
+   }
