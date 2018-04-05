@@ -50,6 +50,7 @@ Marion
 milo
 
  Création : 
+<<<<<<< HEAD
 Thomas
 12345678
 
@@ -60,3 +61,11 @@ Thomas
  Création : 
 Thomas
 12345678
+=======
+Losabite
+loop
+
+ Création : 
+Losabit
+loop
+>>>>>>> 45dcd295db1be531d3c9931c62c43f8c56ee47d2
