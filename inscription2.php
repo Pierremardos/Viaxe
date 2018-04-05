@@ -58,7 +58,7 @@ session_start();
   				<option value="ge">Allemagne</option>
   			</select><br>
         <select name="langue">
-					<option selected>Pays</option>
+					<option selected>Langue</option>
   				<option value="fr">French</option>
   				<option value="en">English</option>
   				<option value="sp">Espagne</option>

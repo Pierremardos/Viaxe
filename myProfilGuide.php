@@ -40,13 +40,52 @@ include 'include/functions.php';
    <br>
    <br>
    <br>
+	Mail :  <?php echo $donnees['mail']; ?>
+  <br>
  	Pseudo :  <?php echo $donnees['pseudo']; ?>
+  <form action="changePseudo.php" method="post">
+  <input type="submit" value="Changer le pseudo">
+  </form>
  	<br>
  	Nom : <?php echo $donnees['lastName']; ?>
  	<br>
  	Prénom : <?php echo $donnees['firstName']; ?>
   <br>
+  Note : <?php echo $donnees['mark']; ?>
+  <br>
+  Date de naissance :  <?php echo $donnees['age']; ?>
+  <br>
+  Sexe :
+  <?php
+  if($donnees['gender']==1){
+    echo "Homme";
+  }
+  else{
+    echo "Femme";
+  }?>
+  <br>
+  Langues :  <?php echo $donnees['languages']; ?>
+  <form action="changeLangues.php" method="post">
+  <input type="submit" value="Changer les langues">
+  </form>
+  <br>
   Tél : <?php echo $donnees['phone']; ?>
+  <form action="changePhone.php" method="post">
+  <input type="submit" value="Changer le numéro de téléphone">
+  </form>
+  <br>
+  Description :  <?php echo $donnees['description']; ?>
+  <form action="changeContent.php" method="post">
+  <input type="submit" value="Changer la description">
+  </form>
+  <br>
+  <form action="changePassword.php" method="post">
+  <input type="submit" value="Changer le mot de passe">
+  </form>
+  <br>
+  <form action="changePhoto.php" method="post">
+  <input type="submit" value="Changer la photo">
+  </form>
  </p>
 
 <h1>Mes parcours</h1>
