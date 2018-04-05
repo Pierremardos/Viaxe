@@ -40,13 +40,14 @@ include 'include/functions.php';
    <br>
    <br>
    <br>
+   <form action="changeProfil.php" method="post">
 	Mail :  <?php echo $donnees['mail']; ?>
   <br>
- 	Pseudo :  <?php echo $donnees['pseudo']; ?>
-  <form action="changePseudo.php" method="post">
-  <input type="submit" value="Changer le pseudo">
-  </form>
+ 	Pseudo :  <?php echo '<input type="text" name="newPseudo" value="'.$donnees['pseudo'].'"/>' ?>
  	<br>
+  Photo de profil : <input type='hidden' name='MAX_FILE_SIZE' value='250000'>
+  <input type='file' name='avatar'>
+  <br>
  	Nom : <?php echo $donnees['lastName']; ?>
  	<br>
  	Prénom : <?php echo $donnees['firstName']; ?>
@@ -65,26 +66,16 @@ include 'include/functions.php';
   }?>
   <br>
   Langues :  <?php echo $donnees['languages']; ?>
-  <form action="changeLangues.php" method="post">
-  <input type="submit" value="Changer les langues">
-  </form>
   <br>
-  Tél : <?php echo $donnees['phone']; ?>
-  <form action="changePhone.php" method="post">
-  <input type="submit" value="Changer le numéro de téléphone">
-  </form>
+  Tél : <?php echo '<input type="text" name="newPhone" value="'.$donnees['phone'].'"/>' ?>
   <br>
-  Description :  <?php echo $donnees['description']; ?>
-  <form action="changeContent.php" method="post">
-  <input type="submit" value="Changer la description">
-  </form>
+  Description :  <?php echo '<input type="text" name="newContent" value="'.$donnees['description'].'"/>' ?>
   <br>
-  <form action="changePassword.php" method="post">
-  <input type="submit" value="Changer le mot de passe">
-  </form>
+  Nouveau mot de passe :  <?php echo '<input type="text" name="newPassword"/>' ?>
   <br>
-  <form action="changePhoto.php" method="post">
-  <input type="submit" value="Changer la photo">
+  Confirmer le nouveau mot de passe :  <?php echo '<input type="text" name="confirmNewPassword"/>' ?>
+  <br>
+  <input type="submit" value="Valider">
   </form>
  </p>
 
