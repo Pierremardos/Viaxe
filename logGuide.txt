@@ -13,46 +13,59 @@ luf
 Testtt
 luf
 
- Création : 
+ Création :
 Yoooooo
 hi
 
- Création : 
+ Création :
 Losabit
 loop
 
- Création : 
+ Création :
 yop
 yo
 
- Création : 
+ Création :
 yopooo
 yo
 
- Création : 
+ Création :
 yoppppo
 lu
 
- Création : 
+ Création :
 yoppppo
 lu
 
- Création : 
+ Création :
 Quentin
 lo
 
- Création : 
+ Création :
 Jonas
 pizzas
 
- Création : 
+ Création :
 Marion
 milo
 
- Création : 
+ Création :
+<<<<<<< HEAD
+Thomas
+12345678
+
+ Création :
+Thomas
+12345678
+
+ Création :
+Thomas
+12345678
+=======
 Losabite
 loop
 
- Création : 
+ Création :
 Losabit
 loop
+>>>>>>> b3bdfe93be9e3e4737e316a2d7b0fde63bdf7749
