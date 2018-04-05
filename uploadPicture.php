@@ -1,7 +1,7 @@
 <?php
 $dossier = 'images/';
 		$fichier = basename($_FILES['avatar']['name']);
-		$taille_maxi = 100000000;
+		$taille_maxi = 100000;
 		$taille = filesize($_FILES['avatar']['tmp_name']);
 		$extensions = array('.png', '.gif', '.jpg', '.jpeg');
 		$extension = strrchr($_FILES['avatar']['name'], '.');
