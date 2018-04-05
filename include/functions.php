@@ -32,7 +32,7 @@ function backOffice(){
     if($member["isBanned"] == 0){
       echo'
       <td>
-        <form method="GET" action="delete.php">
+        <form method="GET" action="ban.php">
           <input  name="Id" type="hidden" value="'.$member["Id"].'"/>
           <input type="submit" value="Ban"/>
         </form>
@@ -43,7 +43,7 @@ function backOffice(){
     if($member["isBanned"] == 1){
       echo'
       <td>
-        <form method="GET" action="delete.php">
+        <form method="GET" action="unban.php">
           <input  name="Id" type="hidden" value="'.$member["Id"].'"/>
           <input type="submit" value="Unban"/>
         </form>
@@ -54,13 +54,18 @@ function backOffice(){
   }
 }
 
-function deleteUser($Id){
+function banUser($Id){
   $db = connectDb();
   $query = $db->prepare("UPDATE client SET isBanned = 1 WHERE Id = :id");
   $query->execute(["id"=>$Id]);
 
 }
 
+function unbanUser($Id){
+  $db = connectDb();
+  $query = $db->prepare("UPDATE client SET isBanned = 0 WHERE Id = :id");
+  $query->execute(["id"=>$Id]);
+}
 
 function erreur($err='')
 {
