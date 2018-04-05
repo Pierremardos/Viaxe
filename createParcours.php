@@ -40,12 +40,15 @@ session_start();
       <br>
       <br>
       <br>
-    <form action="verifParcours.php" method="post">
+    <form action="verifParcours.php" method="post" enctype='multipart/form-data'>
       Titre :<input type="text" name="title">
       <br>
+     	 Photo de couverture du parcours : <input type='hidden' name='MAX_FILE_SIZE' value='250000'>
+       <input type='file' name='avatar'>
+       <br>
       Date du parcours :<input type="datetime" name="dateParcours">
       <br>
-      Durée du parcours : <input type="time" name="duration">
+      Durée du parcours : <input type="text" name="duration">
       <br>
       Pays du parcours :
       <select name="country">
