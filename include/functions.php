@@ -89,3 +89,28 @@ function chiffer ($password){
   $salage='SuP4rS4aL4g3';
   return hash('md5',$salage.$password);
 }
+
+function check ($mail){
+  $db = connectDb();
+  $query=$db->prepare('SELECT COUNT (pseudo) FROM GUIDE WHERE mail = :mail');
+  $query->bindValue(':mail',$mail, PDO::PARAM_STR);
+  $query->execute();
+  $count=$query->fetch();
+  $query->CloseCursor();
+  if($count == 1){
+    return 1;
+  }
+  else{
+    $query=$db->prepare('SELECT COUNT (pseudo) FROM CUSTOMER WHERE mail = :mail');
+    $query->bindValue(':mail',$mail, PDO::PARAM_STR);
+    $query->execute();
+    $count=$query->fetch();
+    $query->CloseCursor();
+    if($count == 1){
+      return 2;
+    }
+    else{
+      return 0;
+    }
+  }
+}
