@@ -44,9 +44,9 @@ include 'include/functions.php';
    <br>
    <br>
    <?php
-   $picture = "C:/wamp64/www/Viaxe/images/". $_SESSION['mail'];
+   $picture = $donnees['picture'];
    ?>
-   <?php echo '<img src="'.$picture.'.jpeg" alt="" />'; ?>
+   <?php echo '<img src="'.$picture.'" alt="" />'; ?>
    <br>
    <form action="changeProfilGuide.php" method="post" enctype='multipart/form-data'>
 	Mail :  <?php echo $donnees['mail']; ?>
