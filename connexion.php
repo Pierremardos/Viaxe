@@ -24,7 +24,10 @@ session_start();
 		  $query->execute();
 		  $data=$query->fetch();
 
-		   if ($_SESSION['mail'] == $data['mail'])
+      if($_SESSION['mail'] == 'quentin.clodion@gmail.com' | $_SESSION['mail'] =='jonasnizard@gmail.com' | $_SESSION['mail'] == 'thomas.ddt@hotmail.fr'){
+        include('Navbar/NavbarAdmin.php');
+      }
+      else if ($_SESSION['mail'] == $data['mail'])
 		   {
 		       include('Navbar/NavbarGuide.php');
 		   }

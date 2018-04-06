@@ -1,6 +1,13 @@
 <?php
  	require_once "include/functions.php";
+  session_start();
+  if($_SESSION['mail'] == 'quentin.clodion@gmail.com' | $_SESSION['mail'] =='jonasnizard@gmail.com' | $_SESSION['mail'] == 'thomas.ddt@hotmail.fr'){
 
+  }
+  else{
+      header("location: index.php");
+      exit;
+  }
 	?>
 
 <!DOCTYPE html>
@@ -111,7 +118,7 @@
           </thead>
           <tbody id="form-list-client-body">
               <tr>
-                <?php  backOffice();	?>  
+                <?php  backOffice();	?>
               </tr>
           </tbody>
       </table>

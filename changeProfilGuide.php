@@ -44,8 +44,8 @@ $dossier = 'images/';
    $phone = $_POST['newPhone'];
    $content = $_POST['newContent'];
    $picture = "C:/wamp64/www/Viaxe/images/".$_SESSION['mail'] . ".jpeg";
-   $password = $_POST['newPassword'];
-   $confirm = $_POST['confirmNewPassword'];
+   $password = chiffer($_POST['newPassword']);
+   $confirm = chiffer($_POST['confirmNewPassword']);
 
    if($password == $confirm){
 
