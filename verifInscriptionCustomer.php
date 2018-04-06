@@ -13,6 +13,7 @@ include 'include/functions.php';
 	$gender = $_POST['gender'];
 	$telephone = $_POST['telephone'];
 	$confirm = $_POST['confirm'];
+	$picture = "/Viaxe/images/unknow.jpeg";
 
 
 	if(isset($_SESSION['mail'])){
@@ -137,8 +138,8 @@ include 'include/functions.php';
 
 			 //bdd
 
-			 $req = $bdd->prepare('INSERT INTO CUSTOMER (mail, pseudo, age, gender, password, phone)
-				VALUES ( :mail, :pseudo, :birthday, :gender, :password, :phone)');
+			 $req = $bdd->prepare('INSERT INTO CUSTOMER (mail, pseudo, age, gender, picture, password, phone)
+				VALUES ( :mail, :pseudo, :birthday, :gender, :picture, :password, :phone)');
 
 
 			 $req->execute(array(
@@ -146,6 +147,7 @@ include 'include/functions.php';
 				 "pseudo"=>$pseudo,
 				 "birthday"=>$birthday,
 				 "gender"=>$gender,
+				 "picture"=>$picture,
 				 "password"=>chiffer($password),
 				 "phone"=>$telephone
 				 ));

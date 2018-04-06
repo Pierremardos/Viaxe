@@ -42,7 +42,6 @@ $dossier = 'images/';
 
    $pseudo = $_POST['newPseudo'];
    $phone = $_POST['newPhone'];
-   $content = $_POST['newContent'];
    $picture = "/Viaxe/images/".$_SESSION['mail'] . ".jpeg";
    $password = chiffer($_POST['newPassword']);
    $confirm = chiffer($_POST['confirmNewPassword']);
@@ -51,14 +50,13 @@ $dossier = 'images/';
    {
    if($password == $confirm){
 
-   $req = $bdd->prepare('UPDATE GUIDE SET pseudo=:pseudo, phone=:phone, description=:content,
+   $req = $bdd->prepare('UPDATE CUSTOMER SET pseudo=:pseudo, phone=:phone,
      password=:password, picture=:picture WHERE mail=:mail');
 
 
    $req->execute(array(
      "pseudo"=>$pseudo,
      "phone"=>$phone,
-     "content"=>$content,
      "picture"=>$picture,
      "password"=>$password,
      "mail"=>$_SESSION['mail']
@@ -68,24 +66,22 @@ $dossier = 'images/';
 
    }
    else{
-     header('Location:myProfilGuide.php?error=wrongPassword');
+     header('Location:myProfilCustomer.php?error=wrongPassword');
    }
  }
  else{
    if($password == $confirm){
+     $req = $bdd->prepare('UPDATE CUSTOMER SET pseudo=:pseudo, phone=:phone, picture=:picture WHERE mail=:mail');
 
-   $req = $bdd->prepare('UPDATE GUIDE SET pseudo=:pseudo, phone=:phone, description=:content, picture=:picture WHERE mail=:mail');
 
+     $req->execute(array(
+       "pseudo"=>$pseudo,
+       "phone"=>$phone,
+       "picture"=>$picture,
+       "mail"=>$_SESSION['mail']
+       ));
 
-   $req->execute(array(
-     "pseudo"=>$pseudo,
-     "phone"=>$phone,
-     "content"=>$content,
-     "picture"=>$picture,
-     "mail"=>$_SESSION['mail']
-     ));
+       header('Location:index.php');
 
-     header('Location:index.php');
-
+     }
    }
- }
