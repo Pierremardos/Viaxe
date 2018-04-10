@@ -3,7 +3,7 @@ session_start();
 include 'include/config.php';
 include 'include/functions.php';
 
-$dossier = 'images/';
+$dossier = 'images/customer/';
    $fichier = basename($_FILES['avatar']['name']);
    $taille_maxi = 100000;
    $taille = filesize($_FILES['avatar']['tmp_name']);
@@ -42,7 +42,7 @@ $dossier = 'images/';
 
    $pseudo = $_POST['newPseudo'];
    $phone = $_POST['newPhone'];
-   $picture = "/Viaxe/images/".$_SESSION['mail'] . ".jpeg";
+   $picture = "/Viaxe/images/customer/".$_SESSION['mail'] . ".jpeg";
    $password = chiffer($_POST['newPassword']);
    $confirm = chiffer($_POST['confirmNewPassword']);
 

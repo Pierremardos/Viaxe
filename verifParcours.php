@@ -15,9 +15,9 @@
  $donnees = $query->fetch();
  $id = $donnees['0'];
  $id = $id + 1;
- $picture = "/Viaxe/images/".$id . ".jpeg";
+ $picture = "/Viaxe/images/parcours/couv/".$id . ".jpeg";
 
- $dossier = 'images/';
+ $dossier = 'images/parcours/couv/';
  		$fichier = basename($_FILES['avatar']['name']);
  		$taille_maxi = 100000;
  		$taille = filesize($_FILES['avatar']['tmp_name']);

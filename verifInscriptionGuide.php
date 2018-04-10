@@ -18,7 +18,7 @@ $gender = $_POST['gender'];
 $languages = $_POST['langue'];
 $phone = $_POST['telephone'];
 $description = $_POST['description'];
-$picture = "/Viaxe/images/unknow.jpeg";
+$picture = "/Viaxe/images/guide/unknow.jpeg";
 
 
 if(isset($_SESSION['mail'])){

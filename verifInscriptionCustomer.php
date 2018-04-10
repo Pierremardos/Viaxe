@@ -13,7 +13,7 @@ include 'include/functions.php';
 	$gender = $_POST['gender'];
 	$telephone = $_POST['telephone'];
 	$confirm = $_POST['confirm'];
-	$picture = "/Viaxe/images/unknow.jpeg";
+	$picture = "/Viaxe/images/customer/unknow.jpeg";
 
 
 	if(isset($_SESSION['mail'])){
