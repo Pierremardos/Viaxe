@@ -112,20 +112,10 @@ session_start();
       <input type="text" name="departMin">min
       <br>
       Pays du parcours :
-      <select name="country">
-        <option value="fr" selected>France</option>
-        <option value="en">Angleterre</option>
-        <option value="sp">Espagne</option>
-        <option value="ge">Allemagne</option>
-      </select>
+      <input type="text" name="country"/>
       <br>
       Ville du parcours :
-      <select name="city">
-        <option value="paris" selected>Paris</option>
-        <option value="london">London</option>
-        <option value="barcelone">Barcelone</option>
-        <option value="berlin">Berlin</option>
-      </select>
+      <input type="text" name="city"/>
       <br>
       Langues utilisés :
       <select name="language">
@@ -134,6 +124,12 @@ session_start();
         <option value="splangue">Espanola</option>
         <option value="gelangue">Deutsch</option>
       </select>
+      <br>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15664.794198964973!2d2.3220817446068365!3d48.88045798298998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e48c5018683%3A0x4d3be5d6a3b287a0!2sMus%C3%A9e+de+la+Vie+romantique!5e0!3m2!1sfr!2sfr!4v1523372744777" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+      <br>
+      Insérer le lien :
+      <input type="text" name="map"/>
+      <input type="submit" value="Valider le lien"/>
       <br>
       Prix par client : <input type="text" name="price" >
       <br>
@@ -212,6 +208,15 @@ session_start();
       <br>
       Présentation de votre parcours :
       <input type="text" name="content">
+      <br>
+      Photos pour présentation : <input type='hidden' name='MAX_FILE_SIZE' value='250000'>
+      <input type='file' name='avatar1'>
+      <br>
+      <input type='hidden' name='MAX_FILE_SIZE' value='250000'>
+      <input type='file' name='avatar2'>
+      <br>
+      <input type='hidden' name='MAX_FILE_SIZE' value='250000'>
+      <input type='file' name='avatar3'>
       <br>
       <input type="submit" value="Créer">
     </form>
