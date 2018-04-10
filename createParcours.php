@@ -49,7 +49,13 @@ session_start();
      	 Photo de couverture du parcours : <input type='hidden' name='MAX_FILE_SIZE' value='250000'>
        <input type='file' name='avatar'>
        <br>
-      Date du parcours :<input type="datetime" name="dateParcours">
+      Date du parcours :
+      <select name="jour">
+        <option value="paris" selected>Paris</option>
+        <option value="london">London</option>
+        <option value="barcelone">Barcelone</option>
+        <option value="berlin">Berlin</option>
+      </select>
       <br>
       Durée du parcours : <input type="text" name="duration">
       <br>

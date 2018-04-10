@@ -106,7 +106,9 @@ include 'include/functions.php';
 
  <br>
  <p>
- Titre :  <?php echo $donnees['title']; ?>
+ <?php echo '<a href = parcours.php?id='.$donnees['id'].'><img src="'.$donnees['picture'].'" alt="" /></a>'; ?>
+ <br>
+ <?php echo '<a href = parcours.php?id='.$donnees['id'].'>'.$donnees['title'].'</a>'; ?>
 </p>
 
 <?php
