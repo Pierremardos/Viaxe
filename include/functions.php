@@ -35,14 +35,19 @@ function backOffice(){
       <td>
         <form method="GET" action="ban.php">
           <input  name="mail" type="hidden" value="'.$member["mail"].'"/>
-          <a title="view this user" class="btn btn-default btn-sm "> <i class="glyphicon glyphicon-eye-open text-primary"></i> </a>
-          <a title="edit this user" class="btn btn-default btn-sm "> <i class="glyphicon glyphicon-edit text-primary"></i> </a>
-          <a title="delete this user" class="btn btn-default btn-sm "> <i class="glyphicon glyphicon-trash text-danger"></i> </a>
-          <a title="check credit" class="btn btn-default btn-sm "> <i class="glyphicon glyphicon-duplicate text-danger"></i> </a>
-          <a title="generate invoice" class="btn btn-default btn-sm "> <i class="glyphicon glyphicon-level-up bg-success"></i> </a>
-          <input type="submit" value="Ban"/>
+          <button type="submit" class="btn btn-danger">
+            <span class="glyphicon glyphicon-remove-circle"></span>
+          </button>
         </form>
       </td>
+      <td>
+        <form method="GET" action="edit.php">
+          <input name="mail" type="hidden" value="'.$member["mail"].'"/>
+          <button type="submit" class="btn btn-blue">
+            <span class="glyphicon glyphicon-edit"></span>
+          </button>
+        </form>
+        </td>
     </tr>
     ';
     }
@@ -51,12 +56,9 @@ function backOffice(){
       <td>
         <form method="GET" action="unban.php">
           <input  name="mail" type="hidden" value="'.$member["mail"].'"/>
-          <a title="view this user" class="btn btn-default btn-sm "> <i class="glyphicon glyphicon-eye-open text-primary"></i> </a>
-          <a title="edit this user" class="btn btn-default btn-sm "> <i class="glyphicon glyphicon-edit text-primary"></i> </a>
-          <a title="delete this user" class="btn btn-default btn-sm "> <i class="glyphicon glyphicon-trash text-danger"></i> </a>
-          <a title="check credit" class="btn btn-default btn-sm "> <i class="glyphicon glyphicon-duplicate text-danger"></i> </a>
-          <a title="generate invoice" class="btn btn-default btn-sm "> <i class="glyphicon glyphicon-level-up bg-success"></i> </a>
-          <input type="submit" value="Unban"/>
+          <button type="submit" class="btn btn-danger">
+            <span class="glyphicon glyphicon-ok-circle"></span>
+          </button>
         </form>
       </td>
     </tr>
@@ -75,6 +77,12 @@ function banUser($mail){
 function unbanUser($mail){
   $db = connectDb();
   $query = $db->prepare("UPDATE customer SET isBanned = 0 WHERE mail = :mail");
+  $query->execute(["mail"=>$mail]);
+}
+
+function editUser($mail){
+  $db = connectDb();
+  $query = $db->prepare('UPDATE customer SET mail = $_GET["mail"], pseudo = $_GET["pseudo"], age = $_GET["age"], gender = $_GET["gender"], isBanned = $_GET["isBanned"] WHERE mail =:mail');
   $query->execute(["mail"=>$mail]);
 }
 
