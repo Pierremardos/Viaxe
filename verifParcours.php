@@ -182,13 +182,15 @@
  $finalDate = $_POST['finalDate'] . " " . $_POST['finalHour'] . ":" . $_POST['finalMin'] . ":00";
  $content = $_POST['content'];
  $mail = $_SESSION['mail'];
+ $map = $_POST['map'];
 
- $req = $bdd->prepare('INSERT INTO TRIP (title, date, picture, duration, country, city, languages, price, finalPrice,datePrice,category,places,content,contentPic1,contentPic2,contentPic3,mailGuide)
-  VALUES ( :title, :dateDep, :picture, :duration, :country, :city, :language, :price, :finalPrice, :finalDate, :category, :places, :content, :pic1, :pic2, :pic3, :mailGuide)');
+ $req = $bdd->prepare('INSERT INTO TRIP (title, map, date, picture, duration, country, city, languages, price, finalPrice,datePrice,category,places,content,contentPic1,contentPic2,contentPic3,mailGuide)
+  VALUES ( :title, :map, :dateDep, :picture, :duration, :country, :city, :language, :price, :finalPrice, :finalDate, :category, :places, :content, :pic1, :pic2, :pic3, :mailGuide)');
 
 
  $req->execute(array(
    "title"=>$title,
+   "map"=>$map,
    "dateDep"=>$date,
    "picture"=>$picture,
    "duration"=>$duration,
