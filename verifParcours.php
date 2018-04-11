@@ -180,8 +180,6 @@
  $finalPrice = $_POST['finalPrice'];
  $content = $_POST['content'];
  $mail = $_SESSION['mail'];
-// $date = $_SESSION['day'] + $_SESSION['month'] + $_SESSION['year'];
-// $finalDate = $_SESSION['finalDay'] + $_SESSION['finalMonth'] + $_SESSION['finalYear'];
 
  $req = $bdd->prepare('INSERT INTO TRIP (title, date, picture, duration, country, city, languages, price, finalPrice,datePrice,category,places,content,contentPic1,contentPic2,contentPic3,mailGuide)
   VALUES ( :title, NOW(), :picture, :duration, :country, :city, :language, :price, :finalPrice, NOW(), :category, :places, :content, :pic1, :pic2, :pic3, :mailGuide)');
