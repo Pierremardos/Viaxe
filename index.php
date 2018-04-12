@@ -170,7 +170,7 @@ include 'include/functions.php';
 			</div>
 		</div>
 		<br>
-		<h1 class="titreSection">Nos coups de coeur</h1>
+		<h1 class="titreSection">Les coups de coeur</h1>
 		<div class="search container">
 			<div class="row container">
 				<div class="col-md-4">

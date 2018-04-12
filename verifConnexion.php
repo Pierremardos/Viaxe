@@ -51,8 +51,8 @@ else{
 	       if (chiffer($password) == $data['password'])
 	       {
 	           $_SESSION['mail'] = $mail;
-	           $message = 'Bienvenue
-			       vous êtes maintenant connecté!';
+             header("Location:index.php");
+             exit;
 	       }
 	       else // Acces pas OK !
 	       {
@@ -65,7 +65,8 @@ else{
            if (chiffer($password) == $data['password'])
            {
              $_SESSION['mail'] = $mail;
-             $message = 'Bienvenue vous êtes maintenant connecté!';
+             header("Location:index.php");
+             exit;
            }
 
            else // Acces pas OK !
