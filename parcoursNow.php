@@ -27,14 +27,17 @@ include 'include/functions.php';
  }
 
  $mail = $_SESSION['mail'];
- $query=$bdd->prepare('SELECT * FROM TRIP WHERE mailGuide = :mail and date < NOW()');
+ $now = strtotime("now") + 7200;
+ $query=$bdd->prepare('SELECT * FROM TRIP WHERE mailGuide = :mail');
  $query->bindValue(':mail',$mail, PDO::PARAM_STR);
  $query->execute();
 
  while($donnees = $query->fetch())
  {
-
+   $date = strtotime($donnees['date']);
+   if($date > $now){
  ?>
+
 
  <br>
  <p>
@@ -44,7 +47,8 @@ include 'include/functions.php';
 </p>
 
 <?php
-}
+    }
+  }
 
 $query->closeCursor();
 ?>
