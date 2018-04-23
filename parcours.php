@@ -13,17 +13,21 @@
 
     if($_SESSION['mail'] == 'quentin.clodion@gmail.com' | $_SESSION['mail'] =='jonasnizard@gmail.com' | $_SESSION['mail'] == 'thomas.ddt@hotmail.fr'){
       include('Navbar/NavbarAdmin.php');
+      $particip = 0;
     }
     else if ($_SESSION['mail'] == $data['mail'])
      {
          include('Navbar/NavbarGuide.php');
+         $particip = 0;
      }
      else{
        include('Navbar/NavbarCustomer.php');
+       $particip = 1;
      }
   }
   else{
     include('Navbar/Navbar.php');
+    $particip = 0;
   }
 
   $id = $_GET['id'];
@@ -38,3 +42,14 @@ $donnees = $query->fetch()
   <br>
 	<?php echo '<h1>'.$donnees['title'].'</h1>'; ?>
   <?php echo $donnees['map']; ?>
+
+  <?php
+  $now = strtotime("now") + 7200;
+  $date = strtotime($donnees['date']);
+
+    if($particip = 1 & $date > $now){
+      echo '<form action="inscriptionParcours.php" method="post">
+      <input type="submit" value="participer"/>
+      </form>';
+    }
+   ?>
