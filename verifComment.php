@@ -36,7 +36,7 @@
   $mail  = $_SESSION['mail'];
 
   $req = $bdd->prepare('INSERT INTO RECOMMENDATION (comment, timeComment, mark, mailCustomer, idTrip)
-   VALUES ( :comment, NOW(), :mark, :mailCustomer, :id)');
+  VALUES (:comment, NOW(), :mark, :mailCustomer, :id)');
 
 
   $req->execute(array(
@@ -45,3 +45,7 @@
     "mailCustomer"=>$mail,
     "id"=>$id
     ));
+
+    header('Location: parcours.php?id='.$id.'');
+    exit;
+?>

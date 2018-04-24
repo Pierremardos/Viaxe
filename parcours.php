@@ -63,14 +63,27 @@ $donnees = $query->fetch()
    $mail = $_SESSION['mail'];
    if($verifmail == $mail){
     ?>
-    <form action="verifComment.php" method="post">
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>Viaxe</title>
+  	<meta charset="utf-8">
+  	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  	<link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
+  <body>
+    <?php
+    echo
+    '<form action="verifComment.php?id='.$_GET['id'].'" method="post">
       Note : <input type="text" name="mark">
       <br>
       Message :<input type="text" name="comment">
       <br>
       <input type="submit" value="Envoyer">
-    </form>
-
+    </form>';
+    ?>
+  </body>
+</html>
     <?php
   }
      ?>
