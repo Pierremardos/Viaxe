@@ -46,15 +46,16 @@ include 'include/functions.php';
  }
  else{
 
- $req = $bdd->prepare('INSERT INTO PARTICIPANT (orderNumber, time, numberCustomer, firstName, lastName, mailCustomer)
-  VALUES ( 5, NOW(), :places, :firstName, :lastName, :mail)');
+ $req = $bdd->prepare('INSERT INTO PARTICIPANT (orderNumber, time, numberCustomer, firstName, lastName, mailCustomer, idTrip)
+  VALUES ( 5, NOW(), :places, :firstName, :lastName, :mail, :trip)');
 
 
  $req->execute(array(
    "places"=>$numberCustomer,
    "firstName"=>$firstName,
    "lastName"=>$lastName,
-   "mail"=>$mail
+   "mail"=>$mail,
+   "trip"=>$_GET['id']
    ));
 
    $query=$bdd->prepare('UPDATE TRIP SET places = :places
