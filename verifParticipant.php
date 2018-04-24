@@ -29,28 +29,19 @@ include 'include/functions.php';
  ?>
 
  <?php
+ $numberCustomer = $POST['places'];
+ $mail = $_SESSION['mail'];
+ $lastName = $POST['lastName'];
+ $firstName = $POST['firstName'];
+
  $req = $bdd->prepare('INSERT INTO PARTICIPANT (orderNumber, time, numberCustomer, firstName, lastName, mailCustomer)
-  VALUES ( :title, NOW(), :dateDep, :picture, :duration, :country, :city, :language, :price, :finalPrice, :finalDate, :category, :places, :content, :pic1, :pic2, :pic3, :mailGuide)');
+  VALUES ( 5, NOW(), :places, :firstName, :lastName, :mail)');
 
 
  $req->execute(array(
-   "title"=>$title,
-   "map"=>$map,
-   "dateDep"=>$date,
-   "picture"=>$picture,
-   "duration"=>$duration,
-   "city"=>$city,
-   "country"=>$country,
-   "language"=>$language,
-   "price"=>$price,
-   "finalPrice"=>$finalPrice,
-   "finalDate"=>$finalDate,
-   "category"=>$category,
-   "places"=>$places,
-   "content"=>$content,
-   "pic1"=>$pic1,
-   "pic2"=>$pic2,
-   "pic3"=>$pic3,
-   "mailGuide"=>$mail
+   "places"=>$numberCustomer,
+   "firstName"=>$firstName,
+   "lastName"=>$lastName,
+   "mail"=>$mail
    ));
  ?>

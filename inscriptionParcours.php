@@ -27,3 +27,22 @@ include 'include/functions.php';
    include('Navbar/Navbar.php');
  }
  ?>
+<html>
+  <body>
+    <form action="verifParticipant.php" method="post">
+      <br>
+      <br>
+      <br>
+      Nombre de places souhaitées :
+      <input type="text" name="places"/>
+      <br>
+      Nom :
+      <input type="text" name="lastName"/>
+      <br>
+      Prénom :
+      <input type="text" name="firstName"/>
+      <br>
+      <input type="submit" value="Procéder au paiement" />
+    </form>
+  </body>
+</html>
