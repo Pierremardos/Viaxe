@@ -139,7 +139,7 @@ include 'include/functions.php';
 			 //bdd
 
 			 $req = $bdd->prepare('INSERT INTO CUSTOMER (mail, pseudo, age, gender, picture, password, phone, level)
-				VALUES ( :mail, :pseudo, :birthday, :gender, :picture, :password, :phone, 1)');
+				VALUES ( :mail, :pseudo, :birthday, :gender, :picture, :password, :phone, 100)');
 
 
 			 $req->execute(array(

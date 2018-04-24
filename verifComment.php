@@ -35,6 +35,20 @@
   $id = $_GET['id'];
   $mail  = $_SESSION['mail'];
 
+  $query=$bdd->prepare('SELECT idTrip
+  FROM RECOMMENDATION WHERE mailCustomer = :mail');
+  $query->bindValue(':mail',$mail, PDO::PARAM_STR);
+  $query->execute();
+  $donnees=$query->fetch();
+
+  if($donnees['idTrip'] == $id){
+    $req=$bdd->prepare('DELETE FROM RECOMMENDATION WHERE mailCustomer = :mail AND idTrip = :id');
+    $req->execute(array(
+      "mail"=>$mail,
+      "id"=>$id
+      ));
+  }
+
   $req = $bdd->prepare('INSERT INTO RECOMMENDATION (comment, timeComment, mark, mailCustomer, idTrip)
   VALUES (:comment, NOW(), :mark, :mailCustomer, :id)');
 

@@ -66,6 +66,32 @@ include 'include/functions.php';
       "id"=>$_GET['id']
       ));
 
+      $rep=$bdd->prepare('SELECT level
+      FROM CUSTOMER WHERE mail = :mail');
+      $rep->bindValue(':mail',$mail, PDO::PARAM_STR);
+      $rep->execute();
+      $donnees=$rep->fetch();
+      $lvl = $donnees['level'];
+      if($lvl < 200){
+        $lvl = $lvl + 50;
+      }
+      else if($lvl < 300 & $lvl >= 200){
+        $lvl = $lvl + 20;
+      }
+      else if($lvl < 400 & $lvl >= 300){
+        $lvl = $lvl + 10;
+      }
+      else{
+        $lvl = $lvl + 5;
+      }
+
+      $query=$bdd->prepare('UPDATE CUSTOMER SET level = :level
+       WHERE mail = :mail');
+
+       $query->execute(array(
+         "level"=>$lvl,
+         "mail"=>$mail
+         ));
 
      header("Location: index.php");
      exit;
