@@ -37,6 +37,15 @@
 
 $donnees = $query->fetch()
 ?>
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>Viaxe</title>
+  	<meta charset="utf-8">
+  	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  	<link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
+  <body>
   <br>
   <br>
   <br>
@@ -58,20 +67,11 @@ $donnees = $query->fetch()
    $rep=$bdd->prepare('SELECT mailCustomer FROM PARTICIPANT WHERE idTrip = :id');
    $rep->bindValue(':id',$id, PDO::PARAM_STR);
    $rep->execute();
-   $data=$rep->fetch();
+   while($data=$rep->fetch()){
    $verifmail = $data['mailCustomer'];
    $mail = $_SESSION['mail'];
    if($verifmail == $mail){
     ?>
-<!DOCTYPE html>
-<html>
-  <head>
-  	<title>Viaxe</title>
-  	<meta charset="utf-8">
-  	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-  	<link rel="stylesheet" type="text/css" href="css/style.css">
-  </head>
-  <body>
     <?php
     echo
     '<form action="verifComment.php?id='.$_GET['id'].'" method="post">
@@ -81,9 +81,29 @@ $donnees = $query->fetch()
       <br>
       <input type="submit" value="Envoyer">
     </form>';
+  }
+}
     ?>
-  </body>
-</html>
+    <?php
+    $query=$bdd->prepare('SELECT * FROM RECOMMENDATION WHERE idTrip = :id');
+    $query->bindValue(':id',$id, PDO::PARAM_STR);
+    $query->execute();
+    while($donnees = $query->fetch())
+    {
+      $rep=$bdd->prepare('SELECT * FROM CUSTOMER WHERE mail = :mail');
+      $rep->bindValue(':mail',$donnees['mailCustomer'], PDO::PARAM_STR);
+      $rep->execute();
+      $data = $rep->fetch();
+    ?>
+    <br>
+    <br>
+    <?php echo $data['pseudo'];?>
+    <br>
+    <?php echo $donnees['timeComment'];?>
+    <br>
+    <?php echo $donnees['comment'];?>
     <?php
   }
      ?>
+  </body>
+</html>

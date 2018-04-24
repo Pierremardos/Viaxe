@@ -138,8 +138,8 @@ include 'include/functions.php';
 
 			 //bdd
 
-			 $req = $bdd->prepare('INSERT INTO CUSTOMER (mail, pseudo, age, gender, picture, password, phone)
-				VALUES ( :mail, :pseudo, :birthday, :gender, :picture, :password, :phone)');
+			 $req = $bdd->prepare('INSERT INTO CUSTOMER (mail, pseudo, age, gender, picture, password, phone, level)
+				VALUES ( :mail, :pseudo, :birthday, :gender, :picture, :password, :phone, 1)');
 
 
 			 $req->execute(array(
