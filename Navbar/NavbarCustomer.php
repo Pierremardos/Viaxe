@@ -16,7 +16,7 @@
 						<a class="nav-link" href="contactUs.php">Nous contacter</a>
 					</li>
           <li class="nav-item">
-						<a class="nav-link" href="#">Mes parcours en cours</a>
+						<a class="nav-link" href="ParcoursEnCours.php">Mes parcours en cours</a>
 					</li>
           <li class="nav-item">
 						<a class="nav-link" href="myProfilCustomer.php">Mon Profil</a>

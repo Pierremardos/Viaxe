@@ -53,3 +53,24 @@ $donnees = $query->fetch()
       </form>';
     }
    ?>
+
+   <?php
+   $rep=$bdd->prepare('SELECT mailCustomer FROM PARTICIPANT WHERE idTrip = :id');
+   $rep->bindValue(':id',$id, PDO::PARAM_STR);
+   $rep->execute();
+   $data=$rep->fetch();
+   $verifmail = $data['mailCustomer'];
+   $mail = $_SESSION['mail'];
+   if($verifmail == $mail){
+    ?>
+    <form action="#" method="post">
+      Note : <input type="text" name="mark">
+      <br>
+      Message :<input type="text" name="comment">
+      <br>
+      <input type="submit" value="Envoyer">
+    </form>
+    
+    <?php
+  }
+     ?>

@@ -32,5 +32,31 @@ else{
 
 <?php
 
+$mail = $_SESSION['mail'];
+
+$query=$bdd->prepare('SELECT idTrip FROM PARTICIPANT WHERE mailCustomer = :mail');
+$query->bindValue(':mail',$mail, PDO::PARAM_STR);
+$query->execute();
+$now = strtotime("now") + 7200;
+
+while($donnees = $query->fetch())
+{
+  $rep=$bdd->prepare('SELECT * FROM TRIP WHERE id = :id');
+  $rep->bindValue(':id',$donnees['idTrip'], PDO::PARAM_STR);
+  $rep->execute();
+  $data = $rep->fetch();
+  if(strtotime($data['date']) > $now){
+?>
+
+<br>
+<p>
+<?php echo '<a href = parcours.php?id='.$data['id'].'><img src="'.$data['picture'].'" alt="" /></a>'; ?>
+<br>
+<?php echo '<a href = parcours.php?id='.$data['id'].'>'.$data['title'].'</a>'; ?>
+</p>
+
+<?php
+ }
+}
 
  ?>
