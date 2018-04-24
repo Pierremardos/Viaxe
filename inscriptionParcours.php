@@ -27,22 +27,31 @@ include 'include/functions.php';
    include('Navbar/Navbar.php');
  }
  ?>
+<!DOCTYPE html>
 <html>
+  <head>
+	   <title>Viaxe</title>
+	   <meta charset="utf-8">
+     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+     <link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
   <body>
-    <form action="verifParticipant.php" method="post">
+    <?php
+    echo '<form action="verifParticipant.php?id='.$_GET['id'].'" method="post">'
+    ?>
       <br>
       <br>
       <br>
       Nombre de places souhaitées :
-      <input type="text" name="places"/>
+      <input type="text" name="places">
       <br>
       Nom :
-      <input type="text" name="lastName"/>
+      <input type="text" name="lastName">
       <br>
       Prénom :
-      <input type="text" name="firstName"/>
+      <input type="text" name="firstName">
       <br>
-      <input type="submit" value="Procéder au paiement" />
+      <input type="submit" value="Procéder au paiement" >
     </form>
   </body>
 </html>

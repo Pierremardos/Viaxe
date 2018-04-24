@@ -48,7 +48,7 @@ $donnees = $query->fetch()
   $date = strtotime($donnees['date']);
 
     if($particip = 1 & $date > $now){
-      echo '<form action="inscriptionParcours.php" method="post">
+      echo '<form action="inscriptionParcours.php?id='.$_GET['id'].'" method="post">
       <input type="submit" value="participer"/>
       </form>';
     }

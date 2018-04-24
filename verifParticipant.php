@@ -29,10 +29,22 @@ include 'include/functions.php';
  ?>
 
  <?php
- $numberCustomer = $POST['places'];
+ $query=$bdd->prepare('SELECT places
+ FROM TRIP WHERE id = :id');
+ $query->bindValue(':id',$_GET['id'], PDO::PARAM_STR);
+ $query->execute();
+ $data=$query->fetch();
+
+ $restPlaces = $data['places'];
+ $numberCustomer = $_POST['places'];
  $mail = $_SESSION['mail'];
- $lastName = $POST['lastName'];
- $firstName = $POST['firstName'];
+ $lastName = $_POST['lastName'];
+ $firstName = $_POST['firstName'];
+
+ if($numberCustomer > $restPlaces){
+   echo " <br> <br> <br>Erreur, le nombre de participant est trop grande la limite est de $restPlaces";
+ }
+ else{
 
  $req = $bdd->prepare('INSERT INTO PARTICIPANT (orderNumber, time, numberCustomer, firstName, lastName, mailCustomer)
   VALUES ( 5, NOW(), :places, :firstName, :lastName, :mail)');
@@ -44,4 +56,18 @@ include 'include/functions.php';
    "lastName"=>$lastName,
    "mail"=>$mail
    ));
+
+   $query=$bdd->prepare('UPDATE TRIP SET places = :places
+    WHERE id = :id');
+
+    $query->execute(array(
+      "places"=>($restPlaces - $numberCustomer),
+      "id"=>$_GET['id']
+      ));
+
+
+     header("Location: index.php");
+     exit;
+   }
+
  ?>
