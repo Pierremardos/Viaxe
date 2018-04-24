@@ -63,14 +63,14 @@ $donnees = $query->fetch()
    $mail = $_SESSION['mail'];
    if($verifmail == $mail){
     ?>
-    <form action="#" method="post">
+    <form action="verifComment.php" method="post">
       Note : <input type="text" name="mark">
       <br>
       Message :<input type="text" name="comment">
       <br>
       <input type="submit" value="Envoyer">
     </form>
-    
+
     <?php
   }
      ?>
