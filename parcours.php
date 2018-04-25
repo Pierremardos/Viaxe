@@ -50,6 +50,7 @@ $donnees = $query->fetch()
   <br>
   <br>
 	<?php echo '<h1>'.$donnees['title'].'</h1>'; ?>
+  <?php echo '<h1>'.$donnees['mark'].'</h1>'; ?>
   <?php echo $donnees['map']; ?>
 
   <?php

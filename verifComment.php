@@ -52,13 +52,45 @@
   $req = $bdd->prepare('INSERT INTO RECOMMENDATION (comment, timeComment, mark, mailCustomer, idTrip)
   VALUES (:comment, NOW(), :mark, :mailCustomer, :id)');
 
-
   $req->execute(array(
     "comment"=>$comment,
     "mark"=>$mark,
     "mailCustomer"=>$mail,
     "id"=>$id
     ));
+
+    /*
+    $query=$bdd->prepare('UPDATE RECOMMENDATION
+    SET comment = :comment, mark = :mark WHERE id = :id AND mailCustomer = :mail');
+    $query->execute(array(
+      "comment"=>$comment,
+      "mark"=>$mark,
+      "id"=>$id,
+      "mailCustomer"=>$mail
+      ));
+      */
+
+
+    $query=$bdd->prepare('SELECT AVG(mark)
+    FROM RECOMMENDATION WHERE idTrip = :id');
+    $query->bindValue(':id',$id, PDO::PARAM_STR);
+    $query->execute();
+    $donnees2=$query->fetch();
+    $note = $donnees2['AVG(mark)'];
+
+    $query=$bdd->prepare('UPDATE TRIP
+    SET mark = :mark WHERE id = :id');
+    $query->execute(array(
+      "mark"=>$note,
+      "id"=>$id
+      ));
+
+      $query=$bdd->prepare('UPDATE GUIDE SET mark = (SELECT AVG(mark)
+      FROM TRIP WHERE mailGuide = (SELECT mailGuide
+      FROM TRIP WHERE id = :id)) WHERE mail = (SELECT mailGuide
+      FROM TRIP WHERE id = :id)');
+      $query->bindValue(':id',$id, PDO::PARAM_STR);
+      $query->execute();
 
     header('Location: parcours.php?id='.$id.'');
     exit;
