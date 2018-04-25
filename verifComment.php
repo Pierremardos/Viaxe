@@ -36,9 +36,11 @@
   $mail  = $_SESSION['mail'];
 
   $query=$bdd->prepare('SELECT idTrip
-  FROM RECOMMENDATION WHERE mailCustomer = :mail');
-  $query->bindValue(':mail',$mail, PDO::PARAM_STR);
-  $query->execute();
+  FROM RECOMMENDATION WHERE mailCustomer = :mail AND idTrip = :id');
+  $query->execute(array(
+    "mail"=>$mail,
+    "id"=>$id
+    ));
   $donnees=$query->fetch();
 
   if($donnees['idTrip'] == $id){
@@ -58,18 +60,6 @@
     "mailCustomer"=>$mail,
     "id"=>$id
     ));
-
-    /*
-    $query=$bdd->prepare('UPDATE RECOMMENDATION
-    SET comment = :comment, mark = :mark WHERE id = :id AND mailCustomer = :mail');
-    $query->execute(array(
-      "comment"=>$comment,
-      "mark"=>$mark,
-      "id"=>$id,
-      "mailCustomer"=>$mail
-      ));
-      */
-
 
     $query=$bdd->prepare('SELECT AVG(mark)
     FROM RECOMMENDATION WHERE idTrip = :id');
