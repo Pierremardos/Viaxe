@@ -1,12 +1,8 @@
 
-<<<<<<< HEAD
-jensucuuuuceeee
-=======
 moieuoifyfae$jkd
 <<<<<<< HEAD
 s
 =======
->>>>>>> d4220ad1e240067d7c249a0d652b78c4c9e0000f
 >>>>>>> 7ee6b57f68b841791a87e8c0bc2aa9ee3a5e3fc1
 tutur
 azer
@@ -69,82 +65,107 @@ luffy
 proooot
 luffy
 
- Création : 
+ Création :
 proooot
 luffy
 
- Création : 
+ Création :
 proooot
 luffy
 
- Création : 
+ Création :
 Tettttine
 oo
 
- Création : 
+ Création :
 Losabite
 lo
 
- Création : 
+ Création :
 Losabit
 yop
 
- Création : 
+ Création :
 Losabit
 yop
 
- Création : 
+ Création :
 Losabit
 yop
 
- Création : 
+ Création :
 Losabit
 yop
 
- Création : 
+ Création :
 Yoooo
 lo
 
- Création : 
+ Création :
 Tabernak
 lu
 
- Création : 
+ Création :
 ncninc
 lo
 
- Création : 
+ Création :
 Laos
 lo
 
- Création : 
+ Création :
 Laosss
 lu
 
- Création : 
+ Création :
 Thomas
 12345678
 
- Création : 
+ Création :
 Thomas
 12345678
 
- Création : 
+ Création :
 Thomas
 12345678
 
- Création : 
+ Création :
 Thomas
 12345678
 
- Création : 
+ Création :
 Losabit
 loop
 
- Création : 
+ Création :
 Testos
 loop
 
- Création : 
+ Création :
 Casselescouilles
 loop
+
+ Création :
+<<<<<<< HEAD
+JonasClient
+pizzas
+=======
+CLIQUE
+loop
+
+ Création :
+Crashh
+loop
+
+ Création :
+Crashh
+loop
+
+ Création :
+Baltazar
+loop
+
+ Création :
+Michto
+loop
+>>>>>>> c00f5ca83fa2850e162cff51afd5794dcfc1dcb9
