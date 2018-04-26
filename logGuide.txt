@@ -50,83 +50,70 @@ Marion
 milo
 
  Création :
-<<<<<<< HEAD
-Thomas
-12345678
-
- Création :
-Thomas
-12345678
-
- Création :
-Thomas
-12345678
-=======
 Losabite
 loop
 
  Création :
 Losabit
 loop
->>>>>>> b3bdfe93be9e3e4737e316a2d7b0fde63bdf7749
 
- Création : 
+ Création :
 Losabit
 loop
 
- Création : 
+ Création :
 Losabite
 loop
 
- Création : 
+ Création :
 Testos
 loop
 
- Création : 
+ Création :
 Crashh
 loop
 
- Création : 
+ Création :
 Losabit
 loop
 
- Création : 
+ Création :
 Losabity
 loop
 
- Création : 
+ Création :
 Losabit
 loop
 
- Création : 
+ Création :
 mycompte
 loop
 
- Création : 
+ Création :
 <<<<<<< HEAD
 Jonas
 pizzas
 
- Création : 
+ Création :
 Jonas
 pizzas
 
- Création : 
+ Création :
 JonasGuide
 pizzas
 =======
 Losabit
 loop
 
- Création : 
+ Création :
 Losabite
 loop
 
- Création : 
+ Création :
 Losabit
 loop
 
- Création : 
+ Création :
 Razmoo
 loop
 >>>>>>> c00f5ca83fa2850e162cff51afd5794dcfc1dcb9
