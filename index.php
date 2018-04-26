@@ -74,7 +74,7 @@ include 'include/functions.php';
         <p id="price"></p>
 
 			  <div class="slidecontainer">
-          <input type="range" min="1" max="500" value="250" class="slider" id="firstSlider">
+          <input type="range" min="1" max="500" value="250" class="slider" onclick="price()" id="firstSlider">
         </div>
         <script src="include/slider.js"></script>
         <br>
