@@ -122,33 +122,34 @@ include 'include/functions.php';
 		<h1 class="titreSection">Les parcours de la journée</h1>
 		<div class="search container">
   		<div class="row container">
-   			<div class="col-md-4">
-     			<div class="thumbnail">
-         		<a href="#"><img src="images/GalerieEvo.jpg" alt="GalerieEvolution" style="width:100%">
-         			<div class="caption">
-           			<p>Lorem ipsum...</p>
-         			</div>
-       			</a>
-     			</div>
-   			</div>
-   			<div class="col-md-4">
-     			<div class="thumbnail">
-         		<a href="#"><img src="images/PyramidesCaire.jpg" alt="Pyramides" style="width:100%">
-         			<div class="caption">
-           			<p>Lorem ipsum...</p>
-         			</div>
-       			</a>
-     			</div>
-   			</div>
-   			<div class="col-md-4">
-     			<div class="thumbnail">
-         		<a href="#"><img src="images/Sydney.jpg" alt="Sydney" style="width:100%">
-         			<div class="caption">
-           			<p>Lorem ipsum...</p>
-         			</div>
-       			</a>
-      		</div>
-    		</div>
+        <?php
+        $now = strtotime("now") + 7200;
+        $query=$bdd->prepare('SELECT * FROM TRIP');
+        $query->execute();
+        $count = 1;
+
+        while($donnees = $query->fetch())
+        {
+          $date = strtotime($donnees['date']);
+          if($date > $now & $count < 4){
+
+            echo '
+              <div class="col-md-4">
+                <div class="thumbnail">
+                  <a href = parcours.php?id='.$donnees['id'].'><img src="'.$donnees['picture'].'" alt="" style="width:100%"/>
+                    <div class="caption">
+                      <p>'.$donnees['title'].'</p>
+                    </div>
+                  </a>
+                </div>
+              </div>';
+            $count = $count + 1;
+          }
+?>
+
+<?php
+}
+?>
     	</div>
 		</div>
 		<br>
@@ -185,7 +186,7 @@ include 'include/functions.php';
 			</div>
 		</div>
 		<br>
-		<h1 class="titreSection">Nos coups de coeur</h1>
+		<h1 class="titreSection">Les coups de coeur</h1>
 		<div class="search container">
 			<div class="row container">
 				<div class="col-md-4">

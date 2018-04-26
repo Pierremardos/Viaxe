@@ -150,5 +150,26 @@ Casselescouilles
 loop
 
  Création : 
+<<<<<<< HEAD
 JonasClient
 pizzas
+=======
+CLIQUE
+loop
+
+ Création : 
+Crashh
+loop
+
+ Création : 
+Crashh
+loop
+
+ Création : 
+Baltazar
+loop
+
+ Création : 
+Michto
+loop
+>>>>>>> c00f5ca83fa2850e162cff51afd5794dcfc1dcb9

@@ -19,7 +19,7 @@
 						<a class="nav-link" href="createParcours.php">Créer un parcours</a>
 					</li>
           <li class="nav-item">
-						<a class="nav-link" href="#">Mes parcours en cours</a>
+						<a class="nav-link" href="parcoursNow.php">Mes parcours en cours</a>
 					</li>
           <li class="nav-item">
 						<a class="nav-link" href="myProfilGuide.php">Mon Profil</a>
