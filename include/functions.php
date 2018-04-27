@@ -1,5 +1,4 @@
 <?php
-
 define("DB_HOST", "localhost");
 define("DB_NAME", "viaxe");
 define("DB_USER", "root");
