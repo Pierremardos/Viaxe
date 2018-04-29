@@ -45,7 +45,7 @@
  			if(move_uploaded_file($_FILES['avatar']['tmp_name'], $dossier . $fichier)) //correct si la fonction renvoie TRUE
  			{
  				echo 'Upload effectué avec succès !';
-        rename($dossier . $fichier, $dossier . $id . ".jpeg");
+        rename($dossier . $fichier, $dossier . $id . "\0.jpeg");
  				//ajout_image($fichier,);
  			}
  			else //sinon, cas où la fonction renvoie FALSE
@@ -83,7 +83,7 @@
  			if(move_uploaded_file($_FILES['avatar1']['tmp_name'], $dossier1 . $fichier)) //correct si la fonction renvoie TRUE
  			{
  				echo 'Upload effectué avec succès !';
-        rename($dossier1 . $fichier, $dossier1 . $id . "a.jpeg");
+        rename($dossier1 . $fichier, $dossier1 . $id . "a\0.jpeg");
  				//ajout_image($fichier,);
  			}
  			else //sinon, cas où la fonction renvoie FALSE
@@ -119,7 +119,7 @@
  			if(move_uploaded_file($_FILES['avatar2']['tmp_name'], $dossier1 . $fichier)) //correct si la fonction renvoie TRUE
  			{
  				echo 'Upload effectué avec succès !';
-        rename($dossier1 . $fichier, $dossier1 . $id . "b.jpeg");
+        rename($dossier1 . $fichier, $dossier1 . $id . "b\0.jpeg");
  				//ajout_image($fichier,);
  			}
  			else //sinon, cas où la fonction renvoie FALSE
@@ -155,7 +155,7 @@
  			if(move_uploaded_file($_FILES['avatar3']['tmp_name'], $dossier1 . $fichier)) //correct si la fonction renvoie TRUE
  			{
  				echo 'Upload effectué avec succès !';
-        rename($dossier1 . $fichier, $dossier1 . $id . "c.jpeg");
+        rename($dossier1 . $fichier, $dossier1 . $id . "c\0.jpeg");
  				//ajout_image($fichier,);
  			}
  			else //sinon, cas où la fonction renvoie FALSE
