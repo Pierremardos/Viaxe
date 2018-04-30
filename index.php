@@ -180,7 +180,7 @@ include 'include/functions.php';
       <div class="row">
 
         <?php
-        $query2=$bdd->prepare('SELECT * FROM TRIP WHERE category = 2');
+        $query2=$bdd->prepare('SELECT * FROM TRIP WHERE category = "Culinaire"');
         $query2->execute();
         $count = 1;
           while($donnees = $query2->fetch())

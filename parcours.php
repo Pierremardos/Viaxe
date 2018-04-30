@@ -130,7 +130,50 @@ $data = $rep->fetch();
         echo'</div>
       </div>
     </div>
+  </div>
+  <div class="py-5">';
+
+  $req=$bdd->prepare('SELECT * FROM CONTENT WHERE idTrip = :id');
+  $req->bindValue(':id',$id, PDO::PARAM_STR);
+  $req->execute();
+  $count = 0;
+  while($donnees = $req->fetch()){
+
+    if($count % 3 == 0){
+echo '
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-md-7">
+          <p class="text-justify">'.$donnees['content'].'</p>
+        </div>
+        <div class="col-md-5 align-self-center">
+          <img class="img-fluid d-block w-100 img-thumbnail" src="'.$donnees['Picture'].'"> </div>
+      </div>';
+      $count++;
+    }else if($count % 3 == 1){
+      echo'<div class="row">
+        <div class="col-md-5">
+          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="'.$donnees['Picture'].'"> </div>
+        <div class="col-md-7">
+          <p class="text-justify">'.$donnees['content'].'</p>
+        </div>
+      </div>
+    </div>';
+    $count++;}
+    else{
+      echo'
+    <div class="container">
+      <div class="row mb-5 my-5">
+        <div class="col-md-7">
+          <p class="text-justify">'.$donnees['content'].'</p>
+        </div>
+        <div class="col-md-5 align-self-center">
+          <img class="img-fluid d-block w-100 img-thumbnail" src="'.$donnees['Picture'].'"> </div>
+      </div>
+    </div>
   </div>';
+}
+}
 ?>
 
    <div class="py-5 bg-primary">

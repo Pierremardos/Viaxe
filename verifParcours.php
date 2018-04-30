@@ -83,7 +83,7 @@
  			if(move_uploaded_file($_FILES['avatar1']['tmp_name'], $dossier1 . $fichier)) //correct si la fonction renvoie TRUE
  			{
  				echo 'Upload effectué avec succès !';
-        rename($dossier1 . $fichier, $dossier1 . $id . "a\0.jpeg");
+        rename($dossier1 . $fichier, $dossier1 . $id . "a.jpeg");
  				//ajout_image($fichier,);
  			}
  			else //sinon, cas où la fonction renvoie FALSE
@@ -119,7 +119,7 @@
  			if(move_uploaded_file($_FILES['avatar2']['tmp_name'], $dossier1 . $fichier)) //correct si la fonction renvoie TRUE
  			{
  				echo 'Upload effectué avec succès !';
-        rename($dossier1 . $fichier, $dossier1 . $id . "b\0.jpeg");
+        rename($dossier1 . $fichier, $dossier1 . $id . "b.jpeg");
  				//ajout_image($fichier,);
  			}
  			else //sinon, cas où la fonction renvoie FALSE
@@ -155,7 +155,7 @@
  			if(move_uploaded_file($_FILES['avatar3']['tmp_name'], $dossier1 . $fichier)) //correct si la fonction renvoie TRUE
  			{
  				echo 'Upload effectué avec succès !';
-        rename($dossier1 . $fichier, $dossier1 . $id . "c\0.jpeg");
+        rename($dossier1 . $fichier, $dossier1 . $id . "c.jpeg");
  				//ajout_image($fichier,);
  			}
  			else //sinon, cas où la fonction renvoie FALSE
@@ -176,7 +176,13 @@
  $country = $_POST['country'];
  $language = $_POST['language'];
  $price = $_POST['price'];
- $category = $_POST['categorie'];
+ $category = $_GET['type'];
+ if($category == 2){
+   $category = 'Culinaire';
+ }
+ else{
+   $category = 'Culturel';
+ }
  $places = $_POST['place'];
  $finalPrice = $_POST['finalPrice'];
  $finalDate = $_POST['finalDate'] . " " . $_POST['finalHour'] . ":" . $_POST['finalMin'] . ":00";
@@ -240,3 +246,4 @@
 
 
  header("location: index.php");
+ exit;
