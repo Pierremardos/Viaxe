@@ -1,4 +1,6 @@
 <?php
+  include 'include/config.php';
+  include 'include/functions.php';
  	require_once "include/functions.php";
   session_start();
   if($_SESSION['mail'] == 'quentin.clodion@gmail.com' | $_SESSION['mail'] =='jonasnizard@gmail.com' | $_SESSION['mail'] == 'thomas.ddt@hotmail.fr'){
@@ -23,34 +25,9 @@
     </head>
     <body>
       <header>
-        <div class="container">
-          <div class="row">
-            <div class="col-2">
-              <nav class="navbar">
-              </nav>
-            </div>
-            <div class="col-10">
-            <nav class="navbar navbar-expand navbar-light fixed-top bg-light">
-              <a class="navbar-brand" href="#"> Viaxe </a>
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Lundi</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Mardi</a>
-                </li>
-                <li class="nav-item">
-                 <a class="nav-link" href="#">Mercredi</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Jeudi</a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </div>
-      <div>
+        <?php
+          include('Navbar/NavbarAdmin.php');
+        ?>
       </header>
       <br>
       <br>

@@ -31,18 +31,37 @@ else{
 <head>
 	<title>Viaxe</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css">
 </head>
 <body>
-  <main>
-    <br>
-    <br>
-    <br>
-    <p>Si vous souhaitez nous contacter pour un quelconque problème :</p>
-    <p>jonasnizard@gmail.com</p>
-    <p>thomas.ddt@hotmail.fr</p>
-    <p>quentin.clodion@gmail.com</p>
-  </main>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="">Si vous souhaitez nous contacter pour un quelconque problème :</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 align-self-center">
+          <img class="img-fluid d-block" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg">
+          <h3 class="my-3">quentin.clodion@gmail.com</h3>
+        </div>
+        <div class="col-md-4 align-self-center">
+          <img class="img-fluid d-block" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg">
+          <h3 class="my-3">thomas.ddt@hotmail.fr</h3>
+        </div>
+        <div class="col-md-4 align-self-center">
+          <img class="img-fluid d-block" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg">
+          <h3 class="my-3">jonasnizard@gmail.com</h3>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
