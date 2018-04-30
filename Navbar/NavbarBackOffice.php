@@ -10,7 +10,7 @@
 	<header>
 		<nav class="navbar navbar-expand-md bg-primary navbar-dark">
 	 <div class="container">
-		 <a class="navbar-brand" href="index.php">
+		 <a class="navbar-brand" href="../index.php">
 			 <i class="fa d-inline fa-lg fa-cloud"></i>
 			 <b> Viaxe</b>
 		 </a>
@@ -20,7 +20,19 @@
 		 <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
 			 <ul class="navbar-nav">
 				 <li class="nav-item">
-					 <a class="nav-link" href="backOffice/backOffice.php"> Back Office </a>
+					 <a class="nav-link" href="../backOffice/backOfficeBannedGuides.php"> Banned Guides </a>
+				 </li>
+				 <li class="nav-item">
+					 <a class="nav-link" href="../backOffice/backOfficeGuides.php"> Guides </a>
+				 </li>
+				 <li class="nav-item">
+						<a class="nav-link" > / </a>
+					</li>
+				 <li class="nav-item">
+					 <a class="nav-link" href="../backOffice/backOfficeBannedCustomers.php"> Banned Customers </a>
+				 </li>
+				 <li class="nav-item">
+					 <a class="nav-link" href="../backOffice/backOffice.php"> Customers </a>
 				 </li>
 				 <li class="nav-item">
 						<a class="nav-link" > / </a>
@@ -29,7 +41,7 @@
 					 <a class="nav-link" href="myProfilGuide.php"> Mon Profil</a>
 				 </li>
 			 </ul>
-			 <a class="btn navbar-btn ml-2 text-white btn-secondary" href="deconnexion.php">
+			 <a class="btn navbar-btn ml-2 text-white btn-secondary" href="../deconnexion.php">
 				 <i class="fa d-inline fa-lg fa-user-circle-o"></i> Déconnexion</a>
 		 </div>
 	 </div>

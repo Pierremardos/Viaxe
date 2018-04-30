@@ -1,13 +1,13 @@
 <?php
-  include 'include/config.php';
-  include 'include/functions.php';
- 	require_once "include/functions.php";
+  include '../include/config.php';
+  include '../include/functions.php';
+ 	require_once "../include/functions.php";
   session_start();
   if($_SESSION['mail'] == 'quentin.clodion@gmail.com' | $_SESSION['mail'] =='jonasnizard@gmail.com' | $_SESSION['mail'] == 'thomas.ddt@hotmail.fr'){
 
   }
   else{
-      header("location: index.php");
+      header("location: ../index.php");
       exit;
   }
 	?>
@@ -16,7 +16,7 @@
 <html>
 
         <?php
-          include('Navbar/NavbarAdmin.php');
+          include('../Navbar/NavbarBackOffice.php');
         ?>
       </header>
       <br>
@@ -25,7 +25,7 @@
         <h1> Customer Manager </h1>
         <div class="row">
           <div class="col-md-6">
-            <form method="POST" action="verifInscriptionCustomer.php">
+            <form method="POST" action="../verifInscriptionCustomer.php">
               <div class="form-group w-50">
                 <label>Adresse Mail :</label>
                 <input type="mail" class="form-control" name="email">

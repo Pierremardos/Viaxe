@@ -1,13 +1,13 @@
 <?php
-  include 'include/config.php';
-  include 'include/functions.php';
- 	require_once "include/functions.php";
+  include '../include/config.php';
+  include '../include/functions.php';
+ 	require_once "../include/functions.php";
   session_start();
   if($_SESSION['mail'] == 'quentin.clodion@gmail.com' | $_SESSION['mail'] =='jonasnizard@gmail.com' | $_SESSION['mail'] == 'thomas.ddt@hotmail.fr'){
 
   }
   else{
-      header("location: index.php");
+      header("location: ../index.php");
       exit;
   }
 	?>
@@ -18,7 +18,7 @@
       <header>
 
         <?php
-          include('Navbar/NavbarAdmin.php');
+          include('../Navbar/NavbarBackOffice.php');
         ?>
       </header>
       <br>
@@ -35,7 +35,7 @@
               <th scope="col">Unban</th>
             </tr>
           </thead>
-          <?php showBannedGuides();
+          <?php showBannedCustomer();
           ?>
       </div>
     </body>
