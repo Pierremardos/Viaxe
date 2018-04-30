@@ -180,12 +180,11 @@
  $places = $_POST['place'];
  $finalPrice = $_POST['finalPrice'];
  $finalDate = $_POST['finalDate'] . " " . $_POST['finalHour'] . ":" . $_POST['finalMin'] . ":00";
- $content = $_POST['content'];
  $mail = $_SESSION['mail'];
  $map = $_POST['map'];
 
- $req = $bdd->prepare('INSERT INTO TRIP (title, map, date, picture, duration, country, city, languages, price, finalPrice,datePrice,category,places,content,contentPic1,contentPic2,contentPic3,mailGuide)
-  VALUES ( :title, :map, :dateDep, :picture, :duration, :country, :city, :language, :price, :finalPrice, :finalDate, :category, :places, :content, :pic1, :pic2, :pic3, :mailGuide)');
+ $req = $bdd->prepare('INSERT INTO TRIP (title, map, date, picture, duration, country, city, languages, price, finalPrice,datePrice,category,places, mailGuide)
+  VALUES ( :title, :map, :dateDep, :picture, :duration, :country, :city, :language, :price, :finalPrice, :finalDate, :category, :places, :mailGuide)');
 
 
  $req->execute(array(
@@ -202,13 +201,42 @@
    "finalDate"=>$finalDate,
    "category"=>$category,
    "places"=>$places,
-   "content"=>$content,
-   "pic1"=>$pic1,
-   "pic2"=>$pic2,
-   "pic3"=>$pic3,
    "mailGuide"=>$mail
    ));
 
+   $content = $_POST['content'];
+   $content2 = $_POST['content2'];
+   $content3 = $_POST['content3'];
+
+   $req = $bdd->prepare('INSERT INTO CONTENT (Picture, content, idTrip)
+    VALUES ( :pic, :content, :id)');
+
+
+   $req->execute(array(
+     "pic"=>$pic1,
+     "content"=>$content,
+     "id"=>$id
+     ));
+
+     $req = $bdd->prepare('INSERT INTO CONTENT (Picture, content, idTrip)
+      VALUES ( :pic, :content, :id)');
+
+
+     $req->execute(array(
+       "pic"=>$pic2,
+       "content"=>$content2,
+       "id"=>$id
+       ));
+
+       $req = $bdd->prepare('INSERT INTO CONTENT (Picture, content, idTrip)
+        VALUES ( :pic, :content, :id)');
+
+
+       $req->execute(array(
+         "pic"=>$pic3,
+         "content"=>$content3,
+         "id"=>$id
+         ));
 
 
  header("location: index.php");

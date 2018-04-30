@@ -96,6 +96,13 @@ include 'include/functions.php';
           </div>
           <div class="form-group">
               <label>Ajouter un diplôme :</label>
+              <input type="hidden" name="MAX_FILE_SIZE" value="250000">
+              <input type="file" name="avatar2">
+          </div>
+          <div class="form-group">
+              <label>Papier d identité à fournir avec le diplôme :</label>
+              <input type="hidden" name="MAX_FILE_SIZE" value="250000">
+              <input type="file" name="avatar3">
           </div>
         </div>
       </div>

@@ -46,12 +46,6 @@ include 'include/functions.php';
       Nombre de places souhaitées :
       <input type="text" name="places">
       <br>
-      Nom :
-      <input type="text" name="lastName">
-      <br>
-      Prénom :
-      <input type="text" name="firstName">
-      <br>
       <input type="submit" value="Procéder au paiement" >
     </form>
   </body>
