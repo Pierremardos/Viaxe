@@ -59,7 +59,9 @@ session_start();
             </div>
             <div class="form-group">
               <label>Mot de Passe :</label>
-              <input type="password" class="form-control w-50" name="password"> </div>
+              <input type="password" class="form-control w-50" name="password">
+              <a href="#"><small class="form-text text-muted">Mot de passe oublié ?</small></a>
+            </div>
             <button type="submit" class="btn btn-primary">Connexion</button>
           </form>
         </div>
