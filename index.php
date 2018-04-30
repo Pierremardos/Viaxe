@@ -164,50 +164,61 @@ include 'include/functions.php';
         </div>
       </div>
     </div>
-    <div class="py-5 bg-primary">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h1 class="text-center">Côté cuisine
-            <br>
-          </h1>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 align-self-center bg-light">
-          <img class="img-fluid d-block" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg">
-          <div class="progress">
-            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+
+
+        <?php
+        $query2=$bdd->prepare('SELECT * FROM TRIP WHERE category = 2');
+        $query2->execute();
+        $count = 1;
+
+          $mark = $donnees['mark'] * 20;
+          $date = strtotime($donnees['date']);
+          if($date > $now & $count < 4){
+
+            echo'<div class="py-5 bg-primary">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                  <h1 class="text-center">Côté cuisine
+                    <br>
+                  </h1>
+                </div>
+              </div>
+            </div>
           </div>
-          <h3 class="my-3 w-100">Titre</h3>
-          <p class="w-100">XX€</p>
-          <p class="w-100">Paris, France</p>
-        </div>
-        <div class="col-md-4 align-self-center bg-light">
-          <img class="img-fluid d-block" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg">
-          <div class="progress">
-            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
-          </div>
-          <h3 class="my-3">Titre</h3>
-          <p class="">XX€</p>
-          <p class="">Paris, France</p>
-        </div>
-        <div class="col-md-4 align-self-center bg-light">
-          <img class="img-fluid d-block" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg">
-          <div class="progress">
-            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
-          </div>
-          <h3 class="my-3">Titre</h3>
-          <p class="">XX€</p>
-          <p class="">Paris, France</p>
-        </div>
-      </div>
-    </div>
-  </div>
+          <div class="py-5">
+            <div class="container">
+              <div class="row">';
+
+              while($donnees = $query2->fetch())
+              {
+
+            echo '
+            <div class="col-md-4 align-self-center bg-light">
+              <a href = parcours.php?id='.$donnees['id'].'>
+              <img class="img-fluid d-block" src="'.$donnees['picture'].'">
+              </a>
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: '.$mark.'%" aria-valuenow="'.$mark.'" aria-valuemin="0" aria-valuemax="100">'.$mark.'/100</div>
+              </div>
+              <h3 class="my-3 w-100">'.$donnees['title'].'</h3>
+              <p class="w-100">'.$donnees['price'].'€</p>
+              <p class="w-100">'.$donnees['country'].', '.$donnees['city'].'</p>
+            </div>';
+
+            $count = $count + 1;
+          }
+?>
+
+<?php
+echo'</div>
+</div>
+</div>';
+}
+?>
+
+
+
   <div class="py-5 bg-primary">
   <div class="container">
     <div class="row">

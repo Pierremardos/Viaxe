@@ -23,7 +23,7 @@
 					 <a class="nav-link" href="contactUs"> Nous contacter</a>
 				 </li>
 				 <li class="nav-item">
-					 <a class="nav-link" href="createParcours.php"> Créer un parcours</a>
+					 <a class="nav-link" href="chooseParcours.php"> Créer un parcours</a>
 				 </li>
 				 <li class="nav-item">
 					 <a class="nav-link" href="parcoursNow.php"> Mes parcours en cours</a>
