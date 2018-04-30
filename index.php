@@ -135,6 +135,7 @@ include 'include/functions.php';
 
         while($donnees = $query->fetch())
         {
+          $mark = $donnees['mark'] * 20;
           $date = strtotime($donnees['date']);
           if($date > $now & $count < 4){
 
@@ -144,7 +145,7 @@ include 'include/functions.php';
         <img class="img-fluid d-block" width="350px" src="'.$donnees['picture'].'">
         </a>
         <div class="progress">
-          <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+          <div class="progress-bar progress-bar-striped" role="progressbar" style="width: '.$mark.'%" aria-valuenow="'.$mark.'" aria-valuemin="0" aria-valuemax="100">'.$mark.'/100</div>
         </div>
         <a href = parcours.php?id='.$donnees['id'].'>
         <h3 class="my-3 w-100">'.$donnees['title'].'</h3>
