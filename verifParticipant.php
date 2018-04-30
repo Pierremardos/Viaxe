@@ -38,22 +38,19 @@ include 'include/functions.php';
  $restPlaces = $data['places'];
  $numberCustomer = $_POST['places'];
  $mail = $_SESSION['mail'];
- $lastName = $_POST['lastName'];
- $firstName = $_POST['firstName'];
+
 
  if($numberCustomer > $restPlaces){
    echo " <br> <br> <br>Erreur, le nombre de participant est trop grande la limite est de $restPlaces";
  }
  else{
 
- $req = $bdd->prepare('INSERT INTO PARTICIPANT (orderNumber, time, numberCustomer, firstName, lastName, mailCustomer, idTrip)
-  VALUES ( 5, NOW(), :places, :firstName, :lastName, :mail, :trip)');
+ $req = $bdd->prepare('INSERT INTO PARTICIPANT (time, numberCustomer, mailCustomer, idTrip)
+  VALUES (NOW(), :places, :mail, :trip)');
 
 
  $req->execute(array(
    "places"=>$numberCustomer,
-   "firstName"=>$firstName,
-   "lastName"=>$lastName,
    "mail"=>$mail,
    "trip"=>$_GET['id']
    ));

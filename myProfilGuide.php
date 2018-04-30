@@ -96,6 +96,13 @@ include 'include/functions.php';
           </div>
           <div class="form-group">
               <label>Ajouter un diplôme :</label>
+              <input type="hidden" name="MAX_FILE_SIZE" value="250000">
+              <input type="file" name="avatar2">
+          </div>
+          <div class="form-group">
+              <label>Papier d identité à fournir avec le diplôme :</label>
+              <input type="hidden" name="MAX_FILE_SIZE" value="250000">
+              <input type="file" name="avatar3">
           </div>
         </div>
       </div>
@@ -138,9 +145,15 @@ include 'include/functions.php';
  $query->execute();
  $count = 0;
 
+
+
+
  while($donnees = $query->fetch())
  {
-
+   $rep=$bdd->prepare('SELECT * FROM CONTENT WHERE idTrip = :id');
+   $rep->bindValue(':id',$donnees['id'], PDO::PARAM_STR);
+   $rep->execute();
+   $data = $rep->fetch();
  ?>
 
  <?php
@@ -153,7 +166,7 @@ include 'include/functions.php';
            <a href = parcours.php?id='.$donnees['id'].'>
            <h3>'.$donnees['title'].'</h3>
            </a>
-           <p class="my-3">'.$donnees['content'].'</p>
+           <p class="my-3">'.$data['content'].'</p>
          </div>
          <div class="col-md-5">
            <a href = parcours.php?id='.$donnees['id'].'>
@@ -176,7 +189,7 @@ include 'include/functions.php';
        <a href = parcours.php?id='.$donnees['id'].'>
            <h3>'.$donnees['title'].'</h3>
          </a>
-         <p class="my-3">'.$donnees['content'].'</p>
+         <p class="my-3">'.$data['content'].'</p>
          </div>
      </div>
    </div>

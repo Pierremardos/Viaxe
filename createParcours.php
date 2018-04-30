@@ -50,7 +50,14 @@ session_start();
     		<div class="container">
     			<div class="row">
     				<div class="col-md-8 offset-md-4">
-    				<form action="verifParcours.php" method="post" enctype='multipart/form-data'>
+              <?php if($_GET['type']== 2){
+    				echo'<form action="verifParcours.php?type=2" method="post" enctype="multipart/form-data">';
+          }
+            ?>
+            <?php if($_GET['type']== 1){
+              echo'<form action="verifParcours.php?type=1" method="post" enctype="multipart/form-data">';
+            }
+              ?>
     						<div class="form-group w-50">
                   <p>Pour copier le chemin de votre parcours <br>1-Sur la map cliquez en haut à gauche sur "Agrandir le plan"
                   <br>2-Cliquez sur itinéraire à gauche de la page, et mettre son chemin (il est possible de rajouter des destionations avec le petit + en bas des itinéraires)

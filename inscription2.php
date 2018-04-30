@@ -99,8 +99,8 @@ session_start();
 				 </div>
 				 <div class="form-group">
 					 <label>Avez-vous un diplôme de guide de tourisme ? (si oui, une vérification du diplôme et d'un papier d'identité sera nécessaire)</label>
-					 <input type="radio" name="diploma" value="1">Oui
-					 <input type="radio" name="diploma" value="2" checked>Non
+					 <input type="radio" name="diploma" value="attente">Oui
+					 <input type="radio" name="diploma" value="vide" checked>Non
 				 </div>
 						<button type="submit" class="btn btn-primary">Inscription</button>
 					</form>
