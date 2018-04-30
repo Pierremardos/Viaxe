@@ -25,7 +25,7 @@
         <h1> Customer Manager </h1>
         <div class="row">
           <div class="col-md-6">
-            <form method="POST" action="verifInscriptionCustomer.php">
+            <form method="POST" action="verifInscriptionGuide.php">
               <div class="form-group w-50">
                 <label>Adresse Mail :</label>
                 <input type="mail" class="form-control" name="email">
@@ -78,7 +78,7 @@
             <th scope="col">Ban</th>
           </tr>
         </thead>
-        <?php backOffice();
+        <?php backOfficeGuides();
         ?>
     </div>
     </body>

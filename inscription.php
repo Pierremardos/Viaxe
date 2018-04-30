@@ -50,7 +50,7 @@ session_start();
 		          <form method="post" action="verifInscriptionCustomer.php">
 		            <div class="form-group w-50">
 		              <label>Adresse Mail :</label>
-		              <input type="text" class="form-control" name="email">
+		              <input type="mail" class="form-control" name="email">
 		              <small class="form-text text-muted"></small>
 		            </div>
 								<div class="form-group">
