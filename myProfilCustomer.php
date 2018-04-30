@@ -35,51 +35,59 @@ include 'include/functions.php';
  $query->bindValue(':mail',$mail, PDO::PARAM_STR);
  $query->execute();
 
- while($donnees = $query->fetch())
- {
- ?>
-
- <p>
-   <br>
-   <br>
-   <br>
-   <?php
-   $picture = $donnees['picture'];
-   ?>
-   <?php echo '<img src="'.$picture.'" alt="" />'; ?>
-   <br>
-   <form action="changeProfilCustomer.php" method="post" enctype='multipart/form-data'>
-	Mail :  <?php echo $donnees['mail']; ?>
-  <br>
- 	Pseudo :  <?php echo '<input type="text" name="newPseudo" value="'.$donnees['pseudo'].'"/>' ?>
- 	<br>
-  Photo de profil :
-  <input type='hidden' name='MAX_FILE_SIZE' value='250000'>
-  <input type='file' name='avatar'>
-  <br>
-  Date de naissance :  <?php echo $donnees['age']; ?>
-  <br>
-  Sexe :
-  <?php
-  if($donnees['gender']==1){
-    echo "Homme";
-  }
-  else{
-    echo "Femme";
-  }?>
-  <br>
-  Tél : <?php echo '<input type="text" name="newPhone" value="'.$donnees['phone'].'"/>' ?>
-  <br>
-  Nouveau mot de passe :  <?php echo '<input type="password" name="newPassword"/>' ?>
-  <br>
-  Confirmer le nouveau mot de passe :  <?php echo '<input type="password" name="confirmNewPassword"/>' ?>
-  <br>
-  <input type="submit" value="Valider">
-  </form>
- </p>
-
- <?php
- }
+ $donnees = $query->fetch();
+    echo
+    '<div class="py-5">
+       <div class="container">
+         <div class="row">
+           <div class="col-md-5 order-2 order-md-1">
+             <img class="img-fluid d-block" src="'.$donnees['picture'].'" width="400px"> </div>
+           <div class="col-md-7 order-1 order-md-2">
+             <br>Sexe : ';?>
+             <?php if($donnees['gender']==1){
+               echo "Homme";
+             }
+             else{
+               echo "Femme";
+             }
+             ?>
+             <?php echo'
+             <form action="changeProfilCustomer.php" method="post" enctype="multipart/form-data">
+             Mail : '.$donnees['mail'].'
+             <br>Date de naissance : '.$donnees['age'].'
+             <div class="form-group">
+             <label>Nouvel photo de profil :</label>
+             <input type="hidden" name="MAX_FILE_SIZE" value="250000">
+             <input type="file" name="avatar">
+             </label>
+             </div>
+             <div class="form-group">
+                 <label>Pseudo :</label>
+                 <input type="text" class="form-control w-50" name="newPseudo" value="'.$donnees['pseudo'].'">
+                 <small class="form-text text-muted"></small>
+             </div>
+             <div class="form-group">
+                 <label>Mot de passe :</label>
+                 <input type="text" class="form-control w-50" name="newPassword"">
+                 <small class="form-text text-muted"></small>
+             </div>
+             <div class="form-group">
+                 <label>Mot de passe :</label>
+                 <input type="text" class="form-control w-50" name="confirmNewPassword"">
+                 <small class="form-text text-muted"></small>
+             </div>
+             <div class="form-group">
+                 <label>Téléphone :</label>
+                 <input type="text" class="form-control w-50" name="newPhone"" value="'.$donnees['phone'].'">
+                 <small class="form-text text-muted"></small>
+             </div>
+             <br>
+             <input type="submit" value="Valider">
+             </form>
+           </div>
+         </div>
+       </div>
+     </div>';
 
  $query->closeCursor();
  ?>
