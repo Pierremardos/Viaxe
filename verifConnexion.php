@@ -50,6 +50,7 @@ else{
 
 	       if (chiffer($password) == $data['password'])
 	       {
+            sleep(1);
 	           $_SESSION['mail'] = $mail;
              header("Location:index.php");
              exit;

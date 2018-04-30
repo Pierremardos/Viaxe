@@ -5,7 +5,7 @@ include 'include/functions.php';
 
 $dossier = 'images/guide/';
    $fichier = basename($_FILES['avatar']['name']);
-   $taille_maxi = 100000;
+   $taille_maxi = 1000000;
    $taille = filesize($_FILES['avatar']['tmp_name']);
    $extensions = array('.png', '.gif', '.jpg', '.jpeg');
    $extension = strrchr($_FILES['avatar']['name'], '.');
@@ -27,7 +27,7 @@ $dossier = 'images/guide/';
      if(move_uploaded_file($_FILES['avatar']['tmp_name'], $dossier . $fichier)) //correct si la fonction renvoie TRUE
      {
        echo 'Upload effectué avec succès !';
-       rename($dossier . $fichier, $dossier . $_SESSION['mail'] . ".jpeg");
+       rename($dossier . $fichier, $dossier . $_SESSION['mail'].".jpeg");
        //ajout_image($fichier,);
      }
      else //sinon, cas où la fonction renvoie FALSE
