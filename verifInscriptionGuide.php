@@ -129,8 +129,8 @@ fputs($log,$_POST['password']."\n");
        $_SESSION['mail'] = $mail;
        $query->CloseCursor();
 
-$req = $bdd->prepare('INSERT INTO GUIDE (mail, pseudo, firstName, lastName, age, gender, picture, password, phone, description, languages, diploma)
- VALUES ( :mail, :pseudo, :firstName, :lastName, :age, :gender, :picture, :password, :phone, :description, :languages, "vide")');
+$req = $bdd->prepare('INSERT INTO GUIDE (mail, pseudo, firstName, lastName, age, gender, picture, password, phone, description, languages, diploma, isBanned)
+ VALUES ( :mail, :pseudo, :firstName, :lastName, :age, :gender, :picture, :password, :phone, :description, :languages, "vide", 0)');
 
 
 $req->execute(array(

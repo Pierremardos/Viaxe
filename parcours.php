@@ -36,6 +36,14 @@
   $query->execute();
 
 $donnees = $query->fetch();
+
+$now = strtotime("now") + 7200;
+$date = strtotime($donnees['datePrice']);
+if($now >= $date){
+  $query=$bdd->prepare('UPDATE TRIP SET price = finalPrice WHERE id = :id');
+  $query->bindValue(':id',$id, PDO::PARAM_STR);
+  $query->execute();
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -205,5 +213,6 @@ $data = $rep->fetch();
     <?php
   }
      ?>
+
   </body>
 </html>

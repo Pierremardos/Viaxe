@@ -66,7 +66,7 @@ session_start();
             '</a>';
             }
             ?>
-            <p class="">Parcours réservés aux guides avec un diplôme vérifié, afin de visiter un monument et de connaître l'histoire qui lui est associé. Réservé aux vétérans des parcours</p>
+            <p class="">Parcours réservés aux guides avec un diplôme vérifié, afin de visiter un monument et de connaître l'histoire qui lui est associé. Réservé aux vétérans <br> des parcours</p>
           </div>
           <div class="col-md-6 align-self-center">
             <a href="createParcours?type=2.php">
