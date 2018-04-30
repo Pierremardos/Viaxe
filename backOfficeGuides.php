@@ -22,7 +22,7 @@
       <br>
       <br>
       <div class="container">
-        <h1> Customer Manager </h1>
+        <h1> Guide Manager </h1>
         <div class="row">
           <div class="col-md-6">
             <form method="POST" action="verifInscriptionGuide.php">
@@ -66,7 +66,7 @@
             </form>
           </div>
         </div>
-      <h1> Costumer Table</h1>
+      <h1> Guide Table</h1>
       <table class="table">
         <thead>
           <tr>
