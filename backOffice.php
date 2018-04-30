@@ -13,8 +13,8 @@
 	?>
 
 <!DOCTYPE html>
+<html>
 	<head>
-    <html>
   		<meta charset="utf-8">
   		<meta name="" content="">
   		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -25,23 +25,54 @@
     </head>
     <body>
       <header>
+<<<<<<< HEAD
+        <div class="container">
+          <div class="row">
+            <div class="col-2">
+              <nav class="navbar">
+              </nav>
+            </div>
+            <div class="col-10">
+            <nav class="navbar navbar-expand navbar-light fixed-top bg-light">
+              <a class="navbar-brand" href="index.php"> Viaxe </a>
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Customer</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Guide</a>
+                </li>
+                <li class="nav-item">
+                 <a class="nav-link" href="graphics.php">Graphs</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Jeudi</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+      <div>
+=======
         <?php
           include('Navbar/NavbarAdmin.php');
         ?>
+>>>>>>> 31712d805509abf4b707aaf2926c09b34b2ca315
       </header>
       <br>
       <br>
       <div class="container">
       <h1> Customer Manager </h1>
-      <form>
+      <form method="POST" action="">
         <div class="form-row">
           <div class="col-md-4 mb-3">
             <label for="validationDefault01">Mail</label>
-            <input type="text" class="form-control" id="validationDefault01" placeholder="Mail" value="" required>
+            <input type="mail" class="form-control" id="validationDefault01" placeholder="Mail" value="mail" required>
           </div>
           <div class="col-md-4 mb-3">
             <label for="validationDefault02">Pseudo</label>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Pseudo" value="" required>
+            <input type="text" class="form-control" id="validationDefault02" placeholder="Pseudo" value="pseudo" required>
           </div>
           <div class="col-md-4 mb-3">
             <label for="validationDefaultUsername">Birthday</label>
@@ -73,12 +104,17 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Mail</th>
+            <th scope="col">Pseudo</th>
+            <th scope="col">Birth</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Banned</th>
+            <th scope="col">Tools</th>
+            <th scope="col">  </th>
           </tr>
         </thead>
+        <?php backOffice();
+        ?>
     </div>
     </body>
-  </html>
+</html>

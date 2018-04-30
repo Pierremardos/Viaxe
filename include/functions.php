@@ -24,11 +24,19 @@ function backOffice(){
   foreach($result as $member){
     echo'
     <tr>
-      <td>'.$member["mail"].'</td>
-      <td>'.$member["pseudo"].'</td>
-      <td>'.$member["age"].'</td>
-      <td>'.$member["gender"].'</td>
-      <td>'.$member["isBanned"].'</td>';
+        <form method="GET" action="edit.php">
+          <td><input name="mail" type="text" value="'.$member["mail"].'"/></td>
+          <td><input name="pseudo" type="text" value="'.$member["pseudo"].'"/></td>
+          <td><input name="age" type="text" value="'.$member["age"].'"/></td>
+          <td><input name="gender" type="text" value="'.$member["gender"].'"/></td>
+          <td><input name="isBanned" type="text" value="'.$member["isBanned"].'"/></td>
+          <td>
+          <button type="submit" class="btn btn-blue">
+            <span class="glyphicon glyphicon-edit"></span>
+          </button>
+        </form>
+        </td>
+        ';
     if($member["isBanned"] == 0){
       echo'
       <td>
@@ -39,14 +47,6 @@ function backOffice(){
           </button>
         </form>
       </td>
-      <td>
-        <form method="GET" action="edit.php">
-          <input name="mail" type="hidden" value="'.$member["mail"].'"/>
-          <button type="submit" class="btn btn-blue">
-            <span class="glyphicon glyphicon-edit"></span>
-          </button>
-        </form>
-        </td>
     </tr>
     ';
     }
@@ -81,7 +81,7 @@ function unbanUser($mail){
 
 function editUser($mail){
   $db = connectDb();
-  $query = $db->prepare('UPDATE customer SET mail = $_GET["mail"], pseudo = $_GET["pseudo"], age = $_GET["age"], gender = $_GET["gender"], isBanned = $_GET["isBanned"] WHERE mail =:mail');
+  $query = $db->prepare('UPDATE customer SET mail = :mail, pseudo = :pseudo, age = :age, gender = :gender, isBanned = :isBanned WHERE mail =:mail');
   $query->execute(["mail"=>$mail]);
 }
 
