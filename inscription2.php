@@ -10,8 +10,9 @@ session_start();
 <head>
 	<title>Viaxe</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+	<link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css">
 </head>
   <body>
   	<header>
@@ -40,45 +41,73 @@ session_start();
 			}
 			?>
   	</header>
-
-    <main>
-      <div class="inscription container">
-  		<form action="verifInscriptionGuide.php" method="post">
-  			<input type="text" name="pseudo" placeholder="Pseudo"><br>
-  			<input type="text" name="email" placeholder="Email"><br>
-        <input type="text" name="prenom" placeholder="prenom"><br>
-        <input type="text" name="nom" placeholder="nom"><br>
-  			<input type="password" name="password" placeholder="Mot de passe"><br>
-				<input type="password" name="confirm" placeholder="Confirmer"><br>
-  			<input type="date" name="birthday" placeholder="Date de naissance"><br><br>
-  			<input type="radio" name="gender" value="1" checked> Homme
-  			<input type="radio" name="gender" value="2"> Femme<br><br>
-  			<select name="country">
-					<option selected>Pays</option>
-  				<option value="fr">France</option>
-  				<option value="en">Angleterre</option>
-  				<option value="sp">Espagne</option>
-  				<option value="ge">Allemagne</option>
-  			</select><br>
-        <select name="langue">
-					<option selected>Langue</option>
-  				<option value="fr">French</option>
-  				<option value="en">English</option>
-  				<option value="sp">Espagne</option>
-  				<option value="ge">Allemagne</option>
-  			</select><br>
-				Optionnel :
-				<br>
-				Numéro de téléphone : <input type="text" name="telephone">
-        <br>
-        Description : <input type="text" name="description">
-        <br>
-        Avez-vous un diplôme de guide de tourisme ( si oui, vérification nécessaire) :
-        <input type="radio" name="diploma" value="1">Oui
-        <input type="radio" name="diploma" value="2" checked>Non
-        <input type="submit" value="Inscription">
-      </div>
-  	</main>
-  </body>
-
+<main>
+	<div class="py-5">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 offset-md-4">
+					<form method="post" action="verifInscriptionGuide.php">
+						<div class="form-group w-50">
+							<label>Adresse Mail :</label>
+							<input type="text" class="form-control" name="email">
+							<small class="form-text text-muted"></small>
+						</div>
+						<div class="form-group">
+						 <label>Pseudo :</label>
+						 <input type="text" class="form-control w-50" name="pseudo">
+					 </div>
+					 <div class="form-group">
+						<label>Prénom :</label>
+						<input type="text" class="form-control w-50" name="prenom">
+					</div>
+					<div class="form-group">
+					 <label>Nom :</label>
+					 <input type="text" class="form-control w-50" name="nom">
+				 </div>
+						<div class="form-group">
+							<label>Mot de Passe :</label>
+							<input type="password" class="form-control w-50" name="password">
+							</div>
+						<div class="form-group">
+						 <label>Confirmez votre mot de passe :</label>
+						 <input type="password" class="form-control w-50" name="confirm">
+					 </div>
+					 <div class="form-group">
+						<label>Date :</label>
+						<input type="date" name="birthday" placeholder="Date de naissance">
+					</div>
+					<div class="form-group">
+					 <label>Sexe :</label>
+					 <input type="radio" name="gender" value="1" checked> Homme
+					<input type="radio" name="gender" value="2"> Femme
+				 </div>
+				 <div class="form-group">
+					 <label>Pays :</label>
+					 <input type="text" class="form-control w-50" name="country">
+				 </div>
+				 <div class="form-group">
+					<label>Langues maitrisées :</label>
+					<input type="text" class="form-control w-50" name="langue">
+				</div>
+				 <div class="form-group">
+					 <label>Numéro de téléphone (Optionnel) :</label>
+					 <input type="text" class="form-control w-50" name="telephone">
+				 </div>
+				 <div class="form-group">
+					 <label>Description (Optionnel) :</label>
+					 <input type="text" class="form-control w-50" name="description">
+				 </div>
+				 <div class="form-group">
+					 <label>Avez-vous un diplôme de guide de tourisme ? (si oui, une vérification du diplôme et d'un papier d'identité sera nécessaire)</label>
+					 <input type="radio" name="diploma" value="1">Oui
+					 <input type="radio" name="diploma" value="2" checked>Non
+				 </div>
+						<button type="submit" class="btn btn-primary">Inscription</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+</body>
 </html>

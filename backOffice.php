@@ -1,4 +1,6 @@
 <?php
+  include 'include/config.php';
+  include 'include/functions.php';
  	require_once "include/functions.php";
   session_start();
   if($_SESSION['mail'] == 'quentin.clodion@gmail.com' | $_SESSION['mail'] =='jonasnizard@gmail.com' | $_SESSION['mail'] == 'thomas.ddt@hotmail.fr'){
@@ -23,6 +25,7 @@
     </head>
     <body>
       <header>
+<<<<<<< HEAD
         <div class="container">
           <div class="row">
             <div class="col-2">
@@ -51,6 +54,11 @@
         </div>
       </div>
       <div>
+=======
+        <?php
+          include('Navbar/NavbarAdmin.php');
+        ?>
+>>>>>>> 31712d805509abf4b707aaf2926c09b34b2ca315
       </header>
       <br>
       <br>

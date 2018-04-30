@@ -31,6 +31,7 @@ include 'include/functions.php';
  $query=$bdd->prepare('SELECT * FROM TRIP WHERE mailGuide = :mail');
  $query->bindValue(':mail',$mail, PDO::PARAM_STR);
  $query->execute();
+ $count = 0;
 
  while($donnees = $query->fetch())
  {
@@ -38,13 +39,47 @@ include 'include/functions.php';
    if($date > $now){
  ?>
 
-
- <br>
- <p>
- <?php echo '<a href = parcours.php?id='.$donnees['id'].'><img src="'.$donnees['picture'].'" alt="" /></a>'; ?>
- <br>
- <?php echo '<a href = parcours.php?id='.$donnees['id'].'>'.$donnees['title'].'</a>'; ?>
-</p>
+<?php
+  if($count % 2 == 0){
+echo '
+ <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7 align-self-center">
+          <a href = parcours.php?id='.$donnees['id'].'>
+          <h3>'.$donnees['title'].'</h3>
+          </a>
+          <p class="my-3">'.$donnees['content'].'</p>
+        </div>
+        <div class="col-md-5">
+          <a href = parcours.php?id='.$donnees['id'].'>
+          <img class="img-fluid d-block" src="'.$donnees['picture'].'"> </div>
+          </a>
+      </div>
+    </div>
+  </div>';
+}
+  else{
+echo '
+<div class="py-5">
+  <div class="container">
+    <div class="row">
+    <div class="col-md-5 order-2 order-md-1">
+      <a href = parcours.php?id='.$donnees['id'].'>
+        <img class="img-fluid d-block" src="'.$donnees['picture'].'"> </div>
+      </a>
+      <div class="col-md-7 order-1 order-md-2">
+      <a href = parcours.php?id='.$donnees['id'].'>
+          <h3>'.$donnees['title'].'</h3>
+        </a>
+        <p class="my-3">'.$donnees['content'].'</p>
+        </div>
+    </div>
+  </div>
+</div>';
+}
+$count = $count + 1;
+  ?>
 
 <?php
     }

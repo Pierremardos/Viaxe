@@ -9,12 +9,13 @@ include 'include/functions.php';
 <head>
 	<title>Viaxe</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css">
   <link rel="stylesheet" type="text/css" href="css/slider.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<<<<<<< HEAD
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118343338-1"></script>
   <script>
@@ -25,9 +26,10 @@ include 'include/functions.php';
     gtag('config', 'UA-118343338-1');
   </script>
 
+=======
+>>>>>>> 31712d805509abf4b707aaf2926c09b34b2ca315
 </head>
 <body>
-	<header>
 		<?php
 		if(isset($_SESSION['mail'])){
 
@@ -51,19 +53,18 @@ include 'include/functions.php';
 		  include('Navbar/Navbar.php');
 		}
 		?>
-	</header>
 	<main>
-		<section>
-			<br>
-			<br>
-			<h1 class="explainTitle" >Qu'est ce que Viaxe ?<h1>
-				<p class="explain">
-					 Viaxe est un site de recherche de parcours avec des thèmes plus ou moins variés. Les guides qui sont indépendants de nous,
-					 vont poster des parcours aux 4 coins de notre globe pour vous aider à le découvrir et le comprendre.
-					 Notre rôle est de vous présenter ces parcours afin que vous puissez trouver celui qui correspond le plus à vos attentes.
-					 Bienvenue et bonne recherche.
-				</p>
-		</section>
+    <div class="py-5 text-center h-100" style="background-image: url(&quot;https://pingendo.github.io/templates/sections/assets/cover_event.jpg&quot;); background-size: cover;">
+      <div class="container py-5">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="display-3 mb-4 text-primary">Qu'est ce que Viaxe ?</h1>
+            <p class="lead mb-5">Viaxe est un site de recherche de parcours avec des thèmes plus ou moins variés. Les guides qui sont indépendants de nous, vont poster des parcours aux 4 coins de notre globe pour vous aider à le découvrir et le comprendre. Notre rôle est de
+            vous présenter ces parcours afin que vous puissez trouver celui qui correspond le plus à vos attentes. Bienvenue et bonne recherche.</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
 
@@ -127,10 +128,18 @@ include 'include/functions.php';
 
 
 
-		<br>
-		<h1 class="titreSection">Les parcours de la journée</h1>
-		<div class="search container">
-  		<div class="row container">
+    <div class="py-5 bg-primary">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center">Les parcours de la journée</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
         <?php
         $now = strtotime("now") + 7200;
         $query=$bdd->prepare('SELECT * FROM TRIP');
@@ -139,19 +148,25 @@ include 'include/functions.php';
 
         while($donnees = $query->fetch())
         {
+          $mark = $donnees['mark'] * 20;
           $date = strtotime($donnees['date']);
-          if($date > $now & $count < 4){
+          if($date - $now <= 86400 & $count < 4){
 
             echo '
-              <div class="col-md-4">
-                <div class="thumbnail">
-                  <a href = parcours.php?id='.$donnees['id'].'><img src="'.$donnees['picture'].'" alt="" style="width:100%"/>
-                    <div class="caption">
-                      <p>'.$donnees['title'].'</p>
-                    </div>
-                  </a>
-                </div>
-              </div>';
+            <div class="col-md-4 align-self-center bg-light">
+            <a href = parcours.php?id='.$donnees['id'].'>
+        <img class="img-fluid d-block" width="350px" src="'.$donnees['picture'].'">
+        </a>
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped" role="progressbar" style="width: '.$mark.'%" aria-valuenow="'.$mark.'" aria-valuemin="0" aria-valuemax="100">'.$mark.'/100</div>
+        </div>
+        <a href = parcours.php?id='.$donnees['id'].'>
+        <h3 class="my-3 w-100">'.$donnees['title'].'</h3>
+        </a>
+        <p class="w-100">'.$donnees['price'].'€</p>
+        <p class="w-100">'.$donnees['city'].', '.$donnees['country'].'</p>
+      </div>';
+
             $count = $count + 1;
           }
 ?>
@@ -159,74 +174,102 @@ include 'include/functions.php';
 <?php
 }
 ?>
-    	</div>
-		</div>
-		<br>
-		<h1 class="titreSection">Côté Cuisine</h1>
-		<div class="search container">
-			<div class="row container">
-				<div class="col-md-4">
-					<div class="thumbnail">
-						<a href="#"> <img src="images/chinois.jpg" alt="Restaurant Paris" style="width:100%">
-							<div class="caption">
-								<p>Lorem ipsum...</p>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="thumbnail">
-						<a href="#"><img src="images/orchestre.jpg" alt="Restaurant Orchestre" style="width:100%">
-							<div class="caption">
-								<p>Lorem ipsum...</p>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="thumbnail">
-						<a href="#"><img src="images/jack.jpg" alt="Blue Lagoon" style="width:100%">
-							<div class="caption">
-								<p>Lorem ipsum...</p>
-							</div>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<br>
-		<h1 class="titreSection">Les coups de coeur</h1>
-		<div class="search container">
-			<div class="row container">
-				<div class="col-md-4">
-					<div class="thumbnail">
-						<a href="#"><img src="images/Guimet.jpg" alt="Coup de coeur 1" style="width:100%">
-							<div class="caption">
-								<p>Lorem ipsum...</p>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="thumbnail">
-						<a href="#"><img src="images/TourEiffel.jpg" alt="Coup de coeur 2" style="width:100%">
-							<div class="caption">
-								<p>Lorem ipsum...</p>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="thumbnail">
-						<a href="#"><img src="images/Buddha.jpg" alt="Laos Buddah Park" style="width:100%">
-							<div class="caption">
-								<p>Lorem ipsum...</p>
-							</div>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</main>
+        </div>
+      </div>
+    </div>
+    <div class="py-5 bg-primary">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center">Côté cuisine
+            <br>
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+
+        <?php
+        $query2=$bdd->prepare('SELECT * FROM TRIP WHERE category = 2');
+        $query2->execute();
+        $count = 1;
+          while($donnees = $query2->fetch())
+          {
+            $mark = $donnees['mark'] * 20;
+            $date = strtotime($donnees['date']);
+          if($date > $now & $count < 4){
+
+
+            echo '
+            <div class="col-md-4 align-self-center bg-light">
+              <a href = parcours.php?id='.$donnees['id'].'>
+              <img class="img-fluid d-block" src="'.$donnees['picture'].'">
+              </a>
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: '.$mark.'%" aria-valuenow="'.$mark.'" aria-valuemin="0" aria-valuemax="100">'.$mark.'/100</div>
+              </div>
+              <h3 class="my-3 w-100">'.$donnees['title'].'</h3>
+              <p class="w-100">'.$donnees['price'].'€</p>
+              <p class="w-100">'.$donnees['country'].', '.$donnees['city'].'</p>
+            </div>';
+
+            $count = $count + 1;
+          }
+?>
+
+<?php
+}
+?>
+</div>
+</div>
+</div>
+<div class="py-5 bg-primary">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">Les coups de coeur
+        <br>
+      </h1>
+    </div>
+  </div>
+</div>
+</div>
+<div class="py-5">
+<div class="container">
+  <div class="row">
+
+<?php
+  $query3=$bdd->prepare('SELECT * FROM TRIP ORDER BY mark DESC');
+  $query3->execute();
+  $count = 1;
+  while($donnees = $query3->fetch())
+  {
+    $mark = $donnees['mark'] * 20;
+    $date = strtotime($donnees['date']);
+  if($date > $now & $count < 4){
+
+
+  echo'<div class="col-md-4 align-self-center bg-light">
+  <a href = parcours.php?id='.$donnees['id'].'>
+        <img class="img-fluid d-block" src="'.$donnees['picture'].'">
+        </a>
+        <div class="progress">
+        <div class="progress-bar progress-bar-striped" role="progressbar" style="width: '.$mark.'%" aria-valuenow="'.$mark.'" aria-valuemin="0" aria-valuemax="100">'.$mark.'/100</div>
+        </div>
+        <h3 class="my-3 w-100">'.$donnees['title'].'</h3>
+        <p class="w-100">'.$donnees['price'].'€</p>
+        <p class="w-100">'.$donnees['country'].', '.$donnees['city'].'</p>
+      </div>';
+      $count = $count + 1;
+    }}
+    ?>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
 </body>
 </html>

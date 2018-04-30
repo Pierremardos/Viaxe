@@ -1,9 +1,5 @@
 
 moieuoifyfae$jkd
-<<<<<<< HEAD
-s
-=======
->>>>>>> 7ee6b57f68b841791a87e8c0bc2aa9ee3a5e3fc1
 tutur
 azer
 Jonas
@@ -168,4 +164,19 @@ loop
  Création :
 Michto
 loop
+<<<<<<< HEAD
+
+ Création :
+Joas
+poulet
+
+ Création :
+Jonas
+poulet
+=======
 >>>>>>> c00f5ca83fa2850e162cff51afd5794dcfc1dcb9
+>>>>>>> e659d0e302975c9a8b50bc76fb5a156e6c500ba1
+
+ Création : 
+Fifounet
+loop

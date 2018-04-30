@@ -43,6 +43,8 @@
     ));
   $donnees=$query->fetch();
 
+  if($mark >= 0 & $mark <= 5) {
+
   if($donnees['idTrip'] == $id){
     $req=$bdd->prepare('DELETE FROM RECOMMENDATION WHERE mailCustomer = :mail AND idTrip = :id');
     $req->execute(array(
@@ -81,6 +83,8 @@
       FROM TRIP WHERE id = :id)');
       $query->bindValue(':id',$id, PDO::PARAM_STR);
       $query->execute();
+
+    }
 
     header('Location: parcours.php?id='.$id.'');
     exit;
