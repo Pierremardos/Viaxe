@@ -20,8 +20,23 @@
 		 <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
 			 <ul class="navbar-nav">
 				 <li class="nav-item">
-					 <a class="nav-link" href="backOffice.php"> Back Office</a>
+					 <a class="nav-link" href="backOfficeBannedGuides.php"> Banned Guides </a>
 				 </li>
+				 <li class="nav-item">
+					 <a class="nav-link" href="backOfficeGuides.php"> Guides </a>
+				 </li>
+				 <li class="nav-item">
+						<a class="nav-link" > / </a>
+					</li>
+				 <li class="nav-item">
+					 <a class="nav-link" href="backOfficeBannedCustomers.php"> Banned Customers </a>
+				 </li>
+				 <li class="nav-item">
+					 <a class="nav-link" href="backOffice.php"> Customers </a>
+				 </li>
+				 <li class="nav-item">
+						<a class="nav-link" > / </a>
+					</li>
 				 <li class="nav-item">
 					 <a class="nav-link" href="myProfilGuide.php"> Mon Profil</a>
 				 </li>
