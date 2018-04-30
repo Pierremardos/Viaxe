@@ -48,7 +48,7 @@ $donnees = $query->fetch();
   </head>
   <body>
     <?php echo
-  '<div class="py-5 text-center h-100" style="background-image: url(&quot;https://pingendo.github.io/templates/sections/assets/cover_event.jpg&quot;); background-size: cover;">
+  '<div class="py-5 text-center h-100" style="background-image: url('.$donnees['picture'].'); background-size: cover;">
   <div class="container py-5">
     <div class="row">
     </div>
