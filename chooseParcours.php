@@ -55,7 +55,7 @@ session_start();
             <?php
             if($data['diploma'] == "ok"){
             echo
-            '<a href="createParcours.php">';
+            '<a href="createParcours?type=1.php">';
             }
             ?>
             <img class="img-fluid d-block" src="images/utiles/culturel.jpg" width="90%">
@@ -69,7 +69,7 @@ session_start();
             <p class="">Parcours réservés aux guides avec un diplôme vérifié, afin de visiter un monument et de connaître l'histoire qui lui est associé. Réservé aux vétérans des parcours</p>
           </div>
           <div class="col-md-6 align-self-center">
-            <a href="createParcours.php">
+            <a href="createParcours?type=2.php">
             <img class="img-fluid d-block" src="images/utiles/culinaire.jpg" width="100%">
             <h3 class="my-3 text-center">Parcours Culinaire</h3>
             </a>
