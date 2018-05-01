@@ -137,7 +137,7 @@ include 'include/functions.php';
         {
           $mark = $donnees['mark'] * 20;
           $date = strtotime($donnees['date']);
-          if($date - $now <= 86400 & $count < 4){
+          if($date - $now <= 86400 & $date - $now > 0 & $count < 4){
 
             echo '
             <div class="col-md-4 align-self-center bg-light">

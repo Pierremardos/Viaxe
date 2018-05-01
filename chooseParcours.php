@@ -9,7 +9,7 @@ session_start();
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Role</title>
+    <title></title>
   </head>
   <header>
   <body>

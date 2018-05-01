@@ -91,9 +91,10 @@ $data = $rep->fetch();
     <div class="container">
       <div class="row">
         <div class="col-md-5 order-2 order-md-1">
+          <a href="seeProfil.php?id='.$data['id'].'&role=g">
           <img class="img-fluid d-block" src="'.$data['picture'].'"> </div>
         <div class="col-md-7 order-1 order-md-2">
-          <h3>Organisé par '.$data['pseudo'].' &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; '.$data['mark'].'/5</h3>
+          <h3>Organisé par '.$data['pseudo'].' </a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; '.$data['mark'].'/5</h3>
           <p class="my-3">Date de naissance : '.$data['age'].'
             <br>Langues : '.$data['languages'].'
             <br>Téléphone :&nbsp '.$data['phone'].'
@@ -237,9 +238,10 @@ echo '
    <div class="container">
      <div class="row">
        <div class="col-md-2 order-2 order-md-1">
+         <a href="seeProfil.php?id='.$data['id'].'&role=c">
          <img class="img-fluid d-block" src="'.$data['picture'].'" width="150px"> </div>
        <div class="col-md-7 order-1 order-md-2">
-         <h3>'.$data['pseudo'].' <br> '.$donnees['mark'].'/5
+         <h3>'.$data['pseudo'].' </a> <br> '.$donnees['mark'].'/5
            <br>
          </h3>
          <p class="">'.$donnees['timeComment'].'</p>

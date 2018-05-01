@@ -174,7 +174,7 @@ $dossier = 'images/guide/';
      "mail"=>$_SESSION['mail']
      ));
 
-     header('Location:index.php');
+     header('Location:myProfilGuide.php');
 
    }
  }
