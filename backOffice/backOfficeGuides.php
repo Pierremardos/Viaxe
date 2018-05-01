@@ -1,7 +1,7 @@
 <?php
-  include 'include/config.php';
-  include 'include/functions.php';
- 	require_once "include/functions.php";
+  include '../include/config.php';
+  include '../include/functions.php';
+ 	require_once "../include/functions.php";
   session_start();
   if($_SESSION['mail'] == 'quentin.clodion@gmail.com' | $_SESSION['mail'] =='jonasnizard@gmail.com' | $_SESSION['mail'] == 'thomas.ddt@hotmail.fr'){
 
@@ -16,13 +16,13 @@
 <html>
 
         <?php
-          include('Navbar/NavbarAdmin.php');
+          include('../Navbar/NavbarBackOffice.php');
         ?>
       </header>
       <br>
       <br>
       <div class="container">
-        <h1> Customer Manager </h1>
+        <h1> Guide Manager </h1>
         <div class="row">
           <div class="col-md-6">
             <form method="POST" action="verifInscriptionGuide.php">
@@ -66,7 +66,7 @@
             </form>
           </div>
         </div>
-      <h1> Costumer Table</h1>
+      <h1> Guide Table</h1>
       <table class="table">
         <thead>
           <tr>

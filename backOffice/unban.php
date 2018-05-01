@@ -1,5 +1,5 @@
 <?php
-require_once "include/functions.php";
+require_once "../include/functions.php";
 session_start();
 unbanUser($_GET["mail"]);
 header("location: backOfficeBannedCustomers.php");
