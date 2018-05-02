@@ -81,7 +81,7 @@ $dossier = 'images/customer/';
        "mail"=>$_SESSION['mail']
        ));
 
-       header('Location:index.php');
+       header('Location:myProfilCustomer.php');
 
      }
    }

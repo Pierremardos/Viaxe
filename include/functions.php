@@ -16,12 +16,13 @@ return $db;
 function backOffice(){
 
   $db = connectDb();
-  $query = $db->prepare("SELECT mail,pseudo,age,gender,isBanned FROM customer");
+  $query = $db->prepare("SELECT mail,pseudo,age,gender,isBanned FROM customer WHERE isBanned = 0");
   $query->execute();
 
   $result = $query->fetchAll();
 
   foreach($result as $member){
+
     echo'
     <tr>
         <form method="GET" action="edit.php">
@@ -29,7 +30,6 @@ function backOffice(){
           <td><input name="pseudo" type="text" value="'.$member["pseudo"].'"/></td>
           <td><input name="age" type="text" value="'.$member["age"].'"/></td>
           <td><input name="gender" type="text" value="'.$member["gender"].'"/></td>
-          <td><input name="isBanned" type="text" value="'.$member["isBanned"].'"/></td>
           <td>
           <button type="submit" class="btn btn-blue">
             <span class="glyphicon glyphicon-edit"></span>
@@ -37,7 +37,7 @@ function backOffice(){
         </form>
         </td>
         ';
-    if($member["isBanned"] == 0){
+
       echo'
       <td>
         <form method="GET" action="ban.php">
@@ -49,28 +49,117 @@ function backOffice(){
       </td>
     </tr>
     ';
-    }
-    if($member["isBanned"] == 1){
+
+  }
+}
+
+function backOfficeGuides(){
+  $db = connectDb();
+  $query = $db->prepare("SELECT mail,pseudo,age,gender,isBanned FROM guide WHERE isBanned = 0");
+  $query->execute();
+
+  $result = $query->fetchAll();
+
+  foreach($result as $member){
+
+    echo'
+    <tr>
+        <form method="GET" action="editGuide.php">
+          <td><input name="mail" type="text" value="'.$member["mail"].'"/></td>
+          <td><input name="pseudo" type="text" value="'.$member["pseudo"].'"/></td>
+          <td><input name="age" type="text" value="'.$member["age"].'"/></td>
+          <td><input name="gender" type="text" value="'.$member["gender"].'"/></td>
+          <td>
+          <button type="submit" class="btn btn-blue">
+            <span class="glyphicon glyphicon-edit"></span>
+          </button>
+        </form>
+        </td>
+        ';
+
       echo'
       <td>
-        <form method="GET" action="unban.php">
+        <form method="GET" action="banGuide.php">
           <input  name="mail" type="hidden" value="'.$member["mail"].'"/>
           <button type="submit" class="btn btn-danger">
-            <span class="glyphicon glyphicon-ok-circle"></span>
+            <span class="glyphicon glyphicon-remove-circle"></span>
           </button>
         </form>
       </td>
     </tr>
     ';
-    }
   }
+}
+
+function showBannedCustomer(){
+  $db = connectDb();
+  $query = $db->prepare("SELECT mail, pseudo, age, gender FROM customer WHERE isBanned = 1");
+  $query->execute();
+
+  $result = $query->fetchAll();
+
+  foreach($result as $member){
+    echo'
+    <tr>
+      <td>'.$member["mail"].'</td>
+      <td>'.$member["pseudo"].'</td>
+      <td>'.$member["age"].'</td>
+      <td>'.$member["gender"].'</td>
+    ';
+    echo'
+    <td>
+      <form method="GET" action="unban.php">
+        <input  name="mail" type="hidden" value="'.$member["mail"].'"/>
+        <button type="submit" class="btn btn-danger">
+          <span class="glyphicon glyphicon-remove-circle"></span>
+        </button>
+      </form>
+    </td>
+  </tr>
+  ';
+  }
+}
+
+function showBannedGuides(){
+  $db = connectDb();
+  $query = $db->prepare("SELECT mail, pseudo, age, gender FROM guide WHERE isBanned = 1");
+  $query->execute();
+
+  $result = $query->fetchAll();
+
+  foreach($result as $member){
+    echo'
+    <tr>
+      <td>'.$member["mail"].'</td>
+      <td>'.$member["pseudo"].'</td>
+      <td>'.$member["age"].'</td>
+      <td>'.$member["gender"].'</td>
+    ';
+    echo'
+    <td>
+      <form method="GET" action="unbanGuide.php">
+        <input  name="mail" type="hidden" value="'.$member["mail"].'"/>
+        <button type="submit" class="btn btn-danger">
+          <span class="glyphicon glyphicon-remove-circle"></span>
+        </button>
+      </form>
+    </td>
+  </tr>
+  ';
+  }
+
 }
 
 function banUser($mail){
   $db = connectDb();
   $query = $db->prepare("UPDATE customer SET isBanned = 1 WHERE mail = :mail");
   $query->execute(["mail"=>$mail]);
+}
 
+function banGuide($mail){
+  $db = connectDb();
+  $query = $db->prepare("UPDATE guide SET isBanned = 1 WHERE mail =:mail");
+  $query->execute(["mail"=>$mail]);
 }
 
 function unbanUser($mail){
@@ -79,10 +168,34 @@ function unbanUser($mail){
   $query->execute(["mail"=>$mail]);
 }
 
-function editUser($mail){
+function unbanGuide($mail){
   $db = connectDb();
-  $query = $db->prepare('UPDATE customer SET mail = :mail, pseudo = :pseudo, age = :age, gender = :gender, isBanned = :isBanned WHERE mail =:mail');
+  $query = $db->prepare("UPDATE guide SET isBanned = 0 WHERE mail = :mail");
   $query->execute(["mail"=>$mail]);
+}
+
+function editUser($mail, $pseudo, $age, $gender){
+  $db = connectDb();
+  $query = $db->prepare("UPDATE customer SET mail = :mail, pseudo = :pseudo, age = :age, gender = :gender WHERE mail = :mail");
+  $query->execute([
+                  "mail"=>$mail,
+                  "pseudo"=>$pseudo,
+                  "age"=>$age,
+                  "gender"=>$gender,
+                  "isBanned"=>$isBanned,
+                  ]);
+}
+
+function editGuide($mail, $pseudo, $age, $gender){
+  $db = connectDb();
+  $query = $db->prepare("UPDATE guide SET mail = :mail, pseudo = :pseudo, age = :age, gender = :gender WHERE mail = :mail");
+  $query->execute([
+                  "mail"=>$mail,
+                  "pseudo"=>$pseudo,
+                  "age"=>$age,
+                  "gender"=>$gender,
+                  "isBanned"=>$isBanned,
+                  ]);
 }
 
 function erreur($err='')

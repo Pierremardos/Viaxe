@@ -91,9 +91,10 @@ $data = $rep->fetch();
     <div class="container">
       <div class="row">
         <div class="col-md-5 order-2 order-md-1">
+          <a href="seeProfil.php?id='.$data['id'].'&role=g">
           <img class="img-fluid d-block" src="'.$data['picture'].'"> </div>
         <div class="col-md-7 order-1 order-md-2">
-          <h3>Organisé par '.$data['pseudo'].' &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; '.$data['mark'].'/5</h3>
+          <h3>Organisé par '.$data['pseudo'].' </a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; '.$data['mark'].'/5</h3>
           <p class="my-3">Date de naissance : '.$data['age'].'
             <br>Langues : '.$data['languages'].'
             <br>Téléphone :&nbsp '.$data['phone'].'
@@ -130,7 +131,50 @@ $data = $rep->fetch();
         echo'</div>
       </div>
     </div>
+  </div>
+  <div class="py-5">';
+
+  $req=$bdd->prepare('SELECT * FROM CONTENT WHERE idTrip = :id');
+  $req->bindValue(':id',$id, PDO::PARAM_STR);
+  $req->execute();
+  $count = 0;
+  while($donnees = $req->fetch()){
+
+    if($count % 3 == 0){
+echo '
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-md-7">
+          <p class="text-justify">'.$donnees['content'].'</p>
+        </div>
+        <div class="col-md-5 align-self-center">
+          <img class="img-fluid d-block w-100 img-thumbnail" src="'.$donnees['Picture'].'"> </div>
+      </div>';
+      $count++;
+    }else if($count % 3 == 1){
+      echo'<div class="row">
+        <div class="col-md-5">
+          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="'.$donnees['Picture'].'"> </div>
+        <div class="col-md-7">
+          <p class="text-justify">'.$donnees['content'].'</p>
+        </div>
+      </div>
+    </div>';
+    $count++;}
+    else{
+      echo'
+    <div class="container">
+      <div class="row mb-5 my-5">
+        <div class="col-md-7">
+          <p class="text-justify">'.$donnees['content'].'</p>
+        </div>
+        <div class="col-md-5 align-self-center">
+          <img class="img-fluid d-block w-100 img-thumbnail" src="'.$donnees['Picture'].'"> </div>
+      </div>
+    </div>
   </div>';
+}
+}
 ?>
 
    <div class="py-5 bg-primary">
@@ -194,9 +238,10 @@ $data = $rep->fetch();
    <div class="container">
      <div class="row">
        <div class="col-md-2 order-2 order-md-1">
+         <a href="seeProfil.php?id='.$data['id'].'&role=c">
          <img class="img-fluid d-block" src="'.$data['picture'].'" width="150px"> </div>
        <div class="col-md-7 order-1 order-md-2">
-         <h3>'.$data['pseudo'].' <br> '.$donnees['mark'].'/5
+         <h3>'.$data['pseudo'].' </a> <br> '.$donnees['mark'].'/5
            <br>
          </h3>
          <p class="">'.$donnees['timeComment'].'</p>
