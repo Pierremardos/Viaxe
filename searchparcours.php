@@ -46,7 +46,7 @@ include 'include/config.php';
     if (isset($_POST['title'])){
       $title = $_POST['title'];
     }
-
+/*
     if (isset($_POST['date'])){
     $date = ($_POST['date']);
 
@@ -58,7 +58,7 @@ include 'include/config.php';
     $query->execute();
     $count=$query->fetch();
     $query->CloseCursor();
-    }
+  }*/
 
     if (isset($_POST['duration'])){
     $duration = ($_POST['duration']);
@@ -68,7 +68,7 @@ include 'include/config.php';
     $country = $_POST['country'];
     //recherche par pays
     $query=$bdd->prepare('SELECT * FROM trip WHERE country =:country');
-    $query->bindValue(':city',$city, PDO::PARAM_STR);
+    $query->bindValue(':country',$country, PDO::PARAM_STR);
     $query->execute();
     $Searsh=$query->fetch();
     $query=$bdd->prepare('SELECT COUNT * FROM trip WHERE country =:country');
@@ -76,6 +76,8 @@ include 'include/config.php';
     $count=$query->fetch();
     $query->CloseCursor();
     }
+
+
 
     if (isset($_POST['city'])){
     $city = ($_POST['city']);
@@ -85,7 +87,7 @@ include 'include/config.php';
     $query->execute();
     $Searsh=$query->fetch();
     $query=$bdd->prepare('SELECT COUNT * FROM trip WHERE city =:city');
-    $query->execute();
+    $query->execute();  
     $count=$query->fetch();
     $query->CloseCursor();
     }

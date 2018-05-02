@@ -60,8 +60,7 @@ include 'include/functions.php';
 
 		<div class="search container">
 			<form action="searchparcours.php" method="post">
-				Je recherche : <input type="radio" name="type" value="parcours" checked> Parcours
-				<input type="radio" name="type" value="guide"> Guide
+				Je recherche :
 				<br>
 				<br>
 
