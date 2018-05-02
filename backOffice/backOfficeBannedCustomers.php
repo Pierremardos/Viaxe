@@ -24,7 +24,7 @@
       <br>
       <br>
       <div class="container">
-        <h1>Banned Customer Table</h1>
+        <h1>Banned Guide Table</h1>
         <table class="table">
           <thead>
             <tr>
