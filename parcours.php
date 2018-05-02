@@ -176,6 +176,35 @@ echo '
 }
 }
 ?>
+<?php
+$rep=$bdd->prepare('SELECT * FROM TRIP WHERE id = :id');
+$rep->bindValue(':id',$id, PDO::PARAM_STR);
+$rep->execute();
+$data=$rep->fetch();
+if($_SESSION['mail'] == $data['mailGuide']){
+echo'
+<div class="py-5 bg-primary">
+ <div class="container">
+   <div class="row">
+     <div class="col-md-12">
+       <h1 class="text-light text-center">Modification</h1>
+     </div>
+   </div>
+ </div>
+</div>
+<div class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p class="text-center"><a href="inscrits.php?id='.$id.'">Liste des inscrits </a>
+          <br>Renouveler
+        </p>
+          </div>
+        </div>
+      </div>
+    </div>';
+}
+ ?>
 
    <div class="py-5 bg-primary">
     <div class="container">
