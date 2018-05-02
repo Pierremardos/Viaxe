@@ -46,5 +46,25 @@ session_start();
   $rep->bindValue(':id',$id, PDO::PARAM_STR);
   $rep->execute();
   while($data=$rep->fetch()){
-    
+    $query=$bdd->prepare('SELECT *
+    FROM CUSTOMER WHERE mail = :mail');
+    $query->bindValue(':mail',$data['mailCustomer'], PDO::PARAM_STR);
+    $query->execute();
+    $donnees=$query->fetch();
+    echo '<div class="py-5">
+   <div class="container">
+     <div class="row">
+       <div class="col-md-2 order-2 order-md-1">
+         <a href="seeProfil.php?id='.$donnees['id'].'&role=c">
+         <img class="img-fluid d-block" src="'.$donnees['picture'].'" width="150px"> </div>
+       <div class="col-md-7 order-1 order-md-2">
+         <h3>'.$donnees['pseudo'].' </a> <br> Nombre de places réservés : '.$data['numberCustomer'].'
+           <br>
+         </h3>
+         <p class="">'.$data['time'].'</p>
+       </div>
+     </div>
+   </div>
+ </div>';
+
   }

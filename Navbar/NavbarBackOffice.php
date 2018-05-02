@@ -38,7 +38,7 @@
 						<a class="nav-link" > / </a>
 					</li>
 				 <li class="nav-item">
-					 <a class="nav-link" href="myProfilGuide.php"> Mon Profil</a>
+					 <a class="nav-link" href="../myProfilGuide.php"> Mon Profil</a>
 				 </li>
 			 </ul>
 			 <a class="btn navbar-btn ml-2 text-white btn-secondary" href="../deconnexion.php">
