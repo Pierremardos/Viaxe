@@ -56,12 +56,6 @@ foreach ($champs as $value) {
   }
 }
 
-// Ecriture du logGuide
-$log=fopen("logGuide.txt", "r+");
-fseek($log, 0, SEEK_END);
-fputs($log,"\n Création : \n");
-fputs($log,$_POST['pseudo']."\n");
-fputs($log,$_POST['password']."\n");
 
 // test de compte
 //Vérification du pseudo
