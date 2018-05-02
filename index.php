@@ -136,8 +136,9 @@ include 'include/functions.php';
         while($donnees = $query->fetch())
         {
           $mark = $donnees['mark'] * 20;
+          $places = $donnees['places'];
           $date = strtotime($donnees['date']);
-          if($date - $now <= 86400 & $date - $now > 0 & $count < 4){
+          if($date - $now <= 86400 & $date - $now > 0 & $count < 4 & $places > 0){
 
             echo '
             <div class="col-md-4 align-self-center bg-light">
@@ -185,9 +186,10 @@ include 'include/functions.php';
         $count = 1;
           while($donnees = $query2->fetch())
           {
+            $places = $donnees['places'];
             $mark = $donnees['mark'] * 20;
             $date = strtotime($donnees['date']);
-          if($date > $now & $count < 4){
+          if($date > $now & $count < 4 & $places > 0){
 
 
             echo '
@@ -234,9 +236,10 @@ include 'include/functions.php';
   $count = 1;
   while($donnees = $query3->fetch())
   {
+    $places = $donnees['places'];
     $mark = $donnees['mark'] * 20;
     $date = strtotime($donnees['date']);
-  if($date > $now & $count < 4){
+  if($date > $now & $count < 4 & $places > 0){
 
 
   echo'<div class="col-md-4 align-self-center bg-light">
