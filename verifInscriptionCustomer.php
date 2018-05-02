@@ -52,12 +52,6 @@ include 'include/functions.php';
 		}
 	}
 
-	// Ecriture du log
-	$log=fopen("log.txt", "r+");
-	fseek($log, 0, SEEK_END);
-	fputs($log,"\n Création : \n");
-	fputs($log,$_POST['pseudo']."\n");
-  fputs($log,$_POST['password']."\n");
 
 	// test de compte
 	//Vérification du pseudo
