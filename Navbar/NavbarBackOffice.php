@@ -7,7 +7,6 @@
 	<link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css">
 </head>
 <body>
-	<header>
 		<nav class="navbar navbar-expand-md bg-primary navbar-dark">
 	 <div class="container">
 		 <a class="navbar-brand" href="../index.php">
