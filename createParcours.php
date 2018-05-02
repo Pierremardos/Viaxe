@@ -124,7 +124,7 @@ session_start();
                 </div>
       <p>
       Une réduction peut être appliqué à partir d'une certaine date afin de remplir les places vacantes du parcours.
-      Si cela ne vous interesse laissez les champs vides.
+      Si cela ne vous interesse pas laissez les champs vides.
       </p>
       <div class="form-group w-50">
         <label>Date et heure d'application de la réduction :</label>

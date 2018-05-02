@@ -197,7 +197,7 @@ echo'
     <div class="row">
       <div class="col-md-12">
         <p class="text-center"><a href="inscrits.php?id='.$id.'">Liste des inscrits </a>
-          <br>Renouveler
+          <br><a href="changeParcours.php?id='.$id.'">Renouveler</a>
           <br><a href="reset.php?id='.$id.'">Fermer le parcours</a>
         </p>
           </div>
