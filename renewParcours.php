@@ -18,8 +18,8 @@ $query->bindValue(':id',$id, PDO::PARAM_STR);
 $query->execute();
 $data=$query->fetch();
 
-$req = $bdd->prepare('INSERT INTO TRIP (title, map, date, picture, duration, country, city, languages, price, finalPrice,datePrice,category,places, mailGuide)
- VALUES ( :title, :map, :dateDep, :picture, :duration, :country, :city, :language, :price, :finalPrice, :finalDate, :category, :places, :mailGuide)');
+$req = $bdd->prepare('INSERT INTO TRIP (title, map, date, picture, duration, country, city, languages, price, finalPrice,datePrice,category,places,mark, mailGuide)
+ VALUES ( :title, :map, :dateDep, :picture, :duration, :country, :city, :language, :price, :finalPrice, :finalDate, :category, :places, :mark, :mailGuide)');
 
 
 $req->execute(array(
@@ -36,10 +36,11 @@ $req->execute(array(
   "finalDate"=>$finalDate,
   "category"=>$data['category'],
   "places"=>$places,
+  "mark"=>$data['mark'],
   "mailGuide"=>$_SESSION['mail']
   ));
 
-  $query = $bdd ->prepare('SELECT MAX(id) FROM TRIP;');
+  $query = $bdd ->prepare('SELECT MAX(id) FROM TRIP');
   $query->execute();
   $donnees = $query->fetch();
   $idMax = $donnees['0'];
@@ -52,3 +53,12 @@ $req->execute(array(
     "idMax"=>$idMax,
     "id"=>$id
     ));
+
+  $rep = $bdd->prepare('UPDATE TRIP SET statut = :statut WHERE id = :id');
+  $rep->execute(array(
+    "statut"=>"dead",
+    "id"=>$id
+    ));
+
+    header('location: parcours.php?id='.$idMax.'');
+    exit;
