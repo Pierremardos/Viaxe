@@ -13,8 +13,14 @@ include 'include/functions.php';
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css">
   <link rel="stylesheet" type="text/css" href="css/slider.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <link rel="icon" type="image/png" href="image/favicon.png" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 54ea91d122b7605f9f4e0a68721422d615326f8c
 </head>
 <body>
 		<?php
@@ -64,11 +70,14 @@ include 'include/functions.php';
 				<br>
 				<br>
 
-
+        Recherche par ville ou pays :
 				<input type="search" name="city" placeholder="Recherche par Ville ou par pays">
+        <br>
+        Recherche par guide :
+        <input type="search" name="guide" placeholder="Recherche par guide">
 				<br>
 				<br>
-        <p id="price"></p>
+        <p id="price">Prix : 250</p>
 
 			  <div class="slidecontainer">
           <input type="range" min="1" max="500" value="250" class="slider" onclick="price()" id="firstSlider">
@@ -80,11 +89,12 @@ include 'include/functions.php';
 
 
         <p>
-					Nombre de places :
-  				<input type="text" id="amount" readonly style="border:0; color:#00B2B1; font-weight:bold;">
-				</p>
-				<div id="slider-range-min"></div>
-				<br>
+          <p id="place">Nombre de places : 10</p>
+  			  <div class="slidecontainer">
+            <input type="range" min="1" max="20" value="10" class="slider" onclick="place()" id="secondSlider">
+          </div>
+          <script src="include/slider.js"></script>
+          <br>
 				Date :
 				<input type="date" name="date">
 				Categorie :
@@ -97,12 +107,9 @@ include 'include/functions.php';
 				<select name="langage">
 					<option value="undefined">Indefini</option>
 					<option value="fr">Francais</option>
+          <option value="en">Anglais</option>
 				</select>
-				Langue 2 :
-				<select name="langage2">
-					<option value="undefined">Indefini</option>
-					<option value="fr">Francais</option>
-				</select>
+			  <br>
 				<br>
 				<br>
 				<input type="submit" value="Recherche" readonly style="margin-left: 1030px;">

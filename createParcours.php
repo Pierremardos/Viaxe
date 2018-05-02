@@ -9,6 +9,8 @@ session_start();
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/map.css">
     <title>Créer un parcours</title>
   </head>
   <body>
@@ -45,7 +47,7 @@ session_start();
   		?>
     </header>
     <main>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.474051746146!2d2.387545615079497!3d48.8491701093109!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6720d9c7af387%3A0x5891d8d62e8535c7!2sEcole+Sup%C3%A9rieure+de+G%C3%A9nie+Informatique!5e0!3m2!1sfr!2sfr!4v1525080535212" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+      <iframe class="container map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.474051746146!2d2.387545615079497!3d48.8491701093109!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6720d9c7af387%3A0x5891d8d62e8535c7!2sEcole+Sup%C3%A9rieure+de+G%C3%A9nie+Informatique!5e0!3m2!1sfr!2sfr!4v1525080535212" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
       <div class="py-5">
     		<div class="container">
     			<div class="row">
