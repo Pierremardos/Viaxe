@@ -54,7 +54,7 @@ if($now >= $date){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css">
   </head>
-  <body>
+  <body onload="bigMap()">
     <?php echo
   '<div class="py-5 text-center h-100" style="background-image: url('.$donnees['picture'].'); background-size: cover;">
   <div class="container py-5">
@@ -290,6 +290,6 @@ echo'
     <?php
   }
      ?>
-
+     <script src="include/functions.js"></script>
   </body>
 </html>
