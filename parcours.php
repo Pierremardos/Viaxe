@@ -13,7 +13,7 @@
 
     if($_SESSION['mail'] == 'quentin.clodion@gmail.com' | $_SESSION['mail'] =='jonasnizard@gmail.com' | $_SESSION['mail'] == 'thomas.ddt@hotmail.fr'){
       include('Navbar/NavbarAdmin.php');
-      $particip = 0;
+      $particip = 1;
     }
     else if ($_SESSION['mail'] == $data['mail'])
      {
@@ -27,7 +27,7 @@
   }
   else{
     include('Navbar/Navbar.php');
-    $particip = 0;
+    $particip = 1;
   }
 
   $id = $_GET['id'];
@@ -177,10 +177,12 @@ echo '
 }
 ?>
 <?php
+if($particip == 0){
 $rep=$bdd->prepare('SELECT * FROM TRIP WHERE id = :id');
 $rep->bindValue(':id',$id, PDO::PARAM_STR);
 $rep->execute();
 $data=$rep->fetch();
+
 if($_SESSION['mail'] == $data['mailGuide']){
 echo'
 <div class="py-5 bg-primary">
@@ -204,7 +206,7 @@ echo'
         </div>
       </div>
     </div>';
-}
+}}
  ?>
 
    <div class="py-5 bg-primary">
