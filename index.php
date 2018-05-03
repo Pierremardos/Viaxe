@@ -2,7 +2,7 @@
 session_start();
 include 'include/config.php';
 include 'include/functions.php';
- ?>
+?>
 
 <!DOCTYPE html>
 <html>
@@ -17,29 +17,28 @@ include 'include/functions.php';
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
-		<?php
+	<?php
 		if(isset($_SESSION['mail'])){
-
 		  $query=$bdd->prepare('SELECT mail
 		  FROM GUIDE WHERE mail = :mail');
 		  $query->bindValue(':mail',$_SESSION['mail'], PDO::PARAM_STR);
 		  $query->execute();
 		  $data=$query->fetch();
-       if($_SESSION['mail'] == 'quentin.clodion@gmail.com' | $_SESSION['mail'] =='jonasnizard@gmail.com' | $_SESSION['mail'] == 'thomas.ddt@hotmail.fr'){
+      if($_SESSION['mail'] == 'quentin.clodion@gmail.com' | $_SESSION['mail'] =='jonasnizard@gmail.com' | $_SESSION['mail'] == 'thomas.ddt@hotmail.fr'){
          include('Navbar/NavbarAdmin.php');
-       }
-		   else if ($_SESSION['mail'] == $data['mail'])
-		   {
+      }
+		  else if ($_SESSION['mail'] == $data['mail'])
+		  {
 		       include('Navbar/NavbarGuide.php');
-		   }
-		   else{
+		  }
+		  else{
 		     include('Navbar/NavbarCustomer.php');
-		   }
+		  }
 		}
 		else{
 		  include('Navbar/Navbar.php');
 		}
-		?>
+	?>
 	<main>
     <div class="py-5 text-center h-100" style="background-image: url(&quot;https://pingendo.github.io/templates/sections/assets/cover_event.jpg&quot;); background-size: cover;">
       <div class="container py-5">
@@ -97,62 +96,63 @@ include 'include/functions.php';
 				<input type="submit" value="Recherche" readonly style="margin-left: 1030px;">
 			</form>
 		</div>
-
-    <div class="py-5 bg-primary">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h1 class="text-center">Les parcours de la journée</h1>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="py-5">
-    <div class="container">
-      <div class="row">
-        <?php
-        $now = strtotime("now") + 7200;
-        $query=$bdd->prepare('SELECT * FROM TRIP');
-        $query->execute();
-        $count = 1;
-
-        while($donnees = $query->fetch())
-        {
-          $mark = $donnees['mark'] * 20;
-          $places = $donnees['places'];
-          $date = strtotime($donnees['date']);
-          if($date - $now <= 86400 & $date - $now > 0 & $count < 4 & $places > 0){
-
-            echo '
-            <div class="col-md-4 align-self-center bg-light">
-            <a href = parcours.php?id='.$donnees['id'].'>
-        <img class="img-fluid d-block" width="350px" src="'.$donnees['picture'].'">
-        </a>
-        <div class="progress">
-          <div class="progress-bar progress-bar-striped" role="progressbar" style="width: '.$mark.'%" aria-valuenow="'.$mark.'" aria-valuemin="0" aria-valuemax="100">'.$mark.'/100</div>
-        </div>
-        <a href = parcours.php?id='.$donnees['id'].'>
-        <h3 class="my-3 w-100">'.$donnees['title'].'</h3>
-        </a>
-        <p class="w-100">'.$donnees['price'].'€</p>
-        <p class="w-100">'.$donnees['city'].', '.$donnees['country'].'</p>
-      </div>';
-
-            $count = $count + 1;
-          }
-?>
-
 <?php
-}
-$query2=$bdd->prepare('SELECT * FROM TRIP WHERE category = "Culinaire"');
-$query2->execute();
-$count = 1;
-  while($donnees = $query2->fetch())
+  $now = strtotime("now") + 7200;
+  $query=$bdd->prepare('SELECT * FROM TRIP');
+  $query->execute();
+  $count = 1;
+
+  while($donnees = $query->fetch())
   {
     $places = $donnees['places'];
+    $mark = $donnees['mark'] * 20;
     $date = strtotime($donnees['date']);
-  if($date > $now & $count < 2 & $places > 0){
-    echo'
+    if($date - $now <= 86400 & $date - $now > 0 & $count < 2 & $places > 0){
+      echo'
+        <div class="py-5 bg-primary">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <h1 class="text-center">Les parcours de la journée</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="py-5">
+          <div class="container">
+            <div class="row">';
+      $count = $count + 1;
+    }
+      if($date - $now <= 86400 & $date - $now > 0 & $count < 5 & $places > 0){
+        echo '
+          <div class="col-md-4 align-self-center bg-light">
+            <a href = parcours.php?id='.$donnees['id'].'>
+              <img class="img-fluid d-block" width="350px" src="'.$donnees['picture'].'">
+            </a>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped" role="progressbar" style="width: '.$mark.'%" aria-valuenow="'.$mark.'" aria-valuemin="0" aria-valuemax="100">'.$mark.'/100</div>
+            </div>
+            <a href = parcours.php?id='.$donnees['id'].'>
+              <h3 class="my-3 w-100">'.$donnees['title'].'</h3>
+            </a>
+            <p class="w-100">'.$donnees['price'].'€</p>
+            <p class="w-100">'.$donnees['city'].', '.$donnees['country'].'</p>
+          </div>';
+        $count = $count + 1;
+          }
+        }
+
+
+        $query2=$bdd->prepare('SELECT * FROM TRIP WHERE category = "Culinaire"');
+        $query2->execute();
+        $count = 1;
+        while($donnees = $query2->fetch())
+        {
+          $places = $donnees['places'];
+          $date = strtotime($donnees['date']);
+          $mark = $donnees['mark'] * 20;
+          if($date > $now & $count < 2 & $places > 0){
+            echo'
         </div>
       </div>
     </div>
@@ -171,21 +171,8 @@ $count = 1;
     <div class="container">
       <div class="row">';
       $count = $count + 1;
-    }}
-      ?>
-
-        <?php
-        $query2=$bdd->prepare('SELECT * FROM TRIP WHERE category = "Culinaire"');
-        $query2->execute();
-        $count = 1;
-          while($donnees = $query2->fetch())
-          {
-            $places = $donnees['places'];
-            $mark = $donnees['mark'] * 20;
-            $date = strtotime($donnees['date']);
-          if($date > $now & $count < 4 & $places > 0){
-
-
+    }
+          if($date > $now & $count > 1 & $count < 5 & $places > 0){
             echo '
             <div class="col-md-4 align-self-center bg-light">
               <a href = parcours.php?id='.$donnees['id'].'>
@@ -200,57 +187,54 @@ $count = 1;
               <p class="w-100">'.$donnees['price'].'€</p>
               <p class="w-100">'.$donnees['country'].', '.$donnees['city'].'</p>
             </div>';
-
             $count = $count + 1;
-          }
-?>
-
-<?php
-}
-?>
-</div>
-</div>
-</div>
-<div class="py-5 bg-primary">
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h1 class="text-center">Les coups de coeur
-        <br>
-      </h1>
-    </div>
-  </div>
-</div>
-</div>
-<div class="py-5">
-<div class="container">
-  <div class="row">
-
-<?php
-  $query3=$bdd->prepare('SELECT * FROM TRIP ORDER BY mark DESC');
-  $query3->execute();
-  $count = 1;
-  while($donnees = $query3->fetch())
-  {
-    $places = $donnees['places'];
-    $mark = $donnees['mark'] * 20;
-    $date = strtotime($donnees['date']);
-  if($date > $now & $count < 4 & $places > 0){
+          }}
 
 
-  echo'<div class="col-md-4 align-self-center bg-light">
-  <a href = parcours.php?id='.$donnees['id'].'>
-        <img class="img-fluid d-block" src="'.$donnees['picture'].'">
-        </a>
-        <div class="progress">
-        <div class="progress-bar progress-bar-striped" role="progressbar" style="width: '.$mark.'%" aria-valuenow="'.$mark.'" aria-valuemin="0" aria-valuemax="100">'.$mark.'/100</div>
+          $query3=$bdd->prepare('SELECT * FROM TRIP ORDER BY mark DESC');
+          $query3->execute();
+          $count = 1;
+          while($donnees = $query3->fetch())
+          {
+            $places = $donnees['places'];
+            $mark = $donnees['mark'] * 20;
+            $date = strtotime($donnees['date']);
+            if($date > $now & $count < 2 & $places > 0){
+              echo'
+              </div>
+            </div>
+          </div>
+        <div class="py-5 bg-primary">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <h1 class="text-center">Les coups de coeur
+                <br>
+                </h1>
+              </div>
+            </div>
+          </div>
         </div>
-        <a href = parcours.php?id='.$donnees['id'].'>
+      <div class="py-5">
+        <div class="container">
+          <div class="row">';
+    $count = $count + 1;
+  }
+  if($date > $now & $count < 5 & $places > 0){
+    echo
+    '<div class="col-md-4 align-self-center bg-light">
+      <a href = parcours.php?id='.$donnees['id'].'>
+        <img class="img-fluid d-block" src="'.$donnees['picture'].'">
+      </a>
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped" role="progressbar" style="width: '.$mark.'%" aria-valuenow="'.$mark.'" aria-valuemin="0" aria-valuemax="100">'.$mark.'/100</div>
+      </div>
+      <a href = parcours.php?id='.$donnees['id'].'>
         <h3 class="my-3 w-100">'.$donnees['title'].'</h3>
-        </a>
-        <p class="w-100">'.$donnees['price'].'€</p>
-        <p class="w-100">'.$donnees['country'].', '.$donnees['city'].'</p>
-      </div>';
+      </a>
+      <p class="w-100">'.$donnees['price'].'€</p>
+      <p class="w-100">'.$donnees['country'].', '.$donnees['city'].'</p>
+    </div>';
       $count = $count + 1;
     }}
     ?>
