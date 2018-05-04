@@ -4,3 +4,7 @@ function bigMap(){
   map.style.width = 800;
   map.style.height = 600;
 }
+
+function verifParcours(){
+  
+}

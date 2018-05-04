@@ -13,7 +13,7 @@ session_start();
     <link rel="stylesheet" type="text/css" href="css/map.css">
     <title>Créer un parcours</title>
   </head>
-  <body>
+  <body onload="verifParcours()">
     <header>
       <?php
   		if(isset($_SESSION['mail'])){
@@ -71,7 +71,15 @@ session_start();
     						</div>
                 <div class="form-group w-50">
     							<label>Titre :</label>
-    							<input type="text" class="form-control" name="title">
+                  <?php
+                  if(!isset($_SESSION['titleTrip']) | empty($_SESSION['titleTrip'])){
+                  echo'
+                  <input type="text" class="form-control" name="title">';
+                }
+                else{
+                  echo'
+                  <input type="text" class="form-control" name="title" value="'.$_SESSION['titleTrip'].'">';
+                }?>
     							<small class="form-text text-muted"></small>
     						</div>
                 <div class="form-group w-50">
@@ -87,8 +95,24 @@ session_start();
     						</div>
                 <div class="form-group w-10">
     							<label>Heure de départ :</label>
-                  <input type="text" name="departHour">h
-                  <input type="text" name="departMin">min
+                  <?php
+                  if(!isset($_SESSION['departHourTrip']) | empty($_SESSION['departHourTrip'])){
+                  echo'
+                  <input type="text" name="departHour">h';
+                }
+                else{
+                  echo'
+                  <input type="text" name="departHour" value="'.$_SESSION['departHourTrip'].'">h';
+                }?>
+                <?php
+                if(!isset($_SESSION['departMinTrip']) | empty($_SESSION['departMinTrip'])){
+                echo'
+                  <input type="text" name="departMin">min';
+                }
+                else{
+                  echo'
+                  <input type="text" name="departMin" value="'.$_SESSION['departMinTrip'].'">min';
+                }?>
     							<small class="form-text text-muted"></small>
     						</div>
                 <div class="form-group w-10">
@@ -99,27 +123,67 @@ session_start();
     						</div>
                 <div class="form-group w-50">
     							<label>Pays du parcours :</label>
-    							<input type="text" name="country"/>
+                  <?php
+                  if(!isset($_SESSION['countryTrip']) | empty($_SESSION['countryTrip'])){
+                  echo'
+    							<input type="text" name="country"/>';
+                }
+                  else{
+                    echo'
+      							<input type="text" name="country" value="'.$_SESSION['countryTrip'].'"/>';
+                  }?>
     							<small class="form-text text-muted"></small>
     						</div>
                 <div class="form-group w-50">
     							<label>Ville du parcours :</label>
-    							<input type="text" name="city"/>
+                  <?php
+                if(!isset($_SESSION['cityTrip']) | empty($_SESSION['cityTrip'])){
+                  echo'
+    							<input type="text" name="city"/>';
+                }
+                else{
+                  echo'
+                  <input type="text" name="city" value="'.$_SESSION['cityTrip'].'"/>';
+                }?>
     							<small class="form-text text-muted"></small>
     						</div>
                 <div class="form-group w-50">
     							<label>Langues utilisés :</label>
-    							<input type="text" name="language"/>
+                  <?php
+                if(!isset($_SESSION['languageTrip']) | empty($_SESSION['languageTrip'])){
+                  echo'
+    							<input type="text" name="language"/>';
+                }
+                else{
+                  echo'
+                  <input type="text" name="language" value="'.$_SESSION['languageTrip'].'"/>';
+                }?>
     							<small class="form-text text-muted"></small>
     						</div>
                 <div class="form-group w-50">
     							<label>Prix par client :</label>
-    							<input type="text" name="price"/>
+                  <?php
+                if(!isset($_SESSION['priceTrip']) | empty($_SESSION['priceTrip'])){
+                  echo'
+    							<input type="text" name="price"/>';
+                }
+                else{
+                  echo'
+                  <input type="text" name="price" value="'.$_SESSION['priceTrip'].'"/>';
+                }?>
     							<small class="form-text text-muted"></small>
     						</div>
                 <div class="form-group w-50">
                   <label>Places disponibles :</label>
-                  <input type="text" name="place"/>
+                  <?php
+                if(!isset($_SESSION['placesTrip']) | empty($_SESSION['placesTrip'])){
+                  echo'
+                  <input type="text" name="place"/>';
+                }
+                else{
+                  echo'
+                  <input type="text" name="place" value="'.$_SESSION['placesTrip'].'"/>';
+                }?>
                   <small class="form-text text-muted"></small>
                 </div>
       <p>
@@ -180,6 +244,30 @@ session_start();
         ?>
       <input type="submit" value="Créer">
     </form>
+
+    <?php
+    $now = strtotime("now") + 7190;
+    if($_SESSION['oldNow'] > $now){
+      $_SESSION['false'] = "good";
+    }
+    if(isset($_SESSION['oldNow']) | isset($_SESSION['false'])){
+    if($_SESSION['false'] == "ok"){
+      echo'
+      <script src="include/functions.js"></script>';
+    }
+    else{
+      $_SESSION['titleTrip'] = "";
+      $_SESSION['departHourTrip'] = "";
+      $_SESSION['departMinTrip'] = "";
+      $_SESSION['countryTrip'] = "";
+      $_SESSION['cityTrip'] = "";
+      $_SESSION['languageTrip'] = "";
+      $_SESSION['priceTrip'] = "";
+      $_SESSION['placesTrip'] = "";
+    }
+  }
+    ?>
+
   </main>
   </body>
 </html>
