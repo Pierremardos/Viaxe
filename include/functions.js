@@ -5,6 +5,13 @@ function bigMap(){
   map.style.height = 600;
 }
 
-function verifParcours(){
+function verifParcours(title){
+  if(title == 1){
+    var titre = document.getElementById('titleID');
+  	var error = document.createElement('p');
+  	error.innerHTML = 'Il vous faut rentrer un titre';
+  	error.style.color = 'red';
+  	titre.appendChild(error);
+  }
   
 }

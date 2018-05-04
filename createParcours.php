@@ -13,7 +13,14 @@ session_start();
     <link rel="stylesheet" type="text/css" href="css/map.css">
     <title>Créer un parcours</title>
   </head>
-  <body onload="verifParcours()">
+   <?php
+   if($_SESSION['false'] == "ok"){
+     echo '<body onload="verifParcours('.$_SESSION['titleRed'].')">';
+   }
+   else{
+     echo'<body>';
+   }
+   ?>
     <header>
       <?php
   		if(isset($_SESSION['mail'])){
@@ -69,7 +76,7 @@ session_start();
     							<input type="text" class="form-control" name="map">
     							<small class="form-text text-muted"></small>
     						</div>
-                <div class="form-group w-50">
+                <div class="form-group w-50" id="titleID">
     							<label>Titre :</label>
                   <?php
                   if(!isset($_SESSION['titleTrip']) | empty($_SESSION['titleTrip'])){
@@ -246,8 +253,8 @@ session_start();
     </form>
 
     <?php
-    $now = strtotime("now") + 7190;
-    if($_SESSION['oldNow'] > $now){
+    $now = strtotime("now") + 7180;
+    if($_SESSION['oldNow'] < $now){
       $_SESSION['false'] = "good";
     }
     if(isset($_SESSION['oldNow']) | isset($_SESSION['false'])){
@@ -257,6 +264,7 @@ session_start();
     }
     else{
       $_SESSION['titleTrip'] = "";
+      $_SESSION['titleRed'] = 0;
       $_SESSION['departHourTrip'] = "";
       $_SESSION['departMinTrip'] = "";
       $_SESSION['countryTrip'] = "";
@@ -264,10 +272,10 @@ session_start();
       $_SESSION['languageTrip'] = "";
       $_SESSION['priceTrip'] = "";
       $_SESSION['placesTrip'] = "";
+      $_SESSION['false'] == "good";
     }
   }
     ?>
-
   </main>
   </body>
 </html>

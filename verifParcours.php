@@ -176,9 +176,11 @@ $accept = 0;
  $title = $_POST['title'];
  if(!isset($title) | empty($title)){
    $error++;
+   $_SESSION['titleRed'] = 1;
  }
  else{
    $_SESSION['titleTrip'] = $title;
+   $_SESSION['titleRed'] = 0;
  }
 
  if(!isset($_POST['date']) | empty($_POST['date'])){
@@ -384,12 +386,12 @@ if($accept == 0 & $error == 0){
          ));
 
  if($error == 0){
- header("location: index.php");
- exit;
-   $_SESSION['false'] = "good";
+    $_SESSION['false'] = "good";
+    header("location: index.php");
+    exit;
 }
 else{
+  $_SESSION['false'] = "ok";
   header("location: createParcours.php?type=".$_GET['type']."");
   exit;
-  $_SESSION['false'] = "ok";
 }
