@@ -295,6 +295,16 @@
     echo "Le prix de la réduction doit être positif<br>";
  }
 
+ $max = strtotime($date);
+ if($max - $now < 36000 | $max - $now > 2678400){
+   $error++;
+   echo "La date du parcours est inférieur à la date actuelle ou trop loin dans la temps<br>";
+ }
+ if(!isset($max) | empty($max)){
+   $error++;
+   echo "La date du parcours n'a pas été rentrée <br>";
+ }
+
  if($finalPrice != 0 | $_POST['finalHour'] != 0 | $_POST['finalMin'] != 0){
    if(!isset($finalPrice) | !isset($_POST['finalDate']) | empty($_POST['finalDate'])){
      $error++;
@@ -341,7 +351,7 @@
  $finalDate = $_POST['finalDate'] . " " . $_POST['finalHour'] . ":" . $_POST['finalMin'] . ":00";
 
 if(isset($date) | !empty($date)){
- $max = strtotime($date);
+
  $reduc = strtotime($finalDate);
 
  if(isset($reduc) | !empty($reduc)){
@@ -350,14 +360,6 @@ if(isset($date) | !empty($date)){
      echo "La date de réduction s'applique après le parcours<br>";
  }
 }
- if($max - $now < 36000 | $max - $now > 2678400){
-   $error++;
-   echo "La date du parcours est inférieur à la date actuelle ou tros loin dans la temps<br>";
- }
- if(!isset($max) | empty($max)){
-   $error++;
-   echo "La date du parcours n'a pas été rentrée <br>";
- }
 }
 
 if($accept == 0 & $error == 0){

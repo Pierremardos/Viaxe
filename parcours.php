@@ -117,8 +117,18 @@ $data = $rep->fetch();
       <div class="row">
         <div class="col-md-12">
           <p class="text-center">'.$donnees['country'].', '.$donnees['city'].'&nbsp;
-            <br>Départ : '.$donnees['date'].'
-            <br>Durée du parcours : '.$hour.'h '.$minutes.'min
+            <br>Départ : '.$donnees['date'].'';
+            if($hour > 0 | $minutes > 0){
+            echo'
+            <br>Durée du parcours : ';
+          }
+            if($hour > 0){
+            echo ''.$hour.'h';
+          }
+            if($minutes > 0){
+             echo ''.$minutes.'min';
+           }
+           echo'
             <br>Prix : '.$donnees['price'].'€
             <br>Categorie : '.$donnees['category'].'
             <br>Places restantes : '.$donnees['places'].'
@@ -146,15 +156,22 @@ echo '
       <div class="row mb-5">
         <div class="col-md-7">
           <p class="text-justify">'.$donnees['content'].'</p>
-        </div>
+        </div>';
+        if(isset($donnees['Picture']) | !empty($donnees['Picture'])){
+          echo'
         <div class="col-md-5 align-self-center">
           <img class="img-fluid d-block w-100 img-thumbnail" src="'.$donnees['Picture'].'"> </div>
       </div>';
+    }
       $count++;
     }else if($count % 3 == 1){
-      echo'<div class="row">
+      echo'<div class="row">';
+      if(isset($donnees['Picture']) | !empty($donnees['Picture'])){
+        echo'
         <div class="col-md-5">
-          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="'.$donnees['Picture'].'"> </div>
+          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="'.$donnees['Picture'].'"> </div>';
+        }
+        echo'
         <div class="col-md-7">
           <p class="text-justify">'.$donnees['content'].'</p>
         </div>
@@ -167,9 +184,13 @@ echo '
       <div class="row mb-5 my-5">
         <div class="col-md-7">
           <p class="text-justify">'.$donnees['content'].'</p>
-        </div>
+        </div>';
+        if(isset($donnees['Picture']) | !empty($donnees['Picture'])){
+          echo'
         <div class="col-md-5 align-self-center">
-          <img class="img-fluid d-block w-100 img-thumbnail" src="'.$donnees['Picture'].'"> </div>
+          <img class="img-fluid d-block w-100 img-thumbnail" src="'.$donnees['Picture'].'"> </div>';
+        }
+        echo'
       </div>
     </div>
   </div>';
