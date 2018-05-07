@@ -138,7 +138,7 @@ $data = $rep->fetch();
   $req->bindValue(':id',$id, PDO::PARAM_STR);
   $req->execute();
   $count = 0;
-  while($donnees = $req->fetch()){
+  while($donnees = $req->fetch() & $count != 3){
 
     if($count % 3 == 0){
 echo '
@@ -173,6 +173,7 @@ echo '
       </div>
     </div>
   </div>';
+  $count++;
 }
 }
 ?>

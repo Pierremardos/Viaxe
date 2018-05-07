@@ -1,14 +1,48 @@
 <?php
   session_start();
+  include 'include/config.php';
+  include 'include/functions.php';
+  ?>
 
- try
- {
-   $bdd = new PDO('mysql:host=localhost;dbname=viaxe;charset=utf8', 'root', '',array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
- }
- catch(Exception $e)
- {
-         die('Erreur : '.$e->getMessage());
- }
+  <!DOCTYPE html>
+  <html lang="en" dir="ltr">
+    <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+      <link rel="stylesheet" type="text/css" href="css/map.css">
+      <title>Créer un parcours</title>
+    </head>
+      <body>
+      <header>
+        <?php
+    		if(isset($_SESSION['mail'])){
+
+    		  $query=$bdd->prepare('SELECT *
+    		  FROM GUIDE WHERE mail = :mail');
+    		  $query->bindValue(':mail',$_SESSION['mail'], PDO::PARAM_STR);
+    		  $query->execute();
+    		  $data=$query->fetch();
+
+          if($_SESSION['mail'] == 'quentin.clodion@gmail.com' | $_SESSION['mail'] =='jonasnizard@gmail.com' | $_SESSION['mail'] == 'thomas.ddt@hotmail.fr'){
+            include('Navbar/NavbarAdmin.php');
+          }
+   		   else if ($_SESSION['mail'] == $data['mail'])
+    		   {
+    		       include('Navbar/NavbarGuide.php');
+    		   }
+    		   else{
+             header("location: index.php");
+             exit;
+    		   }
+    		}
+    		else{
+          header("location: index.php");
+          exit;
+    		}
+        if($_GET['type']== 1 & $data['diploma'] != "ok"){
+          header("location: chooseParcours.php");
+          exit;
+        }
 
  $query = $bdd ->prepare('SELECT MAX(id) FROM TRIP;');
  $query->execute();
@@ -20,7 +54,8 @@
  $pic2 = "/Viaxe/images/parcours/descrip/".$id . "b.jpeg";
  $pic3 = "/Viaxe/images/parcours/descrip/".$id . "c.jpeg";
  $error = 0;
-$accept = 0;
+ $accept = 0;
+ $_SESSION['false'] = "ok";
 
     $dossier = 'images/parcours/couv/';
     $dossier1 = 'images/parcours/descrip/';
@@ -33,7 +68,7 @@ $accept = 0;
  		//Début des vérifications de sécurité...
  		if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
  		{
- 			$erreur = 'Vous devez uploader un fichier de type png, gif, jpg, jpeg...';
+        $picture = "/Viaxe/images/parcours/couv/unknow.jpg";
  		}
  		if($taille>$taille_maxi)
  		{
@@ -52,14 +87,13 @@ $accept = 0;
  			}
  			else //sinon, cas où la fonction renvoie FALSE
  			{
- 				echo 'Echec de l\'upload !';
-        $picture = "/Viaxe/images/parcours/couv/unknow.jpeg";
+        $picture = "/Viaxe/images/parcours/couv/unknow.jpg";
  		    }
  		}
  		else
  		{
  			echo $erreur;
-      $picture = "/Viaxe/images/parcours/couv/unknow.jpeg";
+      $picture = "/Viaxe/images/parcours/couv/unknow.jpg";
  		}
 
 
@@ -71,10 +105,6 @@ $accept = 0;
  		$extension = strrchr($_FILES['avatar1']['name'], '.');
 
  		//Début des vérifications de sécurité...
- 		if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
- 		{
- 			$erreur = 'Vous devez uploader un fichier de type png, gif, jpg, jpeg...';
- 		}
  		if($taille>$taille_maxi)
  		{
  			$erreur = 'Le fichier est trop gros...';
@@ -92,8 +122,8 @@ $accept = 0;
  			}
  			else //sinon, cas où la fonction renvoie FALSE
  			{
- 				echo 'Echec de l\'upload !';
- 		    }
+
+ 		  }
  		}
  		else
  		{
@@ -106,11 +136,6 @@ $accept = 0;
  		$extensions = array('.png', '.gif', '.jpg', '.jpeg');
  		$extension = strrchr($_FILES['avatar2']['name'], '.');
 
- 		//Début des vérifications de sécurité...
- 		if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
- 		{
- 			$erreur = 'Vous devez uploader un fichier de type png, gif, jpg, jpeg...';
- 		}
  		if($taille>$taille_maxi)
  		{
  			$erreur = 'Le fichier est trop gros...';
@@ -126,7 +151,7 @@ $accept = 0;
         rename($dossier1 . $fichier, $dossier1 . $id . "b.jpeg");
  				//ajout_image($fichier,);
  			}
- 			else //sinon, cas où la fonction renvoie FALSE
+ 			if(isset($fichier) & !empty($fichier)) //sinon, cas où la fonction renvoie FALSE
  			{
  				echo 'Echec de l\'upload !';
  		    }
@@ -143,10 +168,6 @@ $accept = 0;
  		$extension = strrchr($_FILES['avatar3']['name'], '.');
 
  		//Début des vérifications de sécurité...
- 		if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
- 		{
- 			$erreur = 'Vous devez uploader un fichier de type png, gif, jpg, jpeg...';
- 		}
  		if($taille>$taille_maxi)
  		{
  			$erreur = 'Le fichier est trop gros...';
@@ -162,10 +183,6 @@ $accept = 0;
         rename($dossier1 . $fichier, $dossier1 . $id . "c.jpeg");
  				//ajout_image($fichier,);
  			}
- 			else //sinon, cas où la fonction renvoie FALSE
- 			{
- 				echo 'Echec de l\'upload !';
- 		    }
  		}
  		else
  		{
@@ -176,18 +193,17 @@ $accept = 0;
  $title = $_POST['title'];
  if(!isset($title) | empty($title)){
    $error++;
-   $_SESSION['titleRed'] = 1;
+   echo "Le titre n'a pas été rentré<br>";
  }
  else{
    $_SESSION['titleTrip'] = $title;
-   $_SESSION['titleRed'] = 0;
  }
 
  if(!isset($_POST['date']) | empty($_POST['date'])){
-   $error++;
+    echo "La date de départ n'a pas été rentré<br>";
  }
- if($_POST['departHour'] > 23 & $_POST['departHour'] < 0){
-   $error++;
+ if($_POST['departHour'] > 23 | $_POST['departHour'] < 0){
+     echo "Le format de l'heure de départ n'est pas valide<br>";
  }
  else if(!isset($_POST['departHour']) | empty($_POST['departHour'])){
    $_POST['departHour'] = 0;
@@ -195,8 +211,8 @@ $accept = 0;
  else{
    $_SESSION['departHourTrip'] = $_POST['departHour'];
  }
- if($_POST['departMin'] > 59 & $_POST['departMin'] < 0){
-   $error++;
+ if($_POST['departMin'] > 59 | $_POST['departMin'] < 0){
+   echo "Le format des minutes de l'heure de départ n'a pas été rentré<br>";
  }
  else if(!isset($_POST['departMin']) | empty($_POST['departMin'])){
    $_POST['departMin'] = 0;
@@ -204,13 +220,13 @@ $accept = 0;
  else{
    $_SESSION['departMinTrip'] = $_POST['departMin'];
  }
- $date = $_POST['date'] . " " . $_POST['departHour'] . ":" . $_POST['departMin'] . ":00";
 
+ $date = $_POST['date'] . " " . $_POST['departHour'] . ":" . $_POST['departMin'] . ":00";
  $duration = ($_POST['durationHour']*60) + $_POST['durationMin'];
 
  $city = $_POST['city'];
  if(!isset($city) | empty($city)){
-   $error++;
+   echo "La ville n'a pas été rentré<br>";
  }
  else{
    $_SESSION['cityTrip'] = $city;
@@ -218,7 +234,7 @@ $accept = 0;
 
  $country = $_POST['country'];
  if(!isset($country) | empty($country)){
-   $error++;
+   echo "Le pays n'a pas été rentré<br>";
  }
  else{
    $_SESSION['countryTrip'] = $country;
@@ -226,7 +242,7 @@ $accept = 0;
 
  $language = $_POST['language'];
  if(!isset($language) | empty($language)){
-   $error++;
+   echo "Les langues maîtrisés n'ont pas été rentré<br>";
  }
  else{
    $_SESSION['languageTrip'] = $language;
@@ -235,9 +251,11 @@ $accept = 0;
  $price = $_POST['price'];
  if(!isset($price) | empty($price)){
    $error++;
+   echo "Le prix n'a pas été rentré<br>";
  }
  else if($price > 500){
    $error++;
+   echo "Le prix doit être inférieur à 500<br>";
  }
  else{
    $_SESSION['priceTrip'] = $price;
@@ -254,28 +272,47 @@ $accept = 0;
  $places = $_POST['place'];
  if(!isset($places) | empty($places)){
    $error++;
+   echo "Le nombre de places n'a pas été rentré<br>";
  }
  else{
    $_SESSION['placesTrip'] = $places;
  }
 
  $finalPrice = $_POST['finalPrice'];
+ $_SESSION['oldNow'] = $now = strtotime("now") + 7200;
+ $mail = $_SESSION['mail'];
 
- if(isset($finalPrice) | isset($_POST['finalDate']) | isset($_POST['finalHour']) | isset($_POST['finalMin'])){
-   if(!isset($finalPrice) & !isset($_POST['finalDate']) & empty($_POST['finalDate']) & !isset($_POST['finalHour']) & !isset($_POST['finalMin'])){
+ $map = $_POST['map'];
+ if(!isset($map) | empty($map)){
+   $map = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.474236839812!2d2.3875456156740595!3d48.8491665792866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6720d9c7af387%3A0x5891d8d62e8535c7!2sESGI%2C+%C3%89cole+Sup%C3%A9rieure+de+G%C3%A9nie+Informatique!5e0!3m2!1sfr!2sfr!4v1525684658911" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>';
+ }
+ else{
+   $_SESSION['mapTrip'] = $map;
+ }
+
+ if($finalPrice < 0){
+   $error++;
+    echo "Le prix de la réduction doit être positif<br>";
+ }
+
+ if($finalPrice != 0 | $_POST['finalHour'] != 0 | $_POST['finalMin'] != 0){
+   if(!isset($finalPrice) | !isset($_POST['finalDate']) | empty($_POST['finalDate'])){
      $error++;
+      echo "Le prix ou la date de la réduction n'a pas été rentré<br>";
    }
-   if($_POST['finalHour'] > 23 & $_POST['finalHour'] < 0){
+   if($_POST['finalHour'] > 23 | $_POST['finalHour'] < 0){
      $error++;
+      echo "Le format de l'heure de réduction n'est pas valide<br>";
    }
-   else if(!isset($_POST['departHour']) | empty($_POST['departHour'])){
-     $_POST['departHour'] = 0;
+   else if(!isset($_POST['finalHour']) | empty($_POST['finalHour'])){
+     $_POST['finalHour'] = 0;
    }
-   if($_POST['departMin'] > 59 & $_POST['departMin'] < 0){
+   if($_POST['finalMin'] > 59 | $_POST['finalMin'] < 0){
      $error++;
+     echo "Le format des minutes pour l'heure de réduction n'est pas valide<br>";
    }
-   else if(!isset($_POST['departMin']) | empty($_POST['departMin'])){
-     $_POST['departMin'] = 0;
+   else if(!isset($_POST['finalMin']) | empty($_POST['finalMin'])){
+     $_POST['finalMin'] = 0;
    }
  }
  else{
@@ -302,31 +339,26 @@ $accept = 0;
  }
 }
  $finalDate = $_POST['finalDate'] . " " . $_POST['finalHour'] . ":" . $_POST['finalMin'] . ":00";
- $mail = $_SESSION['mail'];
 
- $map = $_POST['map'];
- if(!isset($map) | empty($map)){
-   $error++;
- }
- else{
-   $_SESSION['mapTrip'] = $map;
- }
-
+if(isset($date) | !empty($date)){
  $max = strtotime($date);
- $_SESSION['oldNow'] = $now = strtotime("now") + 7200;
  $reduc = strtotime($finalDate);
 
  if(isset($reduc) | !empty($reduc)){
  if($max < $reduc){
-   $error++;
+    $error++;
+     echo "La date de réduction s'applique après le parcours<br>";
  }
 }
  if($max - $now < 36000 | $max - $now > 2678400){
    $error++;
+   echo "La date du parcours est inférieur à la date actuelle ou tros loin dans la temps<br>";
  }
  if(!isset($max) | empty($max)){
    $error++;
+   echo "La date du parcours n'a pas été rentrée <br>";
  }
+}
 
 if($accept == 0 & $error == 0){
  $req = $bdd->prepare('INSERT INTO TRIP (title, map, date, picture, duration, country, city, languages, price, finalPrice,datePrice,category,places, mailGuide)
@@ -390,8 +422,5 @@ if($accept == 0 & $error == 0){
     header("location: index.php");
     exit;
 }
-else{
-  $_SESSION['false'] = "ok";
-  header("location: createParcours.php?type=".$_GET['type']."");
-  exit;
-}
+
+ echo'<a href="createParcours.php?type='.$_GET["type"].'"> Continuer la création </a>';
