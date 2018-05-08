@@ -60,7 +60,7 @@
     $dossier = 'images/parcours/couv/';
     $dossier1 = 'images/parcours/descrip/';
  		$fichier = basename($_FILES['avatar']['name']);
- 		$taille_maxi = 100000;
+ 		$taille_maxi = 300000;
  		$taille = filesize($_FILES['avatar']['tmp_name']);
  		$extensions = array('.png', '.gif', '.jpg', '.jpeg');
  		$extension = strrchr($_FILES['avatar']['name'], '.');
@@ -422,9 +422,17 @@ if($error == 0){
    }
 
  if($error == 0){
+    $_SESSION['titleTrip'] = "";
+    $_SESSION['departHourTrip'] = "";
+    $_SESSION['departMinTrip'] = "";
+    $_SESSION['countryTrip'] = "";
+    $_SESSION['cityTrip'] = "";
+    $_SESSION['languageTrip'] = "";
+    $_SESSION['priceTrip'] = "";
+    $_SESSION['placesTrip'] = "";
     $_SESSION['false'] = "good";
-  //  header("location: index.php");
-  //  exit;
+    header("location: index.php");
+    exit;
 }
 
  echo'<a href="createParcours.php?type='.$_GET["type"].'"> Continuer la création </a>';

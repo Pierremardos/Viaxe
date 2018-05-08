@@ -3,6 +3,21 @@
 include 'include/config.php';
 include 'include/functions.php';
 session_start();
+
+$now = strtotime("now") + 7160;
+if(isset($_SESSION['oldNow'])){
+if($_SESSION['oldNow'] < $now){
+  $_SESSION['false'] = "good";
+  $_SESSION['titleTrip'] = "";
+  $_SESSION['departHourTrip'] = "";
+  $_SESSION['departMinTrip'] = "";
+  $_SESSION['countryTrip'] = "";
+  $_SESSION['cityTrip'] = "";
+  $_SESSION['languageTrip'] = "";
+  $_SESSION['priceTrip'] = "";
+  $_SESSION['placesTrip'] = "";
+}
+}
 ?>
 
 <!DOCTYPE html>
@@ -467,32 +482,6 @@ session_start();
         ?>
       <input type="submit" value="Créer">
     </form>
-
-    <?php
-    $now = strtotime("now") + 7180;
-    if(isset($_SESSION['oldNow'])){
-    if($_SESSION['oldNow'] < $now){
-      $_SESSION['false'] = "good";
-    }
-  }
-    if(isset($_SESSION['oldNow']) | isset($_SESSION['false'])){
-    if($_SESSION['false'] == "ok"){
-      echo'
-      <script src="include/functions.js"></script>';
-    }
-    else{
-      $_SESSION['titleTrip'] = "";
-      $_SESSION['departHourTrip'] = "";
-      $_SESSION['departMinTrip'] = "";
-      $_SESSION['countryTrip'] = "";
-      $_SESSION['cityTrip'] = "";
-      $_SESSION['languageTrip'] = "";
-      $_SESSION['priceTrip'] = "";
-      $_SESSION['placesTrip'] = "";
-      $_SESSION['false'] == "good";
-    }
-  }
-    ?>
   </main>
   </body>
 </html>
