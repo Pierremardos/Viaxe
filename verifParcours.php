@@ -60,7 +60,7 @@
     $dossier = 'images/parcours/couv/';
     $dossier1 = 'images/parcours/descrip/';
  		$fichier = basename($_FILES['avatar']['name']);
- 		$taille_maxi = 300000;
+ 		$taille_maxi = 100000;
  		$taille = filesize($_FILES['avatar']['tmp_name']);
  		$extensions = array('.png', '.gif', '.jpg', '.jpeg');
  		$extension = strrchr($_FILES['avatar']['name'], '.');
@@ -82,7 +82,7 @@
  			if(move_uploaded_file($_FILES['avatar']['tmp_name'], $dossier . $fichier)) //correct si la fonction renvoie TRUE
  			{
  				echo 'Upload effectué avec succès !';
-        rename($dossier . $fichier, $dossier . $id . "\0.jpeg");
+        rename($dossier . $fichier, $dossier . $id . ".jpeg");
  				//ajout_image($fichier,);
  			}
  			else //sinon, cas où la fonction renvoie FALSE
@@ -385,6 +385,7 @@ if($accept == 0 & $error == 0){
    ));
  }
 
+if($error == 0){
    $content = $_POST['content'];
    $content2 = $_POST['content2'];
    $content3 = $_POST['content3'];
@@ -399,30 +400,31 @@ if($accept == 0 & $error == 0){
      "id"=>$id
      ));
 
-     $req = $bdd->prepare('INSERT INTO CONTENT (Picture, content, idTrip)
+     $rep = $bdd->prepare('INSERT INTO CONTENT (Picture, content, idTrip)
       VALUES ( :pic, :content, :id)');
 
 
-     $req->execute(array(
+     $rep->execute(array(
        "pic"=>$pic2,
        "content"=>$content2,
        "id"=>$id
        ));
 
-       $req = $bdd->prepare('INSERT INTO CONTENT (Picture, content, idTrip)
+       $query = $bdd->prepare('INSERT INTO CONTENT (Picture, content, idTrip)
         VALUES ( :pic, :content, :id)');
 
 
-       $req->execute(array(
+       $query->execute(array(
          "pic"=>$pic3,
          "content"=>$content3,
          "id"=>$id
          ));
+   }
 
  if($error == 0){
     $_SESSION['false'] = "good";
-    header("location: index.php");
-    exit;
+  //  header("location: index.php");
+  //  exit;
 }
 
  echo'<a href="createParcours.php?type='.$_GET["type"].'"> Continuer la création </a>';
