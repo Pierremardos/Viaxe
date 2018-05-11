@@ -13,7 +13,7 @@
 
     if($_SESSION['mail'] == 'quentin.clodion@gmail.com' | $_SESSION['mail'] =='jonasnizard@gmail.com' | $_SESSION['mail'] == 'thomas.ddt@hotmail.fr'){
       include('Navbar/NavbarAdmin.php');
-      $particip = 0;
+      $particip = 1;
     }
     else if ($_SESSION['mail'] == $data['mail'])
      {
@@ -27,7 +27,7 @@
   }
   else{
     include('Navbar/Navbar.php');
-    $particip = 0;
+    $particip = 1;
   }
 
   $id = $_GET['id'];
@@ -54,7 +54,7 @@ if($now >= $date){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css">
   </head>
-  <body>
+  <body onload="bigMap()">
     <?php echo
   '<div class="py-5 text-center h-100" style="background-image: url('.$donnees['picture'].'); background-size: cover;">
   <div class="container py-5">
@@ -117,8 +117,18 @@ $data = $rep->fetch();
       <div class="row">
         <div class="col-md-12">
           <p class="text-center">'.$donnees['country'].', '.$donnees['city'].'&nbsp;
-            <br>Départ : '.$donnees['date'].'
-            <br>Durée du parcours : '.$hour.'h '.$minutes.'min
+            <br>Départ : '.$donnees['date'].'';
+            if($hour > 0 | $minutes > 0){
+            echo'
+            <br>Durée du parcours : ';
+          }
+            if($hour > 0){
+            echo ''.$hour.'h';
+          }
+            if($minutes > 0){
+             echo ''.$minutes.'min';
+           }
+           echo'
             <br>Prix : '.$donnees['price'].'€
             <br>Categorie : '.$donnees['category'].'
             <br>Places restantes : '.$donnees['places'].'
@@ -151,7 +161,8 @@ echo '
           <img class="img-fluid d-block w-100 img-thumbnail" src="'.$donnees['Picture'].'"> </div>
       </div>';
       $count++;
-    }else if($count % 3 == 1){
+    }
+    else if($count % 3 == 1){
       echo'<div class="row">
         <div class="col-md-5">
           <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="'.$donnees['Picture'].'"> </div>
@@ -160,7 +171,8 @@ echo '
         </div>
       </div>
     </div>';
-    $count++;}
+    $count++;
+  }
     else{
       echo'
     <div class="container">
@@ -173,14 +185,17 @@ echo '
       </div>
     </div>
   </div>';
+  $count++;
 }
 }
 ?>
 <?php
+if($particip == 0){
 $rep=$bdd->prepare('SELECT * FROM TRIP WHERE id = :id');
 $rep->bindValue(':id',$id, PDO::PARAM_STR);
 $rep->execute();
 $data=$rep->fetch();
+
 if($_SESSION['mail'] == $data['mailGuide']){
 echo'
 <div class="py-5 bg-primary">
@@ -197,13 +212,14 @@ echo'
     <div class="row">
       <div class="col-md-12">
         <p class="text-center"><a href="inscrits.php?id='.$id.'">Liste des inscrits </a>
-          <br>Renouveler
+          <br><a href="changeParcours.php?id='.$id.'">Renouveler</a>
+          <br><a href="reset.php?id='.$id.'">Fermer le parcours</a>
         </p>
           </div>
         </div>
       </div>
     </div>';
-}
+}}
  ?>
 
    <div class="py-5 bg-primary">
@@ -287,6 +303,6 @@ echo'
     <?php
   }
      ?>
-
+     <script src="include/functions.js"></script>
   </body>
 </html>

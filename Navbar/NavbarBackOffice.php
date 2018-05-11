@@ -7,11 +7,9 @@
 	<link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css">
 </head>
 <body>
-	<header>
 		<nav class="navbar navbar-expand-md bg-primary navbar-dark">
 	 <div class="container">
 		 <a class="navbar-brand" href="../index.php">
-			 <i class="fa d-inline fa-lg fa-cloud"></i>
 			 <b> Viaxe</b>
 		 </a>
 		 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,7 +40,7 @@
 				 </li>
 			 </ul>
 			 <a class="btn navbar-btn ml-2 text-white btn-secondary" href="../deconnexion.php">
-				 <i class="fa d-inline fa-lg fa-user-circle-o"></i> Déconnexion</a>
+				 Déconnexion</a>
 		 </div>
 	 </div>
  </nav>
