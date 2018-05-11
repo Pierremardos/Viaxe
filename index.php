@@ -58,23 +58,16 @@ include 'include/functions.php';
 				Je recherche :
 				<br>
 				<br>
-<<<<<<< HEAD
 
         Recherche par ville ou pays :
-=======
->>>>>>> 2102a23e9619a181aa85f86aa0058505d51f471a
 				<input type="search" name="city" placeholder="Recherche par Ville ou par pays">
         <br>
         Recherche par guide :
         <input type="search" name="guide" placeholder="Recherche par guide">
 				<br>
 				<br>
-<<<<<<< HEAD
         <p id="price">Prix : 250</p>
 
-=======
-        <p id="price"></p>
->>>>>>> 2102a23e9619a181aa85f86aa0058505d51f471a
 			  <div class="slidecontainer">
           <input type="range" min="1" max="500" value="250" class="slider" onclick="price()" id="firstSlider">
         </div>
