@@ -3,6 +3,15 @@ session_start();
 include 'include/config.php';
 include 'include/functions.php';
 
+$dip = 0;
+$profil = 0;
+
+$query=$bdd->prepare('SELECT *
+FROM GUIDE WHERE mail = :mail');
+$query->bindValue(':mail',$_SESSION['mail'], PDO::PARAM_STR);
+$query->execute();
+$data=$query->fetch();
+
 $dossier = 'images/guide/';
    $fichier = basename($_FILES['avatar']['name']);
    $taille_maxi = 1000000;
@@ -14,6 +23,7 @@ $dossier = 'images/guide/';
    if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
    {
      $erreur = 'Vous devez uploader un fichier de type png, gif, jpg, jpeg...';
+     $profil++;
    }
    if($taille>$taille_maxi)
    {
@@ -40,6 +50,8 @@ $dossier = 'images/guide/';
      echo $erreur;
    }
 
+   if($data['diploma'] != "ok"){
+
    $dossier2 = 'images/guide/docs/';
       $fichier = basename($_FILES['avatar2']['name']);
       $taille_maxi = 1000000;
@@ -51,6 +63,7 @@ $dossier = 'images/guide/';
       if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
       {
         $erreur = 'Vous devez uploader un fichier de type png, gif, jpg, jpeg...';
+        $dip++;
       }
       if($taille>$taille_maxi)
       {
@@ -88,6 +101,7 @@ $dossier = 'images/guide/';
          if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
          {
            $erreur = 'Vous devez uploader un fichier de type png, gif, jpg, jpeg...';
+           $dip++;
          }
          if($taille>$taille_maxi)
          {
@@ -114,17 +128,32 @@ $dossier = 'images/guide/';
            echo $erreur;
          }
 
+       }
+
 
    $pseudo = $_POST['newPseudo'];
    $phone = $_POST['newPhone'];
    $content = $_POST['newContent'];
-   $picture = "/Viaxe/images/guide/".$_SESSION['mail'] . ".jpeg";
-   $diplome = "/Viaxe/images/guide/docs/".$_SESSION['mail'] . "dip.jpeg";
-   $identite = "/Viaxe/images/guide/docs/".$_SESSION['mail'] . "cni.jpeg";
-   $diploma = "envoie";
    $password = chiffer($_POST['newPassword']);
    $confirm = chiffer($_POST['confirmNewPassword']);
 
+   if($profil == 0){
+      $picture = "/Viaxe/images/guide/".$_SESSION['mail'] . ".jpeg";
+   }
+   else{
+      $picture = "/Viaxe/images/guide/unknow.jpeg";
+   }
+
+   if($data['diploma'] != "ok"){
+   $diploma = "envoie";
+ }
+ else{
+   $diploma = "ok";
+ }
+
+
+   $diplome = "/Viaxe/images/guide/docs/".$_SESSION['mail'] . "dip.jpeg";
+   $identite = "/Viaxe/images/guide/docs/".$_SESSION['mail'] . "cni.jpeg";
 
      $req = $bdd->prepare('UPDATE GUIDE SET diplome=:diplome, diploma= :diploma, Identite=:identite WHERE mail=:mail');
 

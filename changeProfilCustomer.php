@@ -3,9 +3,11 @@ session_start();
 include 'include/config.php';
 include 'include/functions.php';
 
+$profil = 0;
+
 $dossier = 'images/customer/';
    $fichier = basename($_FILES['avatar']['name']);
-   $taille_maxi = 100000;
+   $taille_maxi = 300000;
    $taille = filesize($_FILES['avatar']['tmp_name']);
    $extensions = array('.png', '.gif', '.jpg', '.jpeg');
    $extension = strrchr($_FILES['avatar']['name'], '.');
@@ -14,6 +16,7 @@ $dossier = 'images/customer/';
    if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
    {
      $erreur = 'Vous devez uploader un fichier de type png, gif, jpg, jpeg...';
+     $profil++;
    }
    if($taille>$taille_maxi)
    {
@@ -42,7 +45,12 @@ $dossier = 'images/customer/';
 
    $pseudo = htmlspecialchars($_POST['newPseudo']);
    $phone = htmlspecialchars($_POST['newPhone']);
-   $picture = "/Viaxe/images/customer/".$_SESSION['mail'] . ".jpeg";
+   if($profil == 0){
+   $picture = "/Viaxe/images/customer/" .$_SESSION['mail']. ".jpeg";
+   }
+   else{
+   $picture = "/Viaxe/images/customer/unknow.jpeg";
+   }
    $password = chiffer($_POST['newPassword']);
    $confirm = chiffer($_POST['confirmNewPassword']);
 
