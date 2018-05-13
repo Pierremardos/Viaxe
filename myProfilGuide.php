@@ -93,7 +93,9 @@ include 'include/functions.php';
               <label>Téléphone :</label>
               <input type="text" class="form-control w-50" name="newPhone"" value="'.$donnees['phone'].'">
               <small class="form-text text-muted"></small>
-          </div>
+          </div>';
+          if($donnees['diploma'] != "ok"){
+          echo'
           <div class="form-group">
               <label>Ajouter un diplôme :</label>
               <input type="hidden" name="MAX_FILE_SIZE" value="250000">
@@ -103,7 +105,9 @@ include 'include/functions.php';
               <label>Papier d identité à fournir avec le diplôme :</label>
               <input type="hidden" name="MAX_FILE_SIZE" value="250000">
               <input type="file" name="avatar3">
-          </div>
+          </div>';
+        }
+        echo'
         </div>
       </div>
     </div>
