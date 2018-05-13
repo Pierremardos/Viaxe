@@ -174,6 +174,18 @@ function unbanGuide($mail){
   $query->execute(["mail"=>$mail]);
 }
 
+function valid($mail){
+  $db = connectDb();
+  $query = $db->prepare('UPDATE GUIDE SET diploma = "ok" WHERE mail = :mail');
+  $query->execute(["mail"=>$mail]);
+}
+
+function refuse($mail){
+  $db = connectDb();
+  $query = $db->prepare('UPDATE GUIDE SET diploma = "refus" WHERE mail = :mail');
+  $query->execute(["mail"=>$mail]);
+}
+
 function editUser($mail, $pseudo, $age, $gender){
   $db = connectDb();
   $query = $db->prepare("UPDATE customer SET mail = :mail, pseudo = :pseudo, age = :age, gender = :gender WHERE mail = :mail");
@@ -240,4 +252,47 @@ function resetPlaces($id){
   $query=$db->prepare('UPDATE TRIP SET places = 0 WHERE id = :id');
   $query->bindValue(':id',$id, PDO::PARAM_STR);
   $query->execute();
+}
+
+function backOfficeDip(){
+
+  $db = connectDb();
+  $query = $db->prepare('SELECT mail,pseudo,diplome,Identite FROM GUIDE WHERE isBanned = 0 AND diploma = "envoie"');
+  $query->execute();
+
+  $result = $query->fetchAll();
+
+  foreach($result as $member){
+
+    echo'
+    <tr>
+        <form method="GET" action="edit.php">
+          <td><input name="mail" type="text" value="'.$member["mail"].'"/></td>
+          <td><input name="pseudo" type="text" value="'.$member["pseudo"].'"/></td>
+          <td><a href="'.$member["diplome"].'"/> Diplom.jpg </a></td>
+          <td><a href="'.$member["Identite"].'"/> Identite.jpg </a></td>
+        </form>
+          <td>
+            <form method="GET" action="valid.php">
+            <input  name="mail" type="hidden" value="'.$member["mail"].'"/>
+              <button type="submit" class="btn btn-blue">
+                <span class="glyphicon glyphicon-edit"></span>
+          </button>
+        </form>
+        </td>
+        ';
+
+      echo'
+      <td>
+        <form method="GET" action="refuse.php">
+          <input  name="mail" type="hidden" value="'.$member["mail"].'"/>
+          <button type="submit" class="btn btn-danger">
+            <span class="glyphicon glyphicon-remove-circle"></span>
+          </button>
+        </form>
+      </td>
+    </tr>
+    ';
+
+  }
 }

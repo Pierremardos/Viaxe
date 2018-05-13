@@ -121,15 +121,17 @@ $dossier = 'images/guide/';
    $picture = "/Viaxe/images/guide/".$_SESSION['mail'] . ".jpeg";
    $diplome = "/Viaxe/images/guide/docs/".$_SESSION['mail'] . "dip.jpeg";
    $identite = "/Viaxe/images/guide/docs/".$_SESSION['mail'] . "cni.jpeg";
+   $diploma = "envoie";
    $password = chiffer($_POST['newPassword']);
    $confirm = chiffer($_POST['confirmNewPassword']);
 
 
-     $req = $bdd->prepare('UPDATE GUIDE SET diplome=:diplome, Identite=:identite WHERE mail=:mail');
+     $req = $bdd->prepare('UPDATE GUIDE SET diplome=:diplome, diploma= :diploma, Identite=:identite WHERE mail=:mail');
 
 
      $req->execute(array(
        "diplome"=>$diplome,
+       "diploma"=>$diploma,
        "identite"=>$identite,
        "mail"=>$_SESSION['mail']
        ));

@@ -327,8 +327,8 @@
  }
  else{
    if($error == 0){
-   $req = $bdd->prepare('INSERT INTO TRIP (title, map, date, picture, duration, country, city, languages, price,category,places, mailGuide)
-    VALUES ( :title, :map, :dateDep, :picture, :duration, :country, :city, :language, :price, :category, :places, :mailGuide)');
+   $req = $bdd->prepare('INSERT INTO TRIP (title, map, date, picture, duration, country, city, languages, price, finalPrice, datePrice, category,places,mark,mailGuide)
+    VALUES ( :title, :map, :dateDep, :picture, :duration, :country, :city, :language, :price, :finalPrice, :datePrice, :category, :places, 0, :mailGuide)');
 
 
    $req->execute(array(
@@ -341,6 +341,8 @@
      "country"=>$country,
      "language"=>$language,
      "price"=>$price,
+     "finalPrice"=>$price,
+     "datePrice"=>$date,
      "category"=>$category,
      "places"=>$places,
      "mailGuide"=>$mail
