@@ -198,6 +198,11 @@ function editGuide($mail, $pseudo, $age, $gender){
                   ]);
 }
 
+
+
+
+
+
 function erreur($err='')
 {
  $mess=($err!='')? $err:'Une erreur inconnue s\'est produite';
