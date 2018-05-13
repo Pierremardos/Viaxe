@@ -239,3 +239,10 @@ function check ($mail){
     }
   }
 }
+
+function resetPlaces($id){
+  $db = connectDb();
+  $query=$db->prepare('UPDATE TRIP SET places = 0 WHERE id = :id');
+  $query->bindValue(':id',$id, PDO::PARAM_STR);
+  $query->execute();
+}

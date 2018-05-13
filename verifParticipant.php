@@ -90,7 +90,7 @@ include 'include/functions.php';
          "mail"=>$mail
          ));
 
-     header("Location: index.php");
+     header("Location: parcours.php?id=".$_GET['id']."");
      exit;
    }
 

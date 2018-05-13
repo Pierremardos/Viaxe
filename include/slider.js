@@ -10,7 +10,7 @@ function price() {
   }
 }
 
-function place() {
+function nombrePlace() {
 
   var slider = document.getElementById("secondSlider");
   var output = document.getElementById("place");
