@@ -5,13 +5,13 @@ include 'include/functions.php';
 
 // on recup les donnée
 	$i = 0;
-	$pseudo=$_POST['pseudo'];
-	$mail = $_POST['email'];
+	$pseudo=htmlspecialchars($_POST['pseudo']);
+	$mail = htmlspecialchars($_POST['email']);
 	$country = $_POST['country'];
 	$password = $_POST['password'];
 	$birthday = $_POST['birthday'];
 	$gender = $_POST['gender'];
-	$telephone = $_POST['telephone'];
+	$telephone = htmlspecialchars($_POST['telephone']);
 	$confirm = $_POST['confirm'];
 	$picture = "/Viaxe/images/customer/unknow.jpeg";
 
@@ -67,9 +67,9 @@ include 'include/functions.php';
         $i++;
     }
 
-    else if (strlen($pseudo) < 5 || strlen($pseudo) > 30)
+    else if (strlen($pseudo) < 4 || strlen($pseudo) > 30)
     {
-        $pseudo_erreur2 = "Votre pseudo n'a pas une taille comprise entre 5 et 30 caractères";
+        $pseudo_erreur2 = "Votre pseudo n'a pas une taille comprise entre 4 et 30 caractères";
         $i++;
     }
     //Vérification du mdp
@@ -169,5 +169,5 @@ include 'include/functions.php';
 	 }
 
 	//header("Location:index.php");
-	exit;
+	//exit;
 ?>

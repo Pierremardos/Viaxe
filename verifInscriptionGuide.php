@@ -7,17 +7,17 @@ include 'include/config.php';
 include 'include/functions.php';
 
 $i = 0;
-$pseudo = $_POST['pseudo'];
-$mail = $_POST['email'];
-$firstName = $_POST['prenom'];
-$lastName = $_POST['nom'];
+$pseudo = htmlspecialchars($_POST['pseudo']);
+$mail = htmlspecialchars($_POST['email']);
+$firstName = htmlspecialchars($_POST['prenom']);
+$lastName = htmlspecialchars($_POST['nom']);
 $password = $_POST['password'];
 $confirm = $_POST['confirm'];
 $age = $_POST['birthday'];
 $gender = $_POST['gender'];
-$languages = $_POST['langue'];
-$phone = $_POST['telephone'];
-$description = $_POST['description'];
+$languages = htmlspecialchars($_POST['langue']);
+$phone = htmlspecialchars($_POST['telephone']);
+$description = htmlspecialchars($_POST['description']);
 $picture = "/Viaxe/images/guide/unknow.jpeg";
 
 

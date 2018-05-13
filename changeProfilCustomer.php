@@ -40,8 +40,8 @@ $dossier = 'images/customer/';
      echo $erreur;
    }
 
-   $pseudo = $_POST['newPseudo'];
-   $phone = $_POST['newPhone'];
+   $pseudo = htmlspecialchars($_POST['newPseudo']);
+   $phone = htmlspecialchars($_POST['newPhone']);
    $picture = "/Viaxe/images/customer/".$_SESSION['mail'] . ".jpeg";
    $password = chiffer($_POST['newPassword']);
    $confirm = chiffer($_POST['confirmNewPassword']);

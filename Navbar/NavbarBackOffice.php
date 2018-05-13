@@ -27,6 +27,9 @@
 					 <a class="nav-link" href="../backOffice/backOfficeGuides.php"> Guides </a>
 				 </li>
 				 <li class="nav-item">
+					<a class="nav-link" href="../backOffice/validDiplome.php"> Diplômes </a>
+				</li>
+				 <li class="nav-item">
 						<a class="nav-link" > / </a>
 					</li>
 				 <li class="nav-item">
