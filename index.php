@@ -69,14 +69,14 @@ include 'include/functions.php';
         <p id="price">Prix : 250</p>
 
 			  <div class="slidecontainer">
-          <input type="range" min="1" max="500" value="250" class="slider" onclick="price()" id="firstSlider">
+          <input type="range" name="prix" min="1" max="500" value="250" class="slider" onclick="price()" id="firstSlider">
         </div>
         <script src="include/slider.js"></script>
         <br>
         <p>
           <p id="place">Nombre de places : 10</p>
   			  <div class="slidecontainer">
-            <input type="range" min="1" max="20" value="10" class="slider" onclick="place()" id="secondSlider">
+            <input type="range" name="place" min="1" max="20" value="10" class="slider" onclick="nombrePlace()" id="secondSlider">
           </div>
           <script src="include/slider.js"></script>
           <br>
@@ -90,6 +90,7 @@ include 'include/functions.php';
 				</select>
 				Langue 1 :
 				<select name="langage">
+
 					<option value="undefined">Indefini</option>
 					<option value="fr">Francais</option>
           <option value="en">Anglais</option>
