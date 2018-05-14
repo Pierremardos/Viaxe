@@ -69,7 +69,7 @@ if($now >= $date){
           <h1 class="display-3 mb-4 text-light">'.$donnees['title'].'
             <br> </h1>
           <h1 class="text-light">
-            <b>'.$donnees['mark'].'/5</b>
+            <b>'.$note = round ($donnees['mark'], $precision = 1).'/5</b>
           </h1>
         </div>
       </div>
@@ -84,6 +84,14 @@ if($now >= $date){
   $minutes = $donnees['duration'] %60;
   $hour = ($donnees['duration'] - $minutes )/60;
 
+  $req=$bdd->prepare('SELECT * FROM PARTICIPANT WHERE idTrip = :id');
+  $req->bindValue(':id',$_GET['id'], PDO::PARAM_STR);
+  $req->execute();
+  while($dataInscrit = $req->fetch()){
+  if($dataInscrit['mailCustomer'] == $_SESSION['mail']){
+    $particip = 2;
+  }
+}
 $data = $rep->fetch();
 
   echo
@@ -94,8 +102,8 @@ $data = $rep->fetch();
           <a href="seeProfil.php?id='.$data['id'].'&role=g">
           <img class="img-fluid d-block" src="'.$data['picture'].'"> </div>
         <div class="col-md-7 order-1 order-md-2">
-          <h3>Organisé par '.$data['pseudo'].' </a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; '.$data['mark'].'/5</h3>
-          <p class="my-3">Date de naissance : '.$data['age'].'
+          <h3>Organisé par '.$data['pseudo'].' </a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; '.$note = round ($data['mark'], $precision = 1).'/5</h3>
+            <p class="my-3">Date de naissance : '.$data['age'].'
             <br>Langues : '.$data['languages'].'
             <br>Téléphone :&nbsp '.$data['phone'].'
             <br>Mail :&nbsp '.$data['mail'].'
@@ -263,7 +271,10 @@ echo'
                 <small class="form-text text-muted"></small>
             </div>
             <input type="submit" value="Envoyer">
-            </form>';
+            </form>
+          </div>
+        </div>
+      </div>';
   }
 }
     ?>
@@ -286,9 +297,22 @@ echo'
          <a href="seeProfil.php?id='.$data['id'].'&role=c">
          <img class="img-fluid d-block" src="'.$data['picture'].'" width="150px"> </div>
        <div class="col-md-7 order-1 order-md-2">
-         <h3>'.$data['pseudo'].' </a> <br> '.$donnees['mark'].'/5
+         <h4>'.$data['pseudo'].' </a> <br> '.$note = round ($donnees['mark'], $precision = 1).'/5
            <br>
-         </h3>
+         </h4>';
+         if($data['level'] >= 100 & $data['level'] < 200){
+           echo'Premiers pas';
+         }
+         else if($data['level'] >= 200 & $data['level'] < 300){
+           echo'Nouveau marcheur';
+         }
+         else if($data['level'] >= 300 & $data['level'] < 400){
+           echo'Aventurier';
+         }
+         else{
+           echo"Marcheur de l'extrême";
+         }
+         echo'
          <p class="">'.$donnees['timeComment'].'</p>
        </div>
      </div>

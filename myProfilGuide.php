@@ -54,7 +54,7 @@ include 'include/functions.php';
         <div class="col-md-5 order-2 order-md-1">
           <img class="img-fluid d-block" src="'.$donnees['picture'].'" width="400px"> </div>
         <div class="col-md-7 order-1 order-md-2">
-          <h3>'.$donnees['lastName'].' '.$donnees['firstName'].' &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;'.$donnees['mark'].'/5 &nbsp;</h3>
+          <h3>'.$donnees['lastName'].' '.$donnees['firstName'].' &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;'.$note = round ($donnees['mark'], $precision = 1).'/5 &nbsp;</h3>
           <br>Sexe : ';?>
           <?php if($donnees['gender']==1){
             echo "Homme";

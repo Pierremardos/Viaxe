@@ -97,7 +97,7 @@ session_start();
            <div class="col-md-5 order-2 order-md-1">
              <img class="img-fluid d-block" src="'.$donnees['picture'].'" width="400px"> </div>
            <div class="col-md-7 order-1 order-md-2">
-             <h3>'.$donnees['lastName'].' '.$donnees['firstName'].' &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;'.$donnees['mark'].'/5 &nbsp;</h3>
+             <h3>'.$donnees['lastName'].' '.$donnees['firstName'].' &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;'.$note = round ($donnees['mark'], $precision = 1).'/5 &nbsp;</h3>
              <br>Sexe : ';?>
              <?php if($donnees['gender']==1){
                echo "Homme";
@@ -109,15 +109,8 @@ session_start();
              <?php echo'
              <br>Date de naissance : '.$donnees['age'].'
              <br>Langues : '.$donnees['languages'].'
-             <div class="form-group">
-                 <label>Pseudo :</label>
-                 <p>'.$donnees['pseudo'].'</p>
-                 <small class="form-text text-muted"></small>
-             </div>
-             <div class="form-group">
-                 <label>Téléphone :</label>
-                 <p>'.$donnees['phone'].'</p>
-                 <small class="form-text text-muted"></small>
+             <br>Pseudo : '.$donnees['pseudo'].'
+             <br>Téléphone : '.$donnees['phone'].'
              </div>
            </div>
          </div>
@@ -166,9 +159,13 @@ session_start();
       $rep->bindValue(':id',$donnees['id'], PDO::PARAM_STR);
       $rep->execute();
       $data = $rep->fetch();
+
+      $now = strtotime("now") + 7200;
+      $dateDep = strtotime($donnees['date']);
     ?>
 
     <?php
+    if($dateDep > $now & $donnees['places'] > 0){
       if($count % 2 == 0){
     echo '
      <div class="py-5">
@@ -206,11 +203,12 @@ session_start();
         </div>
       </div>
     </div>';
-    }
+  }
     $count = $count + 1;
       ?>
 
    <?php
+ }
    }
   }
   else{

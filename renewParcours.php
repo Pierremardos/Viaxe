@@ -4,13 +4,13 @@
   include 'include/functions.php';
 
 
-$date = $_POST['date'] . " " . $_POST['departHour'] . ":" . $_POST['departMin'] . ":00";
-$language = $_POST['language'];
-$price = $_POST['price'];
-$places = $_POST['place'];
-$finalPrice = $_POST['finalPrice'];
-$finalDate = $_POST['finalDate'] . " " . $_POST['finalHour'] . ":" . $_POST['finalMin'] . ":00";
-$id = $_GET['id'];
+$date = $_POST['date'] . " " . htmlspecialchars($_POST['departHour']) . ":" . htmlspecialchars($_POST['departMin']) . ":00";
+$language = htmlspecialchars($_POST['language']);
+$price = htmlspecialchars($_POST['price']);
+$places = htmlspecialchars($_POST['place']);
+$finalPrice = htmlspecialchars($_POST['finalPrice']);
+$finalDate = $_POST['finalDate'] . " " . htmlspecialchars($_POST['finalHour']) . ":" . htmlspecialchars($_POST['finalMin']) . ":00";
+$id = htmlspecialchars($_GET['id']);
 
 $query=$bdd->prepare('SELECT *
 FROM TRIP WHERE id = :id');
