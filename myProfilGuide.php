@@ -105,7 +105,9 @@ include 'include/functions.php';
               <label>Papier d identité à fournir avec le diplôme :</label>
               <input type="hidden" name="MAX_FILE_SIZE" value="250000">
               <input type="file" name="avatar3">
-          </div>';
+          </div>
+              <input type="radio" name="documents" value="1">
+            ';
         }
         echo'
         </div>
