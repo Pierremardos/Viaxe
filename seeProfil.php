@@ -55,7 +55,20 @@ session_start();
               <div class="col-md-7 order-1 order-md-2">
            <div class="col-md-7 order-1 order-md-2">
 
-            Pseudo : '.$donnees['pseudo'].'
+            Pseudo : '.$donnees['pseudo'].'<br>';
+            if($donnees['level'] >= 100 & $donnees['level'] < 200){
+              echo'Premiers pas';
+            }
+            else if($donnees['level'] >= 200 & $donnees['level'] < 300){
+              echo'Nouveau marcheur';
+            }
+            else if($donnees['level'] >= 300 & $donnees['level'] < 400){
+              echo'Aventurier';
+            }
+            else{
+              echo"Marcheur de l'extrême";
+            }
+            echo'
              <br>Sexe : ';?>
              <?php if($donnees['gender']==1){
                echo "Homme";

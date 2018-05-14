@@ -133,7 +133,7 @@ $data = $rep->fetch();
             <br>Categorie : '.$donnees['category'].'
             <br>Places restantes : '.$donnees['places'].'
             <br>Langues utilisés : '.$donnees['languages'].'';
-              if($particip = 1 & $date > $now){
+              if($particip == 1 & $date > $now){
                 echo '<br>
                 <a href="inscriptionParcours.php?id='.$_GET['id'].'""> Participer </a>
                 </p>';
