@@ -88,9 +88,11 @@ if($now >= $date){
   $req->bindValue(':id',$_GET['id'], PDO::PARAM_STR);
   $req->execute();
   while($dataInscrit = $req->fetch()){
+    if(isset($_SESSION['mail'])){
   if($dataInscrit['mailCustomer'] == $_SESSION['mail']){
     $particip = 2;
   }
+}
 }
 $data = $rep->fetch();
 
