@@ -36,7 +36,7 @@ include 'include/functions.php';
  $data=$query->fetch();
 
  $restPlaces = $data['places'];
- $numberCustomer = $_POST['places'];
+ $numberCustomer = htmlspecialchars($_POST['places']);
  $mail = $_SESSION['mail'];
 
 

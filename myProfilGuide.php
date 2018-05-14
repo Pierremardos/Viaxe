@@ -54,7 +54,7 @@ include 'include/functions.php';
         <div class="col-md-5 order-2 order-md-1">
           <img class="img-fluid d-block" src="'.$donnees['picture'].'" width="400px"> </div>
         <div class="col-md-7 order-1 order-md-2">
-          <h3>'.$donnees['lastName'].' '.$donnees['firstName'].' &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;'.$donnees['mark'].'/5 &nbsp;</h3>
+          <h3>'.$donnees['lastName'].' '.$donnees['firstName'].' &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;'.$note = round ($donnees['mark'], $precision = 1).'/5 &nbsp;</h3>
           <br>Sexe : ';?>
           <?php if($donnees['gender']==1){
             echo "Homme";
@@ -144,20 +144,13 @@ include 'include/functions.php';
 
  $query->closeCursor();
 
- $query=$bdd->prepare('SELECT * FROM TRIP WHERE mailGuide = :mail');
+ $query=$bdd->prepare('SELECT * FROM TRIP WHERE mailGuide = :mail ORDER BY date DESC');
  $query->bindValue(':mail',$mail, PDO::PARAM_STR);
  $query->execute();
  $count = 0;
 
-
-
-
  while($donnees = $query->fetch())
  {
-   $rep=$bdd->prepare('SELECT * FROM CONTENT WHERE idTrip = :id');
-   $rep->bindValue(':id',$donnees['id'], PDO::PARAM_STR);
-   $rep->execute();
-   $data = $rep->fetch();
  ?>
 
  <?php
@@ -170,7 +163,6 @@ include 'include/functions.php';
            <a href = parcours.php?id='.$donnees['id'].'>
            <h3>'.$donnees['title'].'</h3>
            </a>
-           <p class="my-3">'.$data['content'].'</p>
          </div>
          <div class="col-md-5">
            <a href = parcours.php?id='.$donnees['id'].'>
@@ -193,7 +185,6 @@ include 'include/functions.php';
        <a href = parcours.php?id='.$donnees['id'].'>
            <h3>'.$donnees['title'].'</h3>
          </a>
-         <p class="my-3">'.$data['content'].'</p>
          </div>
      </div>
    </div>

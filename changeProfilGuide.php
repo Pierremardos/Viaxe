@@ -14,7 +14,7 @@ $data=$query->fetch();
 
 $dossier = 'images/guide/';
    $fichier = basename($_FILES['avatar']['name']);
-   $taille_maxi = 1000000;
+   $taille_maxi = 3000000;
    $taille = filesize($_FILES['avatar']['tmp_name']);
    $extensions = array('.png', '.gif', '.jpg', '.jpeg');
    $extension = strrchr($_FILES['avatar']['name'], '.');
@@ -54,7 +54,7 @@ $dossier = 'images/guide/';
 
    $dossier2 = 'images/guide/docs/';
       $fichier = basename($_FILES['avatar2']['name']);
-      $taille_maxi = 1000000;
+      $taille_maxi = 3000000;
       $taille = filesize($_FILES['avatar2']['tmp_name']);
       $extensions = array('.png', '.gif', '.jpg', '.jpeg');
       $extension = strrchr($_FILES['avatar2']['name'], '.');
@@ -92,7 +92,7 @@ $dossier = 'images/guide/';
 
 
          $fichier = basename($_FILES['avatar3']['name']);
-         $taille_maxi = 1000000;
+         $taille_maxi = 3000000;
          $taille = filesize($_FILES['avatar3']['tmp_name']);
          $extensions = array('.png', '.gif', '.jpg', '.jpeg');
          $extension = strrchr($_FILES['avatar3']['name'], '.');
@@ -131,9 +131,9 @@ $dossier = 'images/guide/';
        }
 
 
-   $pseudo = $_POST['newPseudo'];
-   $phone = $_POST['newPhone'];
-   $content = $_POST['newContent'];
+   $pseudo = htmlspecialchars($_POST['newPseudo']);
+   $phone = htmlspecialchars($_POST['newPhone']);
+   $content = htmlspecialchars($_POST['newContent']);
    $password = chiffer($_POST['newPassword']);
    $confirm = chiffer($_POST['confirmNewPassword']);
 

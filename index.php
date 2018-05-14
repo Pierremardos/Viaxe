@@ -118,6 +118,7 @@ include 'include/functions.php';
   {
     $places = $donnees['places'];
     $mark = $donnees['mark'] * 20;
+		$note = round ($donnees['mark'], $precision = 1);
     $date = strtotime($donnees['date']);
     if($date - $now <= 86400 & $date - $now > 0 & $count < 2 & $places > 0){
       echo'
@@ -142,7 +143,7 @@ include 'include/functions.php';
               <img class="img-fluid d-block" width="350px" src="'.$donnees['picture'].'">
             </a>
             <div class="progress">
-              <div class="progress-bar progress-bar-striped" role="progressbar" style="width: '.$mark.'%" aria-valuenow="'.$mark.'" aria-valuemin="0" aria-valuemax="100">'.$mark.'/100</div>
+              <div class="progress-bar progress-bar-striped" role="progressbar" style="width: '.$mark.'%" aria-valuenow="'.$mark.'" aria-valuemin="0" aria-valuemax="100">'.$note.'/5</div>
             </div>
             <a href = parcours.php?id='.$donnees['id'].'>
               <h3 class="my-3 w-100">'.$donnees['title'].'</h3>
@@ -163,6 +164,7 @@ include 'include/functions.php';
           $places = $donnees['places'];
           $date = strtotime($donnees['date']);
           $mark = $donnees['mark'] * 20;
+					$note = round ($donnees['mark'], $precision = 1);
           if($date > $now & $count < 2 & $places > 0){
             echo'
         </div>
@@ -191,7 +193,7 @@ include 'include/functions.php';
               <img class="img-fluid d-block" src="'.$donnees['picture'].'">
               </a>
               <div class="progress">
-                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: '.$mark.'%" aria-valuenow="'.$mark.'" aria-valuemin="0" aria-valuemax="100">'.$mark.'/100</div>
+                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: '.$mark.'%" aria-valuenow="'.$mark.'" aria-valuemin="0" aria-valuemax="100">'.$note.'/5</div>
               </div>
               <a href = parcours.php?id='.$donnees['id'].'>
               <h3 class="my-3 w-100">'.$donnees['title'].'</h3>
@@ -210,6 +212,7 @@ include 'include/functions.php';
           {
             $places = $donnees['places'];
             $mark = $donnees['mark'] * 20;
+						$note = round ($donnees['mark'], $precision = 1);
             $date = strtotime($donnees['date']);
             if($date > $now & $count < 2 & $places > 0){
               echo'
@@ -239,7 +242,7 @@ include 'include/functions.php';
         <img class="img-fluid d-block" src="'.$donnees['picture'].'">
       </a>
       <div class="progress">
-        <div class="progress-bar progress-bar-striped" role="progressbar" style="width: '.$mark.'%" aria-valuenow="'.$mark.'" aria-valuemin="0" aria-valuemax="100">'.$mark.'/100</div>
+        <div class="progress-bar progress-bar-striped" role="progressbar" style="width: '.$mark.'%" aria-valuenow="'.$mark.'" aria-valuemin="0" aria-valuemax="100">'.$note.'/5</div>
       </div>
       <a href = parcours.php?id='.$donnees['id'].'>
         <h3 class="my-3 w-100">'.$donnees['title'].'</h3>

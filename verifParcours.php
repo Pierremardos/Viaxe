@@ -190,7 +190,7 @@
  		}
 
 
- $title = $_POST['title'];
+ $title = htmlspecialchars($_POST['title']);
  if(!isset($title) | empty($title)){
    $error++;
    echo "Le titre n'a pas été rentré<br>";
@@ -221,10 +221,10 @@
    $_SESSION['departMinTrip'] = $_POST['departMin'];
  }
 
- $date = $_POST['date'] . " " . $_POST['departHour'] . ":" . $_POST['departMin'] . ":00";
+ $date = $_POST['date'] . " " . htmlspecialchars($_POST['departHour']) . ":" . htmlspecialchars($_POST['departMin']) . ":00";
  $duration = ($_POST['durationHour']*60) + $_POST['durationMin'];
 
- $city = $_POST['city'];
+ $city = htmlspecialchars($_POST['city']);
  if(!isset($city) | empty($city)){
    echo "La ville n'a pas été rentré<br>";
  }
@@ -240,7 +240,7 @@
    $_SESSION['countryTrip'] = $country;
  }
 
- $language = $_POST['language'];
+ $language = htmlspecialchars($_POST['language']);
  if(!isset($language) | empty($language)){
    echo "Les langues maîtrisés n'ont pas été rentré<br>";
  }
@@ -248,7 +248,7 @@
    $_SESSION['languageTrip'] = $language;
  }
 
- $price = $_POST['price'];
+ $price = htmlspecialchars($_POST['price']);
  if(!isset($price) | empty($price)){
    $error++;
    echo "Le prix n'a pas été rentré<br>";
@@ -265,11 +265,15 @@
  if($category == 2){
    $category = 'Culinaire';
  }
- else{
+ else if($category == 1){
    $category = 'Culturel';
  }
+ else{
+   echo "Erreur de type dans l'url";
+   $error++;
+ }
 
- $places = $_POST['place'];
+ $places = htmlspecialchars($_POST['place']);
  if(!isset($places) | empty($places)){
    $error++;
    echo "Le nombre de places n'a pas été rentré<br>";
@@ -278,7 +282,7 @@
    $_SESSION['placesTrip'] = $places;
  }
 
- $finalPrice = $_POST['finalPrice'];
+ $finalPrice = htmlspecialchars($_POST['finalPrice']);
  $_SESSION['oldNow'] = $now = strtotime("now") + 7200;
  $mail = $_SESSION['mail'];
 
@@ -350,7 +354,7 @@
      $accept = 1;
  }
 }
- $finalDate = $_POST['finalDate'] . " " . $_POST['finalHour'] . ":" . $_POST['finalMin'] . ":00";
+ $finalDate = $_POST['finalDate'] . " " . htmlspecialchars($_POST['finalHour']) . ":" . htmlspecialchars($_POST['finalMin']) . ":00";
 
 if(isset($date) | !empty($date)){
 
@@ -388,9 +392,9 @@ if($accept == 0 & $error == 0){
  }
 
 if($error == 0){
-   $content = $_POST['content'];
-   $content2 = $_POST['content2'];
-   $content3 = $_POST['content3'];
+   $content = htmlspecialchars($_POST['content']);
+   $content2 = htmlspecialchars($_POST['content2']);
+   $content3 = htmlspecialchars($_POST['content3']);
 
    $req = $bdd->prepare('INSERT INTO CONTENT (Picture, content, idTrip)
     VALUES ( :pic, :content, :id)');
