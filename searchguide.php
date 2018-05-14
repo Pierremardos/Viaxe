@@ -85,16 +85,15 @@ session_start();
           }
             echo '
             <div class="col-md-4 align-self-center bg-light">
-              <a href = seeProfil.php?id='.$row['id'].'>
+              <a href = seeProfil.php?id='.$row['id']."&role=g".'>
                 <img class="img-fluid d-block" width="350px" src="'.$row['picture'].'">
               </a>
               <div class="progress">
                 <div class="progress-bar progress-bar-striped" role="progressbar" style="width: '.$mark.'%" aria-valuenow="'.$mark.'" aria-valuemin="0" aria-valuemax="100">'.$note.'/5</div>
               </div>
-              <a href = seeProfil.php?id='.$id.'>
+              <a href = seeProfil.php?id='.$id."&role=g".'>
                 <h3 class="my-3 w-100">'.$row['pseudo'].'</h3>
               </a>
-              <p class="w-100">'.$row['pseudo'].'</p>
               <p class="w-100">'.$row['firstName'].', '.$genre.'</p>
             </div>
             ';
