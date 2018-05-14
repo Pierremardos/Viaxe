@@ -51,7 +51,7 @@ $dossier = 'images/guide/';
      echo $erreur;
    }
 
-   if(isset(basename($_FILES['avatar2']['name']))){
+   if($_POST['document'] == 1){
 
    $dossier2 = 'images/guide/docs/';
       $fichier = basename($_FILES['avatar2']['name']);
@@ -91,9 +91,6 @@ $dossier = 'images/guide/';
       {
         echo $erreur;
       }
-}
-
-   if(isset(basename($_FILES['avatar3']['name']))){
 
          $fichier = basename($_FILES['avatar3']['name']);
          $taille_maxi = 300000;
@@ -156,7 +153,7 @@ $dossier = 'images/guide/';
    $diploma = "ok";
  }
  else{
-   $diploma = "vide"
+   $diploma = "vide";
  }
 
 
