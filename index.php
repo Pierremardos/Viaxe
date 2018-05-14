@@ -13,9 +13,10 @@ include 'include/functions.php';
   <link rel="stylesheet" href="css/style1.css" type="text/css">
   <link rel="stylesheet" href="css/style2.css" type="text/css">
   <link rel="stylesheet" type="text/css" href="css/slider.css">
-  <link rel="icon" type="image/png" href="image/favicon.png" />
+  <link rel="icon" type="image/ico" href="image/favicon.ico" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </head>
 <body>
 	<?php
@@ -47,7 +48,7 @@ include 'include/functions.php';
           <div class="col-md-12">
             <h1 class="display-3 mb-4 text-primary">Qu'est ce que Viaxe ?</h1>
             <p class="lead mb-5">Viaxe est un site de recherche de parcours avec des thèmes plus ou moins variés. Les guides qui sont indépendants de nous, vont poster des parcours aux 4 coins de notre globe pour vous aider à le découvrir et le comprendre. Notre rôle est de
-            vous présenter ces parcours afin que vous puissez trouver celui qui correspond le plus à vos attentes. Bienvenue et bonne recherche.</p>
+            vous présenter ces parcours afin que vous puissiez trouver celui qui correspond le plus à vos attentes. Bienvenue et bonne recherche.</p>
           </div>
         </div>
       </div>

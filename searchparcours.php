@@ -43,6 +43,7 @@ session_start();
 <?php
 //initialisation des variables d'erreurs
     $erreurvide=0;
+    $now = strtotime("now") + 7200;
 
 
 //On verifie que l'utilisateur à bien rentré les données
@@ -50,7 +51,7 @@ session_start();
     if(!empty($_POST['city']))
 	{
     $city =$_POST['city'];
-    $prereq="SELECT * FROM trip WHERE city='$city'";
+    $prereq="SELECT * FROM trip WHERE city='$city' ";
 
     }
 
@@ -93,47 +94,44 @@ session_start();
 
 
 
-
+      echo '<div class="py-5">
+        <div class="container">
+          <div class="row">';
 
 
 	$requete=mysqli_query($con,$prereq);
-  echo "<div>";
+  
 	while($row = mysqli_fetch_array($requete))
 	{
-  echo "<div class='col-md-4 align-self-center bg-light'>";
 
-  //titre
-  echo "Title : ";
-  echo $row['title'];
-  echo "<br>";
-
-  //la photo
-  $picbdd=$row['picture'];
-  echo "<img class='img-fluid d-block' width='350px' src='".$picbdd."' alt=''/>";
-  echo "<br>";
-
-
-  //la ville
-  echo "Ville : ";
-	echo $row['city'];
-  echo "<br>";
-
-  //Pays
-  echo "Pays : ";
-	echo $row['country'];
-  echo "<br>";
-
-  //mark
+  $date =strtotime($row['date']);
+  $places = $row['places'];
+  $id = $row['id'];
   $mark = $row['mark'];
-  echo '<div class="progress-bar progress-bar-striped" role="progressbar" style="width: '.$mark.'%" aria-valuenow="'.$mark.'" aria-valuemin="0" aria-valuemax="100">'.$mark.'/100</div>';
 
+  if($date >= $now and $places > 0){
+    echo '
+    <div class="col-md-4 align-self-center bg-light">
+      <a href = parcours.php?id='.$row['id'].'>
+        <img class="img-fluid d-block" width="350px" src="'.$row['picture'].'">
+      </a>
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped" role="progressbar" style="width: '.$mark.'%" aria-valuenow="'.$mark.'" aria-valuemin="0" aria-valuemax="100">'.$mark.'/100</div>
+      </div>
+      <a href = parcours.php?id='.$id.'>
+        <h3 class="my-3 w-100">'.$row['title'].'</h3>
+      </a>
+      <p class="w-100">'.$row['price'].'€</p>
+      <p class="w-100">'.$row['city'].', '.$row['country'].'</p>
+    </div>
+    ';
+  }
 
-  echo "<br>";
-  echo "</div>";
-	}
-  echo "</div>";
+}
 
-
+echo '</div>
+</div>
+</div>';
 
 mysqli_free_result($requete);
 
