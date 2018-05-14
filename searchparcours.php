@@ -9,7 +9,7 @@ session_start();
 <html>
   <head>
     <meta charset="utf-8">
-    <titleRecherche</title>
+    <title>Recherche</title>
     <link rel="stylesheet" href="css/style1.css" type="text/css">
     <link rel="stylesheet" href="css/style2.css" type="text/css">
     <link rel="stylesheet" href="css/style3.css" type="text/css">
