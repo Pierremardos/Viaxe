@@ -51,9 +51,10 @@ session_start();
 
         if(!empty($_POST['guide']))
     	{
-        $guide =$_POST['guide'];
-        $prereq="SELECT * FROM GUIDE WHERE pseudo = : $guide";
-
+        $guide = $_POST['guide'];
+        $prereq=$bdd->prepare('SELECT * FROM GUIDE WHERE pseudo = :pseudo');
+        $prereq->bindValue(':pseudo',$guide, PDO::PARAM_STR);
+        $prereq->execute();
         }
 
 
@@ -67,46 +68,41 @@ session_start();
                   <div class="row">';
 
 
-        	$requete=mysqli_query($con,$prereq);
 
-        	while($row = mysqli_fetch_array($requete))
+
+        	while($row=$prereq->fetch())
         	{
 
-          $date =strtotime($row['date']);
+          $date = strtotime($row['age']);
           $id = $row['id'];
-          $mark = $row['mark'];
-          if ($row['genre']==1) {
+          $mark = $row['mark'] * 20;
+          $note = $row['mark'];
+          if ($row['gender']==1) {
             $genre = "Homme";
           }
           else {
             $genre = "Femme";
           }
-
-          if($date >= $now and $places > 0){
             echo '
             <div class="col-md-4 align-self-center bg-light">
               <a href = seeProfil.php?id='.$row['id'].'>
                 <img class="img-fluid d-block" width="350px" src="'.$row['picture'].'">
               </a>
               <div class="progress">
-                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: '.$mark.'%" aria-valuenow="'.$mark.'" aria-valuemin="0" aria-valuemax="100">'.$mark.'/100</div>
+                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: '.$mark.'%" aria-valuenow="'.$mark.'" aria-valuemin="0" aria-valuemax="100">'.$note.'/5</div>
               </div>
               <a href = seeProfil.php?id='.$id.'>
                 <h3 class="my-3 w-100">'.$row['pseudo'].'</h3>
               </a>
               <p class="w-100">'.$row['pseudo'].'</p>
-              <p class="w-100">'.$row['firstName'].', '.$gendre.'</p>
+              <p class="w-100">'.$row['firstName'].', '.$genre.'</p>
             </div>
             ';
-          }
-
         }
 
         echo '</div>
         </div>
         </div>';
-
-        mysqli_free_result($requete);
 
         ?>
         </body>
