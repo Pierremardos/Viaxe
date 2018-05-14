@@ -51,7 +51,7 @@ $dossier = 'images/guide/';
      echo $erreur;
    }
 
-   if($_POST['document'] == 1){
+   if($_POST['documents'] == 1){
 
    $dossier2 = 'images/guide/docs/';
       $fichier = basename($_FILES['avatar2']['name']);

@@ -47,7 +47,7 @@ session_start();
         $now = strtotime("now") + 7200;
 
 
-    //On verifie que l'utilisateur à bien rentré les données
+    //On check si il a rentré un guide
 
         if(!empty($_POST['guide']))
     	{
@@ -55,6 +55,7 @@ session_start();
         $prereq="SELECT * FROM GUIDE WHERE pseudo = : $guide";
 
         }
+
 
 
               $con = mysqli_connect("localhost","root","","viaxe");
