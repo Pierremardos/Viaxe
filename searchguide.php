@@ -47,7 +47,11 @@ session_start();
         $now = strtotime("now") + 7200;
 
 
+<<<<<<< HEAD
     //On check si il a rentré un guide
+=======
+    //On verifie que l'utilisateur à bien rentré les données
+>>>>>>> 4b2ba61eadfdb18265d66f73efd52707ac043483
 
         if(!empty($_POST['guide']))
     	{
@@ -57,7 +61,10 @@ session_start();
         }
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4b2ba61eadfdb18265d66f73efd52707ac043483
               $con = mysqli_connect("localhost","root","","viaxe");
 
 

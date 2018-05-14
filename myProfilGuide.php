@@ -69,7 +69,7 @@ include 'include/functions.php';
           <br>Date de naissance : '.$donnees['age'].'
           <br>Langues : '.$donnees['languages'].'
           <div class="form-group">
-          <label>Nouvel photo de profil :</label>
+          <label>Nouvelle photo de profil :</label>
           <input type="hidden" name="MAX_FILE_SIZE" value="250000">
           <input type="file" name="avatar">
           </label>
