@@ -55,11 +55,6 @@ session_start();
 
     }
 
-    if(!empty($_POST['guide']))
-	{
-
-    }
-
 	if(empty($_POST['prix']))
 	{
         $erreurvide++;
@@ -100,7 +95,7 @@ session_start();
 
 
 	$requete=mysqli_query($con,$prereq);
-  
+
 	while($row = mysqli_fetch_array($requete))
 	{
 

@@ -60,12 +60,10 @@ include 'include/functions.php';
 				<br>
 				<br>
 
-        Recherche par ville ou pays :
-				<input type="search" name="city" placeholder="Recherche par Ville ou par pays">
+        Recherche par ville :
+				<input type="search" name="city" placeholder="Recherche par Ville">
         <br>
-        Recherche par guide :
-        <input type="search" name="guide" placeholder="Recherche par guide">
-				<br>
+
 				<br>
         <p id="price">Prix : 250</p>
 
@@ -99,7 +97,15 @@ include 'include/functions.php';
 			  <br>
 				<br>
 				<br>
-				<input type="submit" value="Recherche" readonly style="margin-left: 1030px;">
+				<input type="submit" value="Recherche de parcours" readonly style="margin-left: 75%;">
+			</form>
+			<br>
+			<br>
+			<form action="searchguide.php" method="post">
+				Recherche par guide :
+				<input type="search" name="guide" placeholder="Recherche par guide">
+				<input type="submit" value="Recherche de guide" readonly style="margin-left: 75%;">
+				<br>
 			</form>
 		</div>
 <?php
