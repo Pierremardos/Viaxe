@@ -48,7 +48,7 @@ include 'include/functions.php';
           <div class="col-md-12">
             <h1 class="display-3 mb-4 text-primary">Qu'est ce que Viaxe ?</h1>
             <p class="lead mb-5">Viaxe est un site de recherche de parcours avec des thèmes plus ou moins variés. Les guides qui sont indépendants de nous, vont poster des parcours aux 4 coins de notre globe pour vous aider à le découvrir et le comprendre. Notre rôle est de
-            vous présenter ces parcours afin que vous puissez trouver celui qui correspond le plus à vos attentes. Bienvenue et bonne recherche.</p>
+            vous présenter ces parcours afin que vous puissiez trouver celui qui correspond le plus à vos attentes. Bienvenue et bonne recherche.</p>
           </div>
         </div>
       </div>
@@ -60,12 +60,10 @@ include 'include/functions.php';
 				<br>
 				<br>
 
-        Recherche par ville ou pays :
-				<input type="search" name="city" placeholder="Recherche par Ville ou par pays">
+        Recherche par ville :
+				<input type="search" name="city" placeholder="Recherche par Ville">
         <br>
-        Recherche par guide :
-        <input type="search" name="guide" placeholder="Recherche par guide">
-				<br>
+
 				<br>
         <p id="price">Prix : 250</p>
 
@@ -99,7 +97,15 @@ include 'include/functions.php';
 			  <br>
 				<br>
 				<br>
-				<input type="submit" value="Recherche" readonly style="margin-left: 1030px;">
+				<input type="submit" value="Recherche de parcours" readonly style="margin-left: 75%;">
+			</form>
+			<br>
+			<br>
+			<form action="searchguide.php" method="post">
+				Recherche par guide :
+				<input type="search" name="guide" placeholder="Recherche par guide">
+				<input type="submit" value="Recherche de guide" readonly style="margin-left: 75%;">
+				<br>
 			</form>
 		</div>
 <?php
@@ -112,6 +118,7 @@ include 'include/functions.php';
   {
     $places = $donnees['places'];
     $mark = $donnees['mark'] * 20;
+		$note = round ($donnees['mark'], $precision = 1);
     $date = strtotime($donnees['date']);
     if($date - $now <= 86400 & $date - $now > 0 & $count < 2 & $places > 0){
       echo'
@@ -136,7 +143,7 @@ include 'include/functions.php';
               <img class="img-fluid d-block" width="350px" src="'.$donnees['picture'].'">
             </a>
             <div class="progress">
-              <div class="progress-bar progress-bar-striped" role="progressbar" style="width: '.$mark.'%" aria-valuenow="'.$mark.'" aria-valuemin="0" aria-valuemax="100">'.$mark.'/100</div>
+              <div class="progress-bar progress-bar-striped" role="progressbar" style="width: '.$mark.'%" aria-valuenow="'.$mark.'" aria-valuemin="0" aria-valuemax="100">'.$note.'/5</div>
             </div>
             <a href = parcours.php?id='.$donnees['id'].'>
               <h3 class="my-3 w-100">'.$donnees['title'].'</h3>
@@ -157,6 +164,7 @@ include 'include/functions.php';
           $places = $donnees['places'];
           $date = strtotime($donnees['date']);
           $mark = $donnees['mark'] * 20;
+					$note = round ($donnees['mark'], $precision = 1);
           if($date > $now & $count < 2 & $places > 0){
             echo'
         </div>
@@ -185,7 +193,7 @@ include 'include/functions.php';
               <img class="img-fluid d-block" src="'.$donnees['picture'].'">
               </a>
               <div class="progress">
-                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: '.$mark.'%" aria-valuenow="'.$mark.'" aria-valuemin="0" aria-valuemax="100">'.$mark.'/100</div>
+                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: '.$mark.'%" aria-valuenow="'.$mark.'" aria-valuemin="0" aria-valuemax="100">'.$note.'/5</div>
               </div>
               <a href = parcours.php?id='.$donnees['id'].'>
               <h3 class="my-3 w-100">'.$donnees['title'].'</h3>
@@ -204,6 +212,7 @@ include 'include/functions.php';
           {
             $places = $donnees['places'];
             $mark = $donnees['mark'] * 20;
+						$note = round ($donnees['mark'], $precision = 1);
             $date = strtotime($donnees['date']);
             if($date > $now & $count < 2 & $places > 0){
               echo'
@@ -233,7 +242,7 @@ include 'include/functions.php';
         <img class="img-fluid d-block" src="'.$donnees['picture'].'">
       </a>
       <div class="progress">
-        <div class="progress-bar progress-bar-striped" role="progressbar" style="width: '.$mark.'%" aria-valuenow="'.$mark.'" aria-valuemin="0" aria-valuemax="100">'.$mark.'/100</div>
+        <div class="progress-bar progress-bar-striped" role="progressbar" style="width: '.$mark.'%" aria-valuenow="'.$mark.'" aria-valuemin="0" aria-valuemax="100">'.$note.'/5</div>
       </div>
       <a href = parcours.php?id='.$donnees['id'].'>
         <h3 class="my-3 w-100">'.$donnees['title'].'</h3>

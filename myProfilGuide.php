@@ -54,7 +54,7 @@ include 'include/functions.php';
         <div class="col-md-5 order-2 order-md-1">
           <img class="img-fluid d-block" src="'.$donnees['picture'].'" width="400px"> </div>
         <div class="col-md-7 order-1 order-md-2">
-          <h3>'.$donnees['lastName'].' '.$donnees['firstName'].' &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;'.$donnees['mark'].'/5 &nbsp;</h3>
+          <h3>'.$donnees['lastName'].' '.$donnees['firstName'].' &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;'.$note = round ($donnees['mark'], $precision = 1).'/5 &nbsp;</h3>
           <br>Sexe : ';?>
           <?php if($donnees['gender']==1){
             echo "Homme";
@@ -69,7 +69,7 @@ include 'include/functions.php';
           <br>Date de naissance : '.$donnees['age'].'
           <br>Langues : '.$donnees['languages'].'
           <div class="form-group">
-          <label>Nouvel photo de profil :</label>
+          <label>Nouvelle photo de profil :</label>
           <input type="hidden" name="MAX_FILE_SIZE" value="250000">
           <input type="file" name="avatar">
           </label>
@@ -94,18 +94,21 @@ include 'include/functions.php';
               <input type="text" class="form-control w-50" name="newPhone"" value="'.$donnees['phone'].'">
               <small class="form-text text-muted"></small>
           </div>';
-          if($donnees['diploma'] != "ok"){
+          if($donnees['diploma'] == "ok" | $donnees['diploma'] == "envoie" ){
+          }
+          else{
           echo'
           <div class="form-group">
               <label>Ajouter un diplôme :</label>
-              <input type="hidden" name="MAX_FILE_SIZE" value="250000">
               <input type="file" name="avatar2">
+              <input type="hidden" name="MAX_FILE_SIZE" value="250000">
           </div>
           <div class="form-group">
               <label>Papier d identité à fournir avec le diplôme :</label>
-              <input type="hidden" name="MAX_FILE_SIZE" value="250000">
               <input type="file" name="avatar3">
-          </div>';
+              <input type="hidden" name="MAX_FILE_SIZE" value="250000">
+          </div>
+            ';
         }
         echo'
         </div>
@@ -144,20 +147,13 @@ include 'include/functions.php';
 
  $query->closeCursor();
 
- $query=$bdd->prepare('SELECT * FROM TRIP WHERE mailGuide = :mail');
+ $query=$bdd->prepare('SELECT * FROM TRIP WHERE mailGuide = :mail ORDER BY date DESC');
  $query->bindValue(':mail',$mail, PDO::PARAM_STR);
  $query->execute();
  $count = 0;
 
-
-
-
  while($donnees = $query->fetch())
  {
-   $rep=$bdd->prepare('SELECT * FROM CONTENT WHERE idTrip = :id');
-   $rep->bindValue(':id',$donnees['id'], PDO::PARAM_STR);
-   $rep->execute();
-   $data = $rep->fetch();
  ?>
 
  <?php
@@ -170,7 +166,6 @@ include 'include/functions.php';
            <a href = parcours.php?id='.$donnees['id'].'>
            <h3>'.$donnees['title'].'</h3>
            </a>
-           <p class="my-3">'.$data['content'].'</p>
          </div>
          <div class="col-md-5">
            <a href = parcours.php?id='.$donnees['id'].'>
@@ -193,7 +188,6 @@ include 'include/functions.php';
        <a href = parcours.php?id='.$donnees['id'].'>
            <h3>'.$donnees['title'].'</h3>
          </a>
-         <p class="my-3">'.$data['content'].'</p>
          </div>
      </div>
    </div>

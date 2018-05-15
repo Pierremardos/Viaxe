@@ -58,7 +58,6 @@ echo '
           <a href = parcours.php?id='.$data['id'].'>
           <h3>'.$data['title'].'</h3>
           </a>
-          <p class="my-3">'.$data['content'].'</p>
         </div>
         <div class="col-md-5">
           <a href = parcours.php?id='.$data['id'].'>
@@ -81,7 +80,6 @@ echo '
       <a href = parcours.php?id='.$data['id'].'>
           <h3>'.$data['title'].'</h3>
         </a>
-        <p class="my-3">'.$data['content'].'</p>
         </div>
     </div>
   </div>

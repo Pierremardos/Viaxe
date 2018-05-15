@@ -3,14 +3,36 @@
   include 'include/config.php';
   include 'include/functions.php';
 
+  if(!isset($_POST['date']) | empty($_POST['date'])){
+     echo "La date de départ n'a pas été rentré<br>";
+  }
+  if($_POST['departHour'] > 23 | $_POST['departHour'] < 0){
+      echo "Le format de l'heure de départ n'est pas valide<br>";
+  }
+  else if(!isset($_POST['departHour']) | empty($_POST['departHour'])){
+    $_POST['departHour'] = 0;
+  }
+  else{
+    $_SESSION['departHourTrip'] = $_POST['departHour'];
+  }
+  if($_POST['departMin'] > 59 | $_POST['departMin'] < 0){
+    echo "Le format des minutes de l'heure de départ n'a pas été rentré<br>";
+  }
+  else if(!isset($_POST['departMin']) | empty($_POST['departMin'])){
+    $_POST['departMin'] = 0;
+  }
+  else{
+    $_SESSION['departMinTrip'] = $_POST['departMin'];
+  }
+$date = $_POST['date'] . " " . htmlspecialchars($_POST['departHour']) . ":" . htmlspecialchars($_POST['departMin']) . ":00";
 
-$date = $_POST['date'] . " " . $_POST['departHour'] . ":" . $_POST['departMin'] . ":00";
-$language = $_POST['language'];
-$price = $_POST['price'];
-$places = $_POST['place'];
-$finalPrice = $_POST['finalPrice'];
-$finalDate = $_POST['finalDate'] . " " . $_POST['finalHour'] . ":" . $_POST['finalMin'] . ":00";
-$id = $_GET['id'];
+
+$language = htmlspecialchars($_POST['language']);
+$price = htmlspecialchars($_POST['price']);
+$places = htmlspecialchars($_POST['place']);
+$finalPrice = htmlspecialchars($_POST['finalPrice']);
+$finalDate = $_POST['finalDate'] . " " . htmlspecialchars($_POST['finalHour']) . ":" . htmlspecialchars($_POST['finalMin']) . ":00";
+$id = htmlspecialchars($_GET['id']);
 
 $query=$bdd->prepare('SELECT *
 FROM TRIP WHERE id = :id');
@@ -56,7 +78,7 @@ $req->execute(array(
 
   $rep = $bdd->prepare('UPDATE TRIP SET statut = :statut WHERE id = :id');
   $rep->execute(array(
-    "statut"=>"dead",
+    "statut"=>"old",
     "id"=>$id
     ));
 

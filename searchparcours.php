@@ -9,7 +9,7 @@ session_start();
 <html>
   <head>
     <meta charset="utf-8">
-    <titleRecherche</title>
+    <title>Recherche</title>
     <link rel="stylesheet" href="css/style1.css" type="text/css">
     <link rel="stylesheet" href="css/style2.css" type="text/css">
     <link rel="stylesheet" href="css/style3.css" type="text/css">
@@ -45,52 +45,106 @@ session_start();
     $erreurvide=0;
     $now = strtotime("now") + 7200;
 
+    //varriable de $bdd
+    $cityCount = 0;
+    $categorieCount = 0;
+    $langageCount = 0;
+    $prixCount = 0;
+    $placeCount = 0;
+    $dateCount = 0;
 
 //On verifie que l'utilisateur à bien rentré les données
 
     if(!empty($_POST['city']))
 	{
     $city =$_POST['city'];
-    $prereq="SELECT * FROM trip WHERE city='$city' ";
-
+    $cityCount++;
     }
 
-    if(!empty($_POST['guide']))
+	if(!empty($_POST['prix']))
 	{
-
-    }
-
-	if(empty($_POST['prix']))
-	{
-        $erreurvide++;
+      $prix = $_POST['prix'];
+      $prixCount++;
     }
 
 	if(!empty($_POST['place']))
 	{
-    //$place =$_POST['place'];
-    //$prereq="SELECT * FROM trip WHERE place>='$place'";
+    $place =$_POST['place'];
+    $placeCount ++;
     }
 
-	if(empty($_POST['date']))
+	if(!empty($_POST['date']))
 	{
-        $erreurvide++;
+      $date = $_POST['date'];
+      $dateCount ++;
     }
 
-	  if(empty($_POST['categorie']))
+	  if(!empty($_POST['categorie']))
 	{
-        $erreurvide++;
+    $categorie =$_POST['categorie'];
+    $categorieCount ++;
     }
 
 	  if(empty($_POST['langage']))
 	{
-        $erreurvide++;
+      $langage =$_POST['langage'];
+      $langageCount++;
     }
 
+  // commande SQL sachant que la catégorie, le prix et les places sont automatiquement définie
+
+  //si un des trois est définie
+  if ($cityCount !=0 || $langageCount !=0 || $dateCount !=0) {
+    //si la ville est mise
+    if ($cityCount !=0 ) {
+      //ville + langue
+      if ($langageCount !=0) {
+        $prereq=$bdd->prepare("SELECT * FROM trip WHERE category=:categorie AND price > :prix AND places > :place AND city = :city AND languages = :langage");
+        $prereq->execute(array( "categorie"=>$categorie, "prix"=>$prix, "place"=>$place, "city"=>$city, "langage"=>$langage));
+      }
+      //ville + date
+      else if ($dateCount !=0) {
+        $prereq=$bdd->prepare("SELECT * FROM trip WHERE category= :categorie AND price > ':prix AND places > :place AND city = :city AND date >:date");
+        $prereq->execute(array( "categorie"=>$categorie, "prix"=>$prix, "place"=>$place, "city"=>$city, "date"=>$date));
+      }
+      else if ($dateCount == 0 && $langageCount == 0){
+        $prereq=$bdd->prepare("SELECT * FROM trip WHERE category= :categorie AND price > :prix AND places > :place AND city = :city");
+        $prereq->execute(array( "categorie"=>$categorie, "prix"=>$prix, "place"=>$place, "city"=>$city));
+      }
+    }
+    //si la langue est mise
+    else if ($langageCount !=0 ) {
+      if ($dateCount == 0 && $cityCount == 0){
+        $prereq=$bdd->prepare("SELECT * FROM trip WHERE category=:categorie AND price > :prix AND places > :place AND languages = :langage");
+        $prereq->execute(array( "categorie"=>$categorie, "prix"=>$prix, "place"=>$place, "langage"=>$langage));
+      }
+    }
+
+    //si la date est mise
+    else if ($dateCount != 0) {
+      //date + langue
+      if ($langageCount !=0) {
+        $prereq=$bdd->prepare("SELECT * FROM trip WHERE category=:categorie AND price > :prix AND places > :place AND languages = :langage AND date >:date");
+        $prereq->execute(array( "categorie"=>$categorie, "prix"=>$prix, "place"=>$place, "langage"=>$langage, "date"=>$date));
+      }
+      else if ($cityCount == 0 && $langageCount == 0){
+        $prereq=$bdd->prepare("SELECT * FROM trip WHERE category= :categorie AND price > :prix AND places > :place AND date > :date");
+        $prereq->execute(array( "categorie"=>$categorie, "prix"=>$prix, "place"=>$place, "date"=>$date));
+      }
+    }
+    //si tous est définie
+    else if ($cityCount !=0 && $langageCount !=0  && $dateCount != 0) {
+      $prereq=$bdd->prepare("SELECT * FROM trip WHERE category=:categorie AND price > :prix AND places > :place AND city = :city AND languages = :langage AND date > :date");
+      $prereq->execute(array( "categorie"=>$categorie, "prix"=>$prix, "place"=>$place, "date"=>$date, "city"=>$city, "langage"=>$langage));
+    }
+  }
+  // si il y a juste la base
+  else{
+    $prereq=$bdd->prepare("SELECT * FROM trip WHERE category= :categorie AND price > :prix AND places > :place");
+    $prereq->execute(array( "categorie"=>$categorie, "prix"=>$prix, "place"=>$place));
+  }
 //Une fois la vérification efféctué on se connecte à la base de données
 
-
-
-      $con = mysqli_connect("localhost","root","","viaxe");
 
 
 
@@ -99,9 +153,9 @@ session_start();
           <div class="row">';
 
 
-	$requete=mysqli_query($con,$prereq);
-  
-	while($row = mysqli_fetch_array($requete))
+
+
+	while($row=$prereq->fetch())
 	{
 
   $date =strtotime($row['date']);
@@ -133,7 +187,6 @@ echo '</div>
 </div>
 </div>';
 
-mysqli_free_result($requete);
 
 ?>
 </body>

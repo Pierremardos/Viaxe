@@ -69,7 +69,7 @@ if($now >= $date){
           <h1 class="display-3 mb-4 text-light">'.$donnees['title'].'
             <br> </h1>
           <h1 class="text-light">
-            <b>'.$donnees['mark'].'/5</b>
+            <b>'.$note = round ($donnees['mark'], $precision = 1).'/5</b>
           </h1>
         </div>
       </div>
@@ -84,6 +84,16 @@ if($now >= $date){
   $minutes = $donnees['duration'] %60;
   $hour = ($donnees['duration'] - $minutes )/60;
 
+  $req=$bdd->prepare('SELECT * FROM PARTICIPANT WHERE idTrip = :id');
+  $req->bindValue(':id',$_GET['id'], PDO::PARAM_STR);
+  $req->execute();
+  while($dataInscrit = $req->fetch()){
+    if(isset($_SESSION['mail'])){
+  if($dataInscrit['mailCustomer'] == $_SESSION['mail']){
+    $particip = 2;
+  }
+}
+}
 $data = $rep->fetch();
 
   echo
@@ -94,8 +104,8 @@ $data = $rep->fetch();
           <a href="seeProfil.php?id='.$data['id'].'&role=g">
           <img class="img-fluid d-block" src="'.$data['picture'].'"> </div>
         <div class="col-md-7 order-1 order-md-2">
-          <h3>Organisé par '.$data['pseudo'].' </a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; '.$data['mark'].'/5</h3>
-          <p class="my-3">Date de naissance : '.$data['age'].'
+          <h3>Organisé par '.$data['pseudo'].' </a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; '.$note = round ($data['mark'], $precision = 1).'/5</h3>
+            <p class="my-3">Date de naissance : '.$data['age'].'
             <br>Langues : '.$data['languages'].'
             <br>Téléphone :&nbsp '.$data['phone'].'
             <br>Mail :&nbsp '.$data['mail'].'
@@ -133,7 +143,7 @@ $data = $rep->fetch();
             <br>Categorie : '.$donnees['category'].'
             <br>Places restantes : '.$donnees['places'].'
             <br>Langues utilisés : '.$donnees['languages'].'';
-              if($particip = 1 & $date > $now){
+              if($particip == 1 & $date > $now){
                 echo '<br>
                 <a href="inscriptionParcours.php?id='.$_GET['id'].'""> Participer </a>
                 </p>';
@@ -150,39 +160,61 @@ $data = $rep->fetch();
   $count = 0;
   while($donnees = $req->fetch()){
 
-    if($count % 3 == 0){
+    if($count % 3 == 0 & $count < 3){
 echo '
     <div class="container">
       <div class="row mb-5">
+      ';
+      if(isset($donnees['content']) & !empty($donnees['content'])){
+      echo'
         <div class="col-md-7">
           <p class="text-justify">'.$donnees['content'].'</p>
         </div>
+        ';
+      }
+      if(isset($donnees['Picture']) & !empty($donnees['Picture'])){
+        echo'
         <div class="col-md-5 align-self-center">
           <img class="img-fluid d-block w-100 img-thumbnail" src="'.$donnees['Picture'].'"> </div>
       </div>';
+    }
       $count++;
     }
-    else if($count % 3 == 1){
-      echo'<div class="row">
+    else if($count % 3 == 1 & $count < 3){
+      echo'<div class="row">';
+        if(isset($donnees['Picture']) & !empty($donnees['Picture'])){
+          echo'
         <div class="col-md-5">
-          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="'.$donnees['Picture'].'"> </div>
-        <div class="col-md-7">
+          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="'.$donnees['Picture'].'"> </div>';
+        }
+          if(isset($donnees['content']) & !empty($donnees['content'])){
+          echo'<div class="col-md-7">
           <p class="text-justify">'.$donnees['content'].'</p>
-        </div>
+        </div>';
+      }
+      echo'
       </div>
     </div>';
     $count++;
   }
-    else{
+    else if ($count % 3 == 2 & $count < 3){
       echo'
     <div class="container">
       <div class="row mb-5 my-5">
+      ';
+      if(isset($donnees['content']) & !empty($donnees['content'])){
+      echo'
         <div class="col-md-7">
           <p class="text-justify">'.$donnees['content'].'</p>
-        </div>
+        </div>';
+        }
+        if(isset($donnees['Picture']) & !empty($donnees['Picture'])){
+          echo'
         <div class="col-md-5 align-self-center">
           <img class="img-fluid d-block w-100 img-thumbnail" src="'.$donnees['Picture'].'"> </div>
-      </div>
+      </div>';
+    }
+    echo'
     </div>
   </div>';
   $count++;
@@ -263,7 +295,10 @@ echo'
                 <small class="form-text text-muted"></small>
             </div>
             <input type="submit" value="Envoyer">
-            </form>';
+            </form>
+          </div>
+        </div>
+      </div>';
   }
 }
     ?>
@@ -286,9 +321,22 @@ echo'
          <a href="seeProfil.php?id='.$data['id'].'&role=c">
          <img class="img-fluid d-block" src="'.$data['picture'].'" width="150px"> </div>
        <div class="col-md-7 order-1 order-md-2">
-         <h3>'.$data['pseudo'].' </a> <br> '.$donnees['mark'].'/5
+         <h4>'.$data['pseudo'].' </a> <br> '.$note = round ($donnees['mark'], $precision = 1).'/5
            <br>
-         </h3>
+         </h4>';
+         if($data['level'] >= 100 & $data['level'] < 200){
+           echo'Premiers pas';
+         }
+         else if($data['level'] >= 200 & $data['level'] < 300){
+           echo'Nouveau marcheur';
+         }
+         else if($data['level'] >= 300 & $data['level'] < 400){
+           echo'Aventurier';
+         }
+         else{
+           echo"Marcheur de l'extrême";
+         }
+         echo'
          <p class="">'.$donnees['timeComment'].'</p>
        </div>
      </div>

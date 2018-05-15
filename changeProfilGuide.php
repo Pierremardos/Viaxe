@@ -12,9 +12,10 @@ $query->bindValue(':mail',$_SESSION['mail'], PDO::PARAM_STR);
 $query->execute();
 $data=$query->fetch();
 
+if(!empty($_FILES['avatar']['name'])){
 $dossier = 'images/guide/';
    $fichier = basename($_FILES['avatar']['name']);
-   $taille_maxi = 1000000;
+   $taille_maxi = 300000;
    $taille = filesize($_FILES['avatar']['tmp_name']);
    $extensions = array('.png', '.gif', '.jpg', '.jpeg');
    $extension = strrchr($_FILES['avatar']['name'], '.');
@@ -37,6 +38,7 @@ $dossier = 'images/guide/';
      if(move_uploaded_file($_FILES['avatar']['tmp_name'], $dossier . $fichier)) //correct si la fonction renvoie TRUE
      {
        echo 'Upload effectué avec succès !';
+       $profil = 10;
        rename($dossier . $fichier, $dossier . $_SESSION['mail'].".jpeg");
        //ajout_image($fichier,);
      }
@@ -49,12 +51,13 @@ $dossier = 'images/guide/';
    {
      echo $erreur;
    }
+ }
 
-   if($data['diploma'] != "ok"){
+   if(!empty($_FILES['avatar2']['name']) & !empty($_FILES['avatar3']['name'])){
 
    $dossier2 = 'images/guide/docs/';
       $fichier = basename($_FILES['avatar2']['name']);
-      $taille_maxi = 1000000;
+      $taille_maxi = 300000;
       $taille = filesize($_FILES['avatar2']['tmp_name']);
       $extensions = array('.png', '.gif', '.jpg', '.jpeg');
       $extension = strrchr($_FILES['avatar2']['name'], '.');
@@ -77,6 +80,7 @@ $dossier = 'images/guide/';
         if(move_uploaded_file($_FILES['avatar2']['tmp_name'], $dossier2 . $fichier)) //correct si la fonction renvoie TRUE
         {
           echo 'Upload effectué avec succès !';
+          $dip = $dip + 5;
           rename($dossier2 . $fichier, $dossier2 . $_SESSION['mail'] . "dip.jpeg");
           //ajout_image($fichier,);
         }
@@ -90,9 +94,8 @@ $dossier = 'images/guide/';
         echo $erreur;
       }
 
-
          $fichier = basename($_FILES['avatar3']['name']);
-         $taille_maxi = 1000000;
+         $taille_maxi = 300000;
          $taille = filesize($_FILES['avatar3']['tmp_name']);
          $extensions = array('.png', '.gif', '.jpg', '.jpeg');
          $extension = strrchr($_FILES['avatar3']['name'], '.');
@@ -115,6 +118,7 @@ $dossier = 'images/guide/';
            if(move_uploaded_file($_FILES['avatar3']['tmp_name'], $dossier2 . $fichier)) //correct si la fonction renvoie TRUE
            {
              echo 'Upload effectué avec succès !';
+             $dip = $dip + 10;
              rename($dossier2 . $fichier, $dossier2 . $_SESSION['mail'] . "cni.jpeg");
              //ajout_image($fichier,);
            }
@@ -131,24 +135,23 @@ $dossier = 'images/guide/';
        }
 
 
-   $pseudo = $_POST['newPseudo'];
-   $phone = $_POST['newPhone'];
-   $content = $_POST['newContent'];
+   $pseudo = htmlspecialchars($_POST['newPseudo']);
+   $phone = htmlspecialchars($_POST['newPhone']);
+   $content = htmlspecialchars($_POST['newContent']);
    $password = chiffer($_POST['newPassword']);
    $confirm = chiffer($_POST['confirmNewPassword']);
 
-   if($profil == 0){
-      $picture = "/Viaxe/images/guide/".$_SESSION['mail'] . ".jpeg";
-   }
-   else{
-      $picture = "/Viaxe/images/guide/unknow.jpeg";
-   }
 
-   if($data['diploma'] != "ok"){
+   $picture = "/Viaxe/images/guide/".$_SESSION['mail'] . ".jpeg";
+
+   if($data['diploma'] != "ok" & $dip == 15){
    $diploma = "envoie";
  }
- else{
+ else if($data['diploma'] == "ok"){
    $diploma = "ok";
+ }
+ else{
+   $diploma = "vide";
  }
 
 
@@ -205,7 +208,7 @@ $dossier = 'images/guide/';
      "mail"=>$_SESSION['mail']
      ));
 
-     header('Location:myProfilGuide.php');
+    header('Location:myProfilGuide.php');
 
    }
  }

@@ -30,9 +30,9 @@
     $particip = 0;
   }
 
-  $comment = $_POST['comment'];
-  $mark = $_POST['mark'];
-  $id = $_GET['id'];
+  $comment = htmlspecialchars($_POST['comment']);
+  $mark = htmlspecialchars($_POST['mark']);
+  $id = htmlspecialchars($_GET['id']);
   $mail  = $_SESSION['mail'];
 
   $query=$bdd->prepare('SELECT idTrip
