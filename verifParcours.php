@@ -257,6 +257,7 @@
 
  $language = htmlspecialchars($_POST['language']);
  if(!isset($language) | empty($language)){
+   $error++;
    echo "Les langues maîtrisés n'ont pas été rentré<br>";
  }
  else{
@@ -315,7 +316,7 @@
  }
 
  $max = strtotime($date);
- if($max - $now < 36000 | $max - $now > 2678400){
+ if($max - $now < 36000 | $max - $now > 5356800){
    $error++;
    echo "La date du parcours est inférieur à la date actuelle ou trop loin dans la temps<br>";
  }
@@ -323,6 +324,21 @@
    $error++;
    echo "La date du parcours n'a pas été rentrée <br>";
  }
+
+ $finalDate = $_POST['finalDate'] . " " . htmlspecialchars($_POST['finalHour']) . ":" . htmlspecialchars($_POST['finalMin']) . ":00";
+
+if(isset($date) | !empty($date)){
+
+ $reduc = strtotime($finalDate);
+
+ if(isset($reduc) | !empty($reduc)){
+ if($max < $reduc){
+    $error++;
+     echo "La date de réduction s'applique après le parcours<br>";
+ }
+}
+}
+
 
  if($finalPrice != 0 | $_POST['finalHour'] != 0 | $_POST['finalMin'] != 0){
    if(!isset($finalPrice) | !isset($_POST['finalDate']) | empty($_POST['finalDate'])){
@@ -368,19 +384,6 @@
      ));
      $accept = 1;
  }
-}
- $finalDate = $_POST['finalDate'] . " " . htmlspecialchars($_POST['finalHour']) . ":" . htmlspecialchars($_POST['finalMin']) . ":00";
-
-if(isset($date) | !empty($date)){
-
- $reduc = strtotime($finalDate);
-
- if(isset($reduc) | !empty($reduc)){
- if($max < $reduc){
-    $error++;
-     echo "La date de réduction s'applique après le parcours<br>";
- }
-}
 }
 
 if($accept == 0 & $error == 0){
