@@ -192,6 +192,6 @@ include 'include/functions.php';
 					}
 	 }
 
-	//header("Location:index.php");
+
 	//exit;
 ?>
