@@ -142,6 +142,8 @@ $req->execute(array(
   "diploma"=>$_POST['diploma']
   ));
 
+}else if($_SESSION['mail'] == 'quentin.clodion@gmail.com' | $_SESSION['mail'] =='jonasnizard@gmail.com' | $_SESSION['mail'] == 'thomas.ddt@hotmail.fr'){
+  header("location: backOffice/backOfficeGuides.php");
 }
 
 else
