@@ -99,23 +99,23 @@ session_start();
     if ($cityCount !=0 ) {
       //ville + langue
       if ($langageCount !=0) {
-        $prereq=$bdd->prepare("SELECT * FROM trip WHERE category=:categorie AND price = :prix AND places = :place AND city = :city AND languages = :langage");
+        $prereq=$bdd->prepare("SELECT * FROM trip WHERE category=:categorie AND price > :prix AND places > :place AND city = :city AND languages = :langage");
         $prereq->execute(array( "categorie"=>$categorie, "prix"=>$prix, "place"=>$place, "city"=>$city, "langage"=>$langage));
       }
       //ville + date
       else if ($dateCount !=0) {
-        $prereq=$bdd->prepare("SELECT * FROM trip WHERE category= :categorie AND price = ':prix AND places = :place AND city = :city AND date >:date");
+        $prereq=$bdd->prepare("SELECT * FROM trip WHERE category= :categorie AND price > ':prix AND places > :place AND city = :city AND date >:date");
         $prereq->execute(array( "categorie"=>$categorie, "prix"=>$prix, "place"=>$place, "city"=>$city, "date"=>$date));
       }
       else if ($dateCount == 0 && $langageCount == 0){
-        $prereq=$bdd->prepare("SELECT * FROM trip WHERE category= :categorie AND price = :prix AND places = :place AND city = :city");
+        $prereq=$bdd->prepare("SELECT * FROM trip WHERE category= :categorie AND price > :prix AND places > :place AND city = :city");
         $prereq->execute(array( "categorie"=>$categorie, "prix"=>$prix, "place"=>$place, "city"=>$city));
       }
     }
     //si la langue est mise
     else if ($langageCount !=0 ) {
       if ($dateCount == 0 && $cityCount == 0){
-        $prereq=$bdd->prepare("SELECT * FROM trip WHERE category=:categorie AND price = :prix AND places = :place AND languages = :langage");
+        $prereq=$bdd->prepare("SELECT * FROM trip WHERE category=:categorie AND price > :prix AND places > :place AND languages = :langage");
         $prereq->execute(array( "categorie"=>$categorie, "prix"=>$prix, "place"=>$place, "langage"=>$langage));
       }
     }
@@ -124,23 +124,23 @@ session_start();
     else if ($dateCount != 0) {
       //date + langue
       if ($langageCount !=0) {
-        $prereq=$bdd->prepare("SELECT * FROM trip WHERE category=:categorie AND price = :prix AND places = :place AND languages = :langage AND date >:date");
+        $prereq=$bdd->prepare("SELECT * FROM trip WHERE category=:categorie AND price > :prix AND places > :place AND languages = :langage AND date >:date");
         $prereq->execute(array( "categorie"=>$categorie, "prix"=>$prix, "place"=>$place, "langage"=>$langage, "date"=>$date));
       }
       else if ($cityCount == 0 && $langageCount == 0){
-        $prereq="SELECT * FROM trip WHERE category= :categorie AND price = :prix AND places = :place AND date > :date");
+        $prereq=$bdd->prepare("SELECT * FROM trip WHERE category= :categorie AND price > :prix AND places > :place AND date > :date");
         $prereq->execute(array( "categorie"=>$categorie, "prix"=>$prix, "place"=>$place, "date"=>$date));
       }
     }
     //si tous est définie
     else if ($cityCount !=0 && $langageCount !=0  && $dateCount != 0) {
-      $prereq=$bdd->prepare("SELECT * FROM trip WHERE category=:categorie AND price = :prix AND places = :place AND city = :city AND languages = :langage AND date > :date");
+      $prereq=$bdd->prepare("SELECT * FROM trip WHERE category=:categorie AND price > :prix AND places > :place AND city = :city AND languages = :langage AND date > :date");
       $prereq->execute(array( "categorie"=>$categorie, "prix"=>$prix, "place"=>$place, "date"=>$date, "city"=>$city, "langage"=>$langage));
     }
   }
   // si il y a juste la base
   else{
-    $prereq=$bdd->prepare("SELECT * FROM trip WHERE category= :categorie AND price = :prix AND places = :place");
+    $prereq=$bdd->prepare("SELECT * FROM trip WHERE category= :categorie AND price > :prix AND places > :place");
     $prereq->execute(array( "categorie"=>$categorie, "prix"=>$prix, "place"=>$place));
   }
 //Une fois la vérification efféctué on se connecte à la base de données
