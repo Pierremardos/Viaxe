@@ -99,7 +99,8 @@ session_start();
     if ($cityCount !=0 ) {
       //ville + langue
       if ($langageCount !=0) {
-        $prereq="SELECT * FROM trip WHERE categorie='$categorie' AND price = '$prix' AND places = '$place' AND city = '$city' AND languages = '$langage'";
+        $prereq=$bdd->prepare("SELECT * FROM trip WHERE category=:categorie AND price = :prix AND places = :place AND city = :city AND languages = :langage");
+        $prereq->execute(array( "categorie"=>$categorie, "prix"=>$prix, "place"=>$place, "city"=>$city, "langage"=>$langage));
       }
       //ville + date
       if ($dateCount !=0) {
@@ -150,7 +151,7 @@ session_start();
   }
 //Une fois la vérification efféctué on se connecte à la base de données
 
-      $con = mysqli_connect("localhost","root","","viaxe");
+
 
 
 
@@ -159,9 +160,9 @@ session_start();
           <div class="row">';
 
 
-	$requete=mysqli_query($con,$prereq);
 
-	while($row = mysqli_fetch_array($requete))
+
+	while($row=$prereq->fetch())
 	{
 
   $date =strtotime($row['date']);
@@ -193,7 +194,6 @@ echo '</div>
 </div>
 </div>';
 
-mysqli_free_result($requete);
 
 ?>
 </body>

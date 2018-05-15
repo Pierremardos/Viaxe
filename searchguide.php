@@ -59,8 +59,6 @@ session_start();
 
 
 
-              $con = mysqli_connect("localhost","root","","viaxe");
-
 
 
               echo '<div class="py-5">
