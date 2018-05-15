@@ -94,20 +94,20 @@ include 'include/functions.php';
               <input type="text" class="form-control w-50" name="newPhone"" value="'.$donnees['phone'].'">
               <small class="form-text text-muted"></small>
           </div>';
-          if($donnees['diploma'] != "ok"){
+          if($donnees['diploma'] == "ok" | $donnees['diploma'] == "envoie" ){
+          }
+          else{
           echo'
           <div class="form-group">
               <label>Ajouter un diplôme :</label>
-              <input type="hidden" name="MAX_FILE_SIZE" value="250000">
               <input type="file" name="avatar2">
+              <input type="hidden" name="MAX_FILE_SIZE" value="250000">
           </div>
           <div class="form-group">
               <label>Papier d identité à fournir avec le diplôme :</label>
-              <input type="hidden" name="MAX_FILE_SIZE" value="250000">
               <input type="file" name="avatar3">
+              <input type="hidden" name="MAX_FILE_SIZE" value="250000">
           </div>
-              <input type="radio" name="documents" value="2" checked/>
-              <input type="radio" name="documents" value="1"/>
             ';
         }
         echo'

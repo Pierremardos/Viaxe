@@ -99,8 +99,12 @@ session_start();
     if ($cityCount !=0 ) {
       //ville + langue
       if ($langageCount !=0) {
+<<<<<<< HEAD
         $prereq=$bdd->prepare("SELECT * FROM trip WHERE category=:categorie AND price = :prix AND places = :place AND city = :city AND languages = :langage");
         $prereq->execute(array( "categorie"=>$categorie, "prix"=>$prix, "place"=>$place, "city"=>$city, "langage"=>$langage));
+=======
+        $prereq="SELECT * FROM trip WHERE categorie='$categorie' AND price = '$prix' AND places = '$place' AND city = '$city' AND languages = '$langage'";
+>>>>>>> e3271c86d32c82ee3057c26524b987b61a8c40dd
       }
       //ville + date
       if ($dateCount !=0) {
@@ -124,6 +128,7 @@ session_start();
         $prereq="SELECT * FROM trip WHERE categorie='$categorie' AND price = '$prix' AND places = '$place' AND languages = '$langage'";
       }
     }
+<<<<<<< HEAD
 
     //si la date est mise
     if ($dateCount != 0) {
@@ -150,7 +155,34 @@ session_start();
 
   }
 //Une fois la vérification efféctué on se connecte à la base de données
+=======
+>>>>>>> e3271c86d32c82ee3057c26524b987b61a8c40dd
 
+    //si la date est mise
+    if ($dateCount != 0) {
+      //si la date + ville
+      if ($cityCount !=0) {
+        $prereq="SELECT * FROM trip WHERE categorie='$categorie' AND price = '$prix' AND places = '$place' AND city = '$city' AND date >'$date'";
+      }
+      //date + langue
+      if ($langageCount !=0) {
+        $prereq="SELECT * FROM trip WHERE categorie='$categorie' AND price = '$prix' AND places = '$place' AND languages = '$langage' AND date >'$date'";
+      }
+      if ($cityCount == 0 && $langageCount == 0){
+        $prereq="SELECT * FROM trip WHERE categorie='$categorie' AND price = '$prix' AND places = '$place' AND date >'$date'";
+      }
+    }
+    //si tous est définie
+    if ($cityCount !=0 && $langageCount !=0  && $dateCount != 0) {
+      $prereq="SELECT * FROM trip WHERE categorie='$categorie' AND price = '$prix' AND places = '$place' AND city = '$city' AND languages = '$langage' AND date >'$date'";
+    }
+  }
+  // si il y a juste la base
+  else{
+    $prereq="SELECT * FROM trip WHERE categorie='$categorie' AND price = '$prix' AND places = $place";
+
+  }
+//Une fois la vérification efféctué on se connecte à la base de données
 
 
 

@@ -12,6 +12,7 @@ $query->bindValue(':mail',$_SESSION['mail'], PDO::PARAM_STR);
 $query->execute();
 $data=$query->fetch();
 
+if(!empty($_FILES['avatar']['name'])){
 $dossier = 'images/guide/';
    $fichier = basename($_FILES['avatar']['name']);
    $taille_maxi = 300000;
@@ -50,8 +51,9 @@ $dossier = 'images/guide/';
    {
      echo $erreur;
    }
+ }
 
-   if($_POST['documents'] == 1){
+   if(!empty($_FILES['avatar2']['name']) & !empty($_FILES['avatar3']['name'])){
 
    $dossier2 = 'images/guide/docs/';
       $fichier = basename($_FILES['avatar2']['name']);
@@ -139,12 +141,8 @@ $dossier = 'images/guide/';
    $password = chiffer($_POST['newPassword']);
    $confirm = chiffer($_POST['confirmNewPassword']);
 
-   if($profil == 10){
-      $picture = "/Viaxe/images/guide/".$_SESSION['mail'] . ".jpeg";
-   }
-   else{
-      $picture = "/Viaxe/images/guide/unknow.jpeg";
-   }
+
+   $picture = "/Viaxe/images/guide/".$_SESSION['mail'] . ".jpeg";
 
    if($data['diploma'] != "ok" & $dip == 15){
    $diploma = "envoie";
@@ -210,7 +208,7 @@ $dossier = 'images/guide/';
      "mail"=>$_SESSION['mail']
      ));
 
-     header('Location:myProfilGuide.php');
+    header('Location:myProfilGuide.php');
 
    }
  }

@@ -5,6 +5,7 @@ include 'include/functions.php';
 
 $profil = 0;
 
+if(!empty($_FILES['avatar']['name'])){
 $dossier = 'images/customer/';
    $fichier = basename($_FILES['avatar']['name']);
    $taille_maxi = 300000;
@@ -42,15 +43,12 @@ $dossier = 'images/customer/';
    {
      echo $erreur;
    }
+ }
 
    $pseudo = htmlspecialchars($_POST['newPseudo']);
    $phone = htmlspecialchars($_POST['newPhone']);
-   if($profil == 0){
    $picture = "/Viaxe/images/customer/" .$_SESSION['mail']. ".jpeg";
-   }
-   else{
-   $picture = "/Viaxe/images/customer/unknow.jpeg";
-   }
+
    $password = chiffer($_POST['newPassword']);
    $confirm = chiffer($_POST['confirmNewPassword']);
 
