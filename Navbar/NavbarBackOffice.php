@@ -18,7 +18,7 @@
 		 <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
 			 <ul class="navbar-nav">
 				 <li class="nav-item">
-					 <a class="nav-link" href="../backOfficeGuideChecker.php"> Guide Checker </a>
+					 <a class="nav-link" href="../backOffice/backOfficeMessages.php"> Messages </a>
 				 </li>
 				 <li class="nav-item">
 					 <a class="nav-link" href="../backOffice/backOfficeBannedGuides.php"> Banned Guides </a>
