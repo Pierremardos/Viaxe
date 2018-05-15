@@ -210,10 +210,78 @@ function editGuide($mail, $pseudo, $age, $gender){
                   ]);
 }
 
+function ShowMessageBackOffice(){
+  $db = connectDb();
+  $query = $db->prepare("SELECT comment, timeComment, mailCustomer FROM recommendation WHERE idTrip = -1");
+  $query->execute();
+  $value = 0;
 
+  $result = $query->fetchAll();
 
+  foreach($result as $message){
+    echo'
+    <br>
+    <div class="container bg-primary">
+      <div class="row bg-primary">
+      <img src="" alt="Avatar">
+      &nbsp <h4>'.$message["mailCustomer"].'</h5>
+      </div>
+      <br>
+      <p>'.$message["comment"].'</p>
+      <div class="row bg-secondary">
+      <br>
+      &nbsp <span class="time-right">'.$message["timeComment"].'</span>
+      </div>
+    </div>
+    ';
+  }
+}
 
+function answerMessageBackOffice($comment, $mail){
+  $db = connectDb();
+  $secureComment = htmlspecialchars($comment);
+  $idTrip = -1;
+  $query = $db->prepare("INSERT INTO recommendation (comment, timeComment, mailCustomer, idTrip) VALUES ( :comment, NOW(), :mailCustomer, :idTrip)");
+  $query->execute([
+                  "comment"=>$secureComment,
+                  "mailCustomer"=>$mail,
+                  "idTrip"=>$idTrip
+                  ]);
+}
 
+function showMessageClient($mail){
+
+  $db = connectDb();
+  $query = $db->prepare("SELECT comment, timeComment, mailCustomer FROM recommendation WHERE idTrip = -1 AND mailCustomer = '$mail' ");
+  $query->execute();
+  $result = $query->fetchAll();
+
+  foreach($result as $message){
+    echo'
+    <br>
+    <div class="container bg-primary">
+      <div class="row bg-primary">
+      <img src="" alt="Avatar">
+      &nbsp <h4>'.$message["mailCustomer"].'</h3>
+      </div>
+      <p>'.$message["comment"].'</p>
+      <div class="row bg-secondary">
+      &nbsp <span class="time-right">'.$message["timeComment"].'</span>
+      </div>
+    </div>
+    ';
+  }
+}
+
+function answerMessageClient($comment, $mail){
+  $comment = htmlspecialchars($comment);
+  $db = connectDb();
+  $query = $db->prepare("INSERT INTO recommendation (comment, timeComment, mailCustomer, idTrip ) VALUES ( :comment, NOW(), :mailCostumer, -1)");
+  $query->execute([
+                  "comment"=>$comment,
+                  "mailCostumer"=>$mail
+                  ]);
+}
 
 function erreur($err='')
 {

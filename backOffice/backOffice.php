@@ -1,6 +1,6 @@
 <?php
   include '../include/config.php';
-  include '../include/functions.php';
+
  	require_once "../include/functions.php";
   session_start();
   if($_SESSION['mail'] == 'quentin.clodion@gmail.com' | $_SESSION['mail'] =='jonasnizard@gmail.com' | $_SESSION['mail'] == 'thomas.ddt@hotmail.fr'){
