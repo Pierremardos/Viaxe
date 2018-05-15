@@ -80,6 +80,21 @@ include 'include/functions.php';
     }
 
 
+		$min = strtotime($birthday);
+	  $now = strtotime("now") + 7200;
+	  if($now - $min < 0){
+	   $i++;
+	   $date_erreur1 = "Vous n'êtes pas encore né";
+	  }
+	  else if($now - $min > 3155760000){
+	    $i++;
+	    $date_erreur2 = "Nous avons limité l'age maximum à 100ans si vous avez vraielent cette âge veuillez mettre un plus jeune âge s'il vous plaît";
+	  }
+	  else if($now - $min < 157788000){
+	    $i++;
+	    $date_erreur3 = "Il faut avoir plus de 5ans pour créer un compte";
+	  }
+
 		//Test de l'email
 
 	//Il faut que l'adresse email n'ait jamais été utilisée
@@ -166,6 +181,15 @@ include 'include/functions.php';
 			 if (isset($email_erreur2)){
 			 		echo'<p>'.$email_erreur2.'</p>';
 		 		}
+				if (isset($date_erreur1)){
+						echo'<p>'.$date_erreur1.'</p>';
+					}
+				if (isset($date_erreur2)){
+						echo'<p>'.$date_erreur2.'</p>';
+					}
+				if (isset($date_erreur3)){
+						echo'<p>'.$date_erreur3.'</p>';
+					}
 	 }
 
 	//header("Location:index.php");

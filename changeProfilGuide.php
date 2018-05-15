@@ -170,7 +170,7 @@ $dossier = 'images/guide/';
 
 
 
-   if(!isset($_POST['newPassword']) & empty($_POST['newPassword']) & !isset($_POST['confirmNewPassword']) & empty($_POST['confirmNewPassword']))
+   if(!(!isset($_POST['newPassword']) | empty($_POST['newPassword']) | !isset($_POST['confirmNewPassword']) | empty($_POST['confirmNewPassword'])))
    {
    if($password == $confirm){
 
@@ -209,6 +209,5 @@ $dossier = 'images/guide/';
      ));
 
     header('Location:myProfilGuide.php');
-
    }
  }

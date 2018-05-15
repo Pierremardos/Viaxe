@@ -52,7 +52,7 @@ $dossier = 'images/customer/';
    $password = chiffer($_POST['newPassword']);
    $confirm = chiffer($_POST['confirmNewPassword']);
 
-   if(!isset($_POST['newPassword']) & empty($_POST['newPassword']) & !isset($_POST['confirmNewPassword']) & empty($_POST['confirmNewPassword']))
+    if(!(!isset($_POST['newPassword']) | empty($_POST['newPassword']) | !isset($_POST['confirmNewPassword']) | empty($_POST['confirmNewPassword'])))
    {
    if($password == $confirm){
 
