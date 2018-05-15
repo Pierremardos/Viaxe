@@ -123,7 +123,7 @@ session_start();
         $prereq="SELECT * FROM trip WHERE categorie='$categorie' AND price = '$prix' AND places = '$place' AND languages = '$langage'";
       }
     }
-    
+
     //si la date est mise
     if ($dateCount != 0) {
       //si la date + ville
@@ -149,12 +149,6 @@ session_start();
 
   }
 //Une fois la vérification efféctué on se connecte à la base de données
-echo "City = ".$cityCount;
-echo "Cat = ".$categorieCount;
-echo "lang = ".$langageCount;
-echo "prix = ".$prixCount;
-echo "place = ".$placeCount;
-echo "date = ".$dateCount;
 
       $con = mysqli_connect("localhost","root","","viaxe");
 
