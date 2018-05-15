@@ -214,12 +214,14 @@ echo '
           <img class="img-fluid d-block w-100 img-thumbnail" src="'.$donnees['Picture'].'"> </div>
       </div>';
     }
-    echo'
-    </div>
-  </div>';
+
   $count++;
 }
+echo'
+</div>
+</div>';
 }
+
 ?>
 <?php
 if($particip == 0){

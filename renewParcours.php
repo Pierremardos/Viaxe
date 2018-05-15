@@ -237,8 +237,8 @@ $accept = 1;
   }
 
     if($error == 0){
-      //header("location: parcours.php?id=".$idMax."");
-      // exit;
+      header("location: parcours.php?id=".$idMax."");
+      exit;
    }
 
   echo'<a href="changeParcours.php?id='.$id.'"> Continuer la création </a>';
