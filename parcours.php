@@ -160,39 +160,61 @@ $data = $rep->fetch();
   $count = 0;
   while($donnees = $req->fetch()){
 
-    if($count % 3 == 0){
+    if($count % 3 == 0 & $count < 3){
 echo '
     <div class="container">
       <div class="row mb-5">
+      ';
+      if(isset($donnees['content']) & !empty($donnees['content'])){
+      echo'
         <div class="col-md-7">
           <p class="text-justify">'.$donnees['content'].'</p>
         </div>
+        ';
+      }
+      if(isset($donnees['Picture']) & !empty($donnees['Picture'])){
+        echo'
         <div class="col-md-5 align-self-center">
           <img class="img-fluid d-block w-100 img-thumbnail" src="'.$donnees['Picture'].'"> </div>
       </div>';
+    }
       $count++;
     }
-    else if($count % 3 == 1){
-      echo'<div class="row">
+    else if($count % 3 == 1 & $count < 3){
+      echo'<div class="row">';
+        if(isset($donnees['Picture']) & !empty($donnees['Picture'])){
+          echo'
         <div class="col-md-5">
-          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="'.$donnees['Picture'].'"> </div>
-        <div class="col-md-7">
+          <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="'.$donnees['Picture'].'"> </div>';
+        }
+          if(isset($donnees['content']) & !empty($donnees['content'])){
+          echo'<div class="col-md-7">
           <p class="text-justify">'.$donnees['content'].'</p>
-        </div>
+        </div>';
+      }
+      echo'
       </div>
     </div>';
     $count++;
   }
-    else{
+    else if ($count % 3 == 2 & $count < 3){
       echo'
     <div class="container">
       <div class="row mb-5 my-5">
+      ';
+      if(isset($donnees['content']) & !empty($donnees['content'])){
+      echo'
         <div class="col-md-7">
           <p class="text-justify">'.$donnees['content'].'</p>
-        </div>
+        </div>';
+        }
+        if(isset($donnees['Picture']) & !empty($donnees['Picture'])){
+          echo'
         <div class="col-md-5 align-self-center">
           <img class="img-fluid d-block w-100 img-thumbnail" src="'.$donnees['Picture'].'"> </div>
-      </div>
+      </div>';
+    }
+    echo'
     </div>
   </div>';
   $count++;

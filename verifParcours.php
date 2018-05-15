@@ -97,7 +97,7 @@
  		}
 
 
-
+    if(!empty($_FILES['avatar1']['name'])){
     $fichier = basename($_FILES['avatar1']['name']);
  		$taille_maxi = 300000;
  		$taille = filesize($_FILES['avatar1']['tmp_name']);
@@ -129,7 +129,12 @@
  		{
  			echo $erreur;
  		}
+  }
+  else{
+    $pic1 ="";
+  }
 
+    if(!empty($_FILES['avatar2']['name'])){
     $fichier = basename($_FILES['avatar2']['name']);
  		$taille_maxi = 300000;
  		$taille = filesize($_FILES['avatar2']['tmp_name']);
@@ -160,7 +165,13 @@
  		{
  			echo $erreur;
  		}
+  }
+  else{
+    $pic2 = "";
+  }
 
+
+    if(!empty($_FILES['avatar3']['name'])){
     $fichier = basename($_FILES['avatar3']['name']);
  		$taille_maxi = 300000;
  		$taille = filesize($_FILES['avatar3']['tmp_name']);
@@ -188,6 +199,10 @@
  		{
  			echo $erreur;
  		}
+  }
+  else{
+    $pic3 = "";
+  }
 
 
  $title = htmlspecialchars($_POST['title']);
