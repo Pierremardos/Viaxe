@@ -1,0 +1,59 @@
+
+  // commande SQL sachant que la catégorie, le prix et les places sont automatiquement définie
+
+  //si un des trois est définie
+  if ($cityCount !=0 || $langageCount !=0 || $dateCount !=0) {
+    //si la ville est mise
+    if ($cityCount !=0 ) {
+      //ville + langue
+      if ($langageCount !=0) {
+        $prereq="SELECT * FROM trip WHERE categorie='$categorie' AND price = '$prix' AND places = '$place' AND city = '$city' AND languages = '$langage'";
+      }
+      //ville + date
+      if ($dateCount !=0) {
+        $prereq="SELECT * FROM trip WHERE categorie='$categorie' AND price = '$prix' AND places = '$place' AND city = '$city' AND date >'$date'";
+      }
+      if ($dateCount == 0 && $langageCount == 0){
+        $prereq="SELECT * FROM trip WHERE categorie='$categorie' AND price = '$prix' AND places = '$place' AND city = '$city'";
+      }
+    }
+    //si la langue est mise
+    if ($langageCount !=0 ) {
+      //si la langue + ville
+      if ($cityCount !=0) {
+        $prereq="SELECT * FROM trip WHERE categorie='$categorie' AND price = '$prix' AND places = '$place' AND city = '$city' AND languages = '$langage'";
+      }
+      // langue + date
+      if ($dateCount !=0) {
+        $prereq="SELECT * FROM trip WHERE categorie='$categorie' AND price = '$prix' AND places = '$place' AND languages = '$langage' AND date >'$date'";
+      }
+      if ($dateCount == 0 && $cityCount == 0){
+        $prereq="SELECT * FROM trip WHERE categorie='$categorie' AND price = '$prix' AND places = '$place' AND languages = '$langage'";
+      }
+    }
+    //si la date est mise
+    if ($dateCount != 0) {
+      //si la date + ville
+      if ($cityCount !=0) {
+        $prereq="SELECT * FROM trip WHERE categorie='$categorie' AND price = '$prix' AND places = '$place' AND city = '$city' AND date >'$date'";
+      }
+      //date + langue
+      if ($langageCount !=0) {
+        $prereq="SELECT * FROM trip WHERE categorie='$categorie' AND price = '$prix' AND places = '$place' AND languages = '$langage' AND date >'$date'";
+      }
+      if ($cityCount == 0 && $langageCount == 0){
+        $prereq="SELECT * FROM trip WHERE categorie='$categorie' AND price = '$prix' AND places = '$place' AND date >'$date'";
+      }
+    }
+    //si tous est définie
+    if ($cityCount !=0 && $langageCount !=0  && $dateCount != 0) {
+      $prereq="SELECT * FROM trip WHERE categorie='$categorie' AND price = '$prix' AND places = '$place' AND city = '$city' AND languages = '$langage' AND date >'$date'";
+    }
+  }
+  // si il y a juste la base
+  else{
+    $prereq="SELECT * FROM trip WHERE categorie='$categorie' AND price = '$prix' AND places = $place";
+
+  }
+//Une fois la vérification efféctué on se connecte à la base de données
+
